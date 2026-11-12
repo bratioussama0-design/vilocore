@@ -1,38 +1,807 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#09090a">
-  <meta name="description" content="Vilocore AI builds autonomous AI infrastructure, workflow automation, private knowledge systems, and AI agents for B2B teams.">
-  <title>Vilocore AI — Autonomous AI Infrastructure</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root{color-scheme:dark;--bg:#09090a;--panel:#101013;--fg:#f4f4f6;--muted:#a1a1aa;--dim:#71717a;--line:#27272a;--accent:#f59e0b;--hair:rgba(245,158,11,.4;font-family:'Space Grotesk',sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--fg);font-family:'Space Grotesk',sans-serif;line-height:1.55}a{color:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}.mono,.eyebrow{font-family:'JetBrains Mono',monospace}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}.eyebrow b{color:var(--accent);font-weight:500}nav{position:sticky;top:0;z-index:5;background:rgba(9,9,10,.96);border-bottom:1px solid var(--line)}.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.04em}.brand span{color:var(--accent)}.navlinks{display:flex;gap:24px}.navlinks a{text-decoration:none;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--fg)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid var(--accent);background:var(--accent);color:#09090a;text-decoration:none;font:600 14px 'Space Grotesk',sans-serif;cursor:pointer;transition:.2s}.btn:hover{background:transparent;color:var(--accent)}.btn.ghost{background:transparent;border-color:#52525b;color:var(--fg)}.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}.hero{padding:105px 0 78px}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:56px}.tag{display:inline-block;border:1px solid var(--hair);padding:8px 11px;color:var(--accent)}h1{font-size:clamp(42px,6.4vw,78px);line-height:1.02;letter-spacing:-.055em;margin:24px 0 0;max-width:15ch}h1 em{font-style:normal;color:var(--accent)}h2{font-size:clamp(30px,4vw,50px);letter-spacing:-.04em;line-height:1.08;margin:14px 0 0;max-width:20ch}.lead{font-size:18px;color:var(--muted);max-width:60ch;margin:24px 0 0}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.system{border:1px solid var(--line);background:var(--panel)}.system-head,.system-foot{padding:13px 16px;border-bottom:1px solid var(--line);font:11px 'JetBrains Mono',monospace;color:var(--muted)}.system-foot{border:0;border-top:1px solid var(--line)}.system ol{list-style:none;padding:12px 16px;margin:0;counter-reset:n}.system li{counter-increment:n;padding:14px 8px;border-bottom:1px solid var(--line);font-size:14px}.system li:last-child{border:0}.system li:before{content:'0' counter(n) '  /  ';font:11px 'JetBrains Mono',monospace;color:var(--accent)}.metrics{display:grid;grid-template-columns:repeat(3,1fr);margin-top:58px;border:1px solid var(--line);background:#ffffff04}.metric{padding:24px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric strong{display:block;font:500 clamp(25px,3vw,40px) 'JetBrains Mono',monospace;letter-spacing:-.05em}.metric span{display:block;margin-top:8px;color:var(--muted);font-size:13px}.section{padding:88px 0;border-top:1px solid var(--line)}.sub{color:var(--muted);max-width:62ch}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:38px}.card{background:var(--bg);padding:28px;display:flex;flex-direction:column;align-items:flex-start}.card h3{font-size:21px;margin:12px 0 6px}.card p{color:var(--muted);font-size:14px;margin:8px 0 18px}.price{font:500 36px 'JetBrains Mono',monospace;letter-spacing:-.05em;margin:16px 0}.price small{font:14px 'Space Grotesk',sans-serif;color:var(--dim);letter-spacing:0}.card ul{padding-left:18px;color:var(--muted);font-size:14px;display:grid;gap:9px;flex:1}.featured{border-top:2px solid var(--accent)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.tile{border:1px solid var(--line);padding:20px;background:var(--panel)}.tile h3{font-size:16px;margin:0 0 8px}.tile p{font-size:13px;color:var(--muted);margin:0}.faq{max-width:820px;margin-top:32px}.faq details{border-bottom:1px solid var(--line);padding:18px 0}.faq summary{cursor:pointer;font-size:16px;font-weight:500}.faq details p{color:var(--muted);max-width:65ch;margin:12px 0 0}.cta{border:1px solid var(--hair);padding:32px;display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:40px}.cta h3{margin:0;font-size:22px}.cta p{margin:6px 0 0;color:var(--muted)}footer{padding:35px 0;color:var(--dim);font-size:13px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.modal{position:fixed;inset:0;z-index:10;background:#000d;display:none;place-items:center;padding:20px}.modal.open{display:grid}.dialog{width:min(480px,100%);background:var(--panel);border:1px solid var(--hair);padding:28px}.dialog-top{display:flex;justify-content:space-between;align-items:center}.close{background:none;border:0;color:var(--accent);font-size:24px;cursor:pointer}.dialog input{width:100%;padding:14px;margin:8px 0;background:#09090a;border:1px solid #3f3f46;color:var(--fg);font:15px 'Space Grotesk',sans-serif}.dialog input:focus{outline:2px solid var(--accent)}.dialog .btn{width:100%;margin-top:8px}.notice{color:var(--muted);font-size:13px}.success{color:var(--accent);display:none}.success.show{display:block}@media(max-width:800px){.hero-grid,.grid2{grid-template-columns:1fr}.hero{padding-top:70px}.cards{grid-template-columns:1fr}.navlinks{gap:12px}.navlinks a{font-size:12px}.system{max-width:600px}.cta{align-items:flex-start;flex-direction:column}}@media(max-width:540px){.wrap{width:min(100% - 28px,1160px)}.nav{flex-wrap:wrap;padding:12px 0}.navlinks{order:3;width:100%;justify-content:space-between;border-top:1px solid var(--line);padding-top:10px}.nav>.btn{padding:9px 11px;font-size:12px}.metrics{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.tiles{grid-template-columns:1fr}.section{padding:68px 0}.cta{padding:22px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vilocore AI — Autonomous AI Infrastructure</title>
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--bg:#09090a;--fg:#F4F4F6;--mut:#71717A;--mut2:#9A9AA2;--acc:#F59E0B;--line:rgba(255,255,255,.07);--hair:rgba(245,158,11,.35);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Space Grotesk',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.lab{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.lab b{color:var(--acc);font-weight:500}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(9,9,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #27272a}
+.nav-in{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{height:26px;width:auto;display:block}
+.lnk{position:relative;font-size:14px;color:var(--mut2);text-decoration:none;padding:6px 0;transition:color .3s}
+.lnk::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.lnk:hover{color:var(--fg)}.lnk:hover::after{transform:scaleX(1);transform-origin:left}
+.dot{width:7px;height:7px;background:var(--acc);display:inline-block;position:relative}
+.dot::after{content:"";position:absolute;inset:0;background:var(--acc);animation:ping 2s infinite}
+@keyframes ping{to{transform:scale(3.2);opacity:0}}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 14px 'Space Grotesk',sans-serif;padding:13px 22px;border:1px solid var(--acc);background:var(--acc);color:#0a0a0b;cursor:pointer;text-decoration:none;will-change:transform;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .3s,color .3s}
+.btn:hover{background:transparent;color:var(--acc)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:#3f3f46}.btn.ghost:hover{border-color:var(--acc);color:var(--acc)}
+.btn.sm{padding:9px 16px;font-size:13px}
+section{padding:112px 0;position:relative}
+h1{font-size:clamp(38px,6.4vw,84px);line-height:1;letter-spacing:-.035em;font-weight:600;margin:28px 0 0;max-width:15ch}
+h1 em{font-style:normal;color:var(--mut)}
+h2{font-size:clamp(30px,4vw,52px);line-height:1.04;letter-spacing:-.03em;font-weight:600;margin:18px 0 0;max-width:20ch}
+.sub{color:var(--mut2);font-size:clamp(16px,1.6vw,19px);line-height:1.6;max-width:60ch;margin-top:28px}
+.tag{display:inline-block;border:1px solid var(--hair);padding:9px 12px;color:var(--acc)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);margin-top:72px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.metrics div{padding:28px 20px 28px 0}.metrics div+div{padding-left:24px;border-left:1px solid var(--line)}
+.metrics strong{display:block;font:500 clamp(24px,3.6vw,44px)/1 'JetBrains Mono',monospace;letter-spacing:-.04em}
+.metrics span{display:block;margin-top:10px}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
+.cell{position:relative;background:var(--bg);padding:32px;overflow:hidden;grid-column:span 12}
+@media(min-width:900px){.c7{grid-column:span 7}.c5{grid-column:span 5}.c6{grid-column:span 6}}
+.cell::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(245,158,11,.09),transparent 60%)}
+.cell:hover::before{opacity:1}
+.cell h3{font-size:22px;letter-spacing:-.02em;margin:14px 0 10px;font-weight:600}
+.cell p{color:var(--mut2);line-height:1.6;margin:0;font-size:15px;max-width:46ch}
+.cell svg{width:100%;height:auto;margin-top:28px;display:block}
+.nd{fill:#0d0d0f;stroke:#3f3f46;stroke-width:1}.nd.on{stroke:var(--acc)}
+.tx{font:500 10px 'JetBrains Mono',monospace;fill:#9A9AA2;letter-spacing:.06em}
+.ln{stroke:#3f3f46;stroke-width:1;fill:none}
+.fl{stroke:var(--acc);stroke-width:1.2;fill:none;stroke-dasharray:6 34;animation:dash 2.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-80}}
+.steps{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
+@media(min-width:800px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{background:var(--bg);padding:32px}
+.step .n{font:500 56px/1 'JetBrains Mono',monospace;color:#27272a;letter-spacing:-.05em}
+.step h3{font-size:20px;margin:24px 0 8px;font-weight:600}.step p{margin:0;color:var(--mut2);line-height:1.6;font-size:15px}
+.step .lab{margin-top:20px;display:block;color:var(--acc)}
+.plans{display:grid;gap:16px;margin-top:56px}
+@media(min-width:900px){.plans{grid-template-columns:repeat(3,1fr);align-items:stretch}}
+.plan{border:1px solid #27272a;padding:32px;display:flex;flex-direction:column;background:rgba(255,255,255,.012);position:relative}
+.plan.hot{border-color:var(--acc);background:rgba(245,158,11,.035)}
+.plan .pill{position:absolute;top:-1px;right:-1px;background:var(--acc);color:#0a0a0b;font:500 10px 'JetBrains Mono',monospace;letter-spacing:.12em;padding:6px 10px}
+.price{font:500 40px/1 'JetBrains Mono',monospace;letter-spacing:-.05em;margin:22px 0 6px}
+.price small{font-size:14px;color:var(--mut);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:26px 0;display:grid;gap:12px;flex:1}
+.plan li{color:var(--mut2);font-size:14.5px;line-height:1.5;padding-left:20px;position:relative}
+.plan li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:1px;background:var(--acc)}
+.guar{border-top:1px dashed #3f3f46;padding-top:16px;margin-bottom:22px;color:var(--fg);font-size:13px;line-height:1.5}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*90ms);will-change:transform,opacity}
+.rv.in{opacity:1;transform:none}
+/* ===== MODAL: compositor-only open/close, no backdrop blur ===== */
+#modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(6,6,7,.94);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .14s ease-out,visibility 0s linear .14s;contain:layout paint}
+#modal.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .14s ease-out,visibility 0s}
+.panel{width:100%;max-width:560px;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:#0c0c0e;border:1px solid var(--hair);padding:32px;transform:translate3d(0,8px,0) scale(.985);transition:transform .16s cubic-bezier(.2,.8,.2,1)}
+#modal.open .panel{transform:none}
+.opts{display:grid;gap:8px;margin:14px 0 22px}
+.opt{text-align:left;background:transparent;border:1px solid #27272a;color:var(--mut2);padding:13px 14px;font:400 14px 'Space Grotesk',sans-serif;cursor:pointer;transition:border-color .12s,color .12s,background-color .12s;touch-action:manipulation}
+.opt:hover{border-color:#52525b;color:var(--fg)}
+.opt:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.opt[aria-pressed=true]{border-color:var(--acc);color:var(--fg);background:rgba(245,158,11,.06)}
+input{width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #3f3f46;color:var(--fg);font:400 15px 'Space Grotesk',sans-serif;padding:12px 0;margin-bottom:12px;outline:0;transition:border-color .3s;border-radius:0}
+input:focus{border-color:var(--acc)}input::placeholder{color:var(--mut)}
+/* modal fields: big, boxed, instant feedback (scoped so the chat input is untouched) */
+#f .fld{display:block;width:100%;box-sizing:border-box;height:60px;margin:0 0 12px;padding:0 18px;background:#131316;border:1px solid #3f3f46;border-radius:0;color:var(--fg);font:500 19px/1 'Space Grotesk',system-ui,sans-serif;letter-spacing:.005em;caret-color:var(--acc);outline:0;transition:border-color .1s,box-shadow .1s,background-color .1s;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+#f .fld::placeholder{color:#6b6b74;font-weight:400}
+#f .fld:hover{border-color:#52525b}
+#f .fld:focus{border-color:var(--acc);background:#16161a;box-shadow:0 0 0 3px rgba(245,158,11,.22)}
+#f .fld[aria-invalid=true]{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.18)}
+#f .fld:-webkit-autofill{-webkit-text-fill-color:var(--fg);-webkit-box-shadow:0 0 0 60px #131316 inset;transition:background-color 9999s}
+#f .sub-btn{width:100%;justify-content:center;margin-top:8px;padding:18px 22px;font-size:16px;will-change:auto;touch-action:manipulation}
+/* freeze page-level looping animations while the modal is open */
+body.mo .fl,body.mo .fl2,body.mo .ic,body.mo .ib,body.mo .ib::after,body.mo .dot::after,body.mo .ty i{animation-play-state:paused}
+@media(max-width:640px){.panel{padding:22px 18px}#f .fld{height:56px;font-size:18px}}
+.x{background:none;border:0;color:var(--mut);cursor:pointer;font:500 12px 'JetBrains Mono',monospace}
+.x:hover{color:var(--fg)}
+.hide{display:none}
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+@media(max-width:640px){section{padding:80px 0}.metrics{grid-template-columns:1fr}.metrics div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}.dsk{display:none}}
+.hero h1{color:#8b8b94}
+.hero h1 em{color:var(--fg);box-shadow:inset 0 -.1em 0 rgba(245,158,11,.5)}
+.hero .sub{font-size:18px;max-width:36rem;color:#a1a1aa}
+.hero .metrics{margin-top:80px;border:1px solid var(--line);background:rgba(255,255,255,.015)}
+.hero .metrics div{padding:28px}
+.sysw{position:relative;isolation:isolate}
+.sysw::before{content:"";position:absolute;inset:-12% -8%;z-index:-1;background:radial-gradient(closest-side,rgba(245,158,11,.16),transparent);filter:blur(34px)}
+.sys{border:1px solid #27272a;background:rgba(12,12,14,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.sys-h{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #27272a;font-size:12px;color:var(--mut2)}
+.sys svg{display:block;width:100%;height:auto;padding:20px 18px 6px;box-sizing:border-box;margin:0}
+.hn{cursor:default}.hn .nd{transition:stroke .3s,fill .3s}
+.hn:hover .nd{fill:#131316;stroke:#52525b}
+.hn.on .nd{stroke:var(--acc)}
+.nl{font:500 13px 'Space Grotesk',sans-serif;fill:#F4F4F6}
+.st{transition:fill .3s}.hn.on .st{fill:#F59E0B}.hn.done .st{fill:#d4d4d8}
+.fl2{stroke:var(--acc);stroke-width:1.2;fill:none;stroke-dasharray:3 5;animation:dash 1.2s linear infinite}
+.lg{border-top:1px solid #27272a;padding:14px 18px;height:136px;overflow:hidden;background:rgba(0,0,0,.35)}
+.lg div{font:400 11.5px/1.75 'JetBrains Mono',monospace;color:#9A9AA2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg i{font-style:normal;color:#52525b}.lg b{color:#F59E0B;font-weight:500}
+.sys-f{padding:12px 18px;border-top:1px solid #27272a;min-height:40px;text-transform:none;letter-spacing:.02em;font-size:11.5px;line-height:1.5}
+.dd{transition:transform .55s cubic-bezier(.34,1.56,.64,1);will-change:transform}
+.dd-on .dd{cursor:grab;user-select:none;-webkit-user-select:none}
+.dd.grabbed{transition:none;z-index:6}
+.dd-on .dd.grabbed,.dragging,.dragging *{cursor:grabbing!important}
+.hn.grabbed{filter:drop-shadow(0 14px 18px rgba(0,0,0,.75))}
+.hn.grabbed .nd{stroke:var(--acc);fill:#141417}
+.hero .metrics>div{position:relative}
+.hero .metrics>div.grabbed{background:#0e0e10;box-shadow:0 0 0 1px var(--acc),0 20px 44px rgba(0,0,0,.65)}
+.dh{display:none;position:absolute;top:-28px;right:0;color:var(--mut);transition:opacity .5s}
+.dd-on .dh{display:block}.dh.gone{opacity:0}
+.eco{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:100%}
+.eco svg{height:28px;width:auto;max-width:100%;display:block;font-family:'Space Grotesk',system-ui,sans-serif}
+.eco span{font:400 10px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#52525b;white-space:nowrap}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* ===== Integration ecosystem ===== */
+.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ig>.ic:nth-child(3n+2){translate:0 22px}
+.ic{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;aspect-ratio:1/1;border-radius:16px;background:rgba(24,24,27,.8);border:1px solid rgba(39,39,42,.8);color:#a1a1aa;transition:border-color .3s,color .3s,background .3s;animation:fl 6s ease-in-out infinite;animation-delay:var(--d,0s);will-change:transform}
+.ic:nth-child(even){animation-duration:7.4s}
+.ic svg{width:30px;height:30px;fill:currentColor;transition:filter .3s}
+.ic svg.s{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.ic span{font:600 14px 'Space Grotesk',sans-serif;letter-spacing:-.01em}
+.ic:hover{color:#fff;border-color:rgba(245,158,11,.45);background:rgba(39,39,42,.9)}
+.ic:hover svg{filter:drop-shadow(0 0 8px rgba(245,158,11,.6))}
+.ib{grid-column:1/-1;margin-top:34px;border-radius:16px;background:var(--acc);color:#0a0a0b;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;position:relative;animation:fl 7s ease-in-out infinite reverse;will-change:transform}
+.ib b{font-size:clamp(38px,5vw,54px);letter-spacing:-.04em;line-height:1;font-weight:700}
+.ib::after{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid var(--acc);animation:rg 2.8s ease-out infinite;pointer-events:none}
+@keyframes fl{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-9px,0)}}
+@keyframes rg{from{transform:scale(1);opacity:.7}to{transform:scale(1.05,1.25);opacity:0}}
+@media(max-width:420px){.ic span{font-size:12px}.ic svg{width:26px;height:26px}.ig{gap:10px}}
+/* ===== Vilocore AI assistant ===== */
+#cw{position:fixed;right:24px;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:50}
+#cb{position:relative;display:flex;align-items:center;gap:10px;height:48px;padding:0 16px;background:#0a0a0b;color:var(--fg);border:1px solid #3f3f46;cursor:pointer;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.06em;transition:border-color .3s}
+#cb:hover,#cb[aria-expanded=true]{border-color:var(--acc)}
+#cb svg{display:none;width:20px;height:20px;stroke:var(--acc);fill:none;stroke-width:1.6}
+#cd{position:absolute;right:0;bottom:60px;width:360px;max-width:calc(100vw - 2rem);height:min(540px,calc(100dvh - 9rem));display:flex;flex-direction:column;background:#0a0a0b;border:1px solid #3f3f46;box-shadow:0 24px 60px rgba(0,0,0,.65);opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(0,14px,0);transition:opacity .3s,transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s}
+#cd.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
+.ch{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}
+.ch button{background:none;border:0;color:var(--mut);font:500 11px 'JetBrains Mono',monospace;cursor:pointer}.ch button:hover{color:var(--acc)}
+#cm{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;font-size:13.5px;line-height:1.55;overscroll-behavior:contain}
+.mg{max-width:90%;white-space:pre-wrap;padding:9px 12px;border:1px solid var(--line)}
+.mg.b{align-self:flex-start;color:#d4d4d8;background:#0f0f11}
+.mg.b::before{content:"vilocore>";display:block;font:500 10px 'JetBrains Mono',monospace;color:var(--acc);margin-bottom:4px;letter-spacing:.06em}
+.mg.u{align-self:flex-end;border-color:var(--hair);background:rgba(245,158,11,.07)}
+.mg .btn{margin-top:10px;white-space:normal}
+.ty i{display:inline-block;width:5px;height:5px;background:var(--acc);margin-right:4px;animation:bl 1s infinite}.ty i:nth-child(2){animation-delay:.15s}.ty i:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{opacity:.2}}
+#cc{display:flex;flex-direction:column;gap:6px;padding:0 14px 12px}
+.chip{text-align:left;font:13px 'Space Grotesk',sans-serif;color:#d4d4d8;background:transparent;border:1px solid #27272a;padding:8px 10px;cursor:pointer;transition:border-color .2s,color .2s}.chip:hover{border-color:var(--acc);color:var(--acc)}
+.cf{display:flex;border-top:1px solid var(--line)}
+.cf input{flex:1;min-width:0;background:transparent;border:0;color:var(--fg);padding:13px 14px;font:13px 'JetBrains Mono',monospace;outline:0}
+.cf button{background:none;border:0;border-left:1px solid var(--line);color:var(--acc);padding:0 16px;font:500 11px 'JetBrains Mono',monospace;cursor:pointer}
+.cf button:hover{background:var(--acc);color:#0a0a0b}
+.cl{padding:8px 14px 10px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+@media(max-width:639px){#cw{right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}#cb{width:48px;padding:0;justify-content:center}#cb .lb{display:none}#cb svg{display:block}#cb .dot{position:absolute;top:6px;right:6px}#cd{bottom:58px}}
+@media(prefers-reduced-motion:reduce){.ic,.ib,.ib::after{animation:none!important}#cd{transition:none}}
+
+/* ===== Vilocore upgrades ===== */
+.logo{mix-blend-mode:lighten;height:30px}
+.mq{overflow:hidden;contain:layout paint;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-t{display:flex;align-items:center;width:max-content;margin:0;padding:0;list-style:none;will-change:transform;transform:translate3d(0,0,0);backface-visibility:hidden}
+.mq-i{flex:none;padding:0 36px;color:#71717a;transition:color .3s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.mq-i:hover{color:#F4F4F6;transform:translate3d(0,-3px,0)}
+.mq-i .eco{width:max-content}
+@media(prefers-reduced-motion:reduce){.mq{overflow-x:auto}}
+#pg{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:var(--acc);transform:scaleX(0);transform-origin:0 50%;will-change:transform;pointer-events:none}
+.lnk.act{color:var(--fg)}.lnk.act::after{transform:scaleX(1);transform-origin:left}
+.plan,.step{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s}
+@media(hover:hover){.plan:hover,.step:hover{transform:translate3d(0,-4px,0)}}
+#cb{transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .2s}#cb:hover{transform:translate3d(0,-2px,0)}
+#cd{transform-origin:100% 100%}
+#cn{position:absolute;right:0;bottom:60px;width:max-content;max-width:260px;padding:10px 14px;background:#0f0f11;border:1px solid var(--hair);color:#d4d4d8;font-size:13px;line-height:1.45;cursor:pointer;text-align:left;opacity:0;visibility:hidden;transform:translate3d(0,8px,0);transition:opacity .3s,transform .3s,visibility 0s .3s}
+#cn.show{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.kbd{font:500 10px 'JetBrains Mono',monospace;color:var(--mut);border:1px solid #3f3f46;padding:2px 5px;margin-left:8px}
+@media(max-width:639px){.kbd{display:none}#cn{bottom:58px}}
+
+.sys svg{overflow:visible}.sysw.dd{position:relative}.dd.grabbed{z-index:40}.sysw.grabbed{filter:drop-shadow(0 28px 40px rgba(0,0,0,.7))}
+.dd-on .dgh{cursor:grab;user-select:none;-webkit-user-select:none}.dd-on .grabbed .dgh,.dd-on .dgh:active{cursor:grabbing}
+
+/* ===== perf cuts: no full-screen grain, no blur/backdrop filters, no looping decorative animations ===== */
+body::after{display:none}
+nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(9,9,10,.96)}
+.sys{backdrop-filter:none;-webkit-backdrop-filter:none;background:#0c0c0e}
+.sysw::before{filter:none;background:radial-gradient(closest-side,rgba(245,158,11,.1),transparent)}
+.hn.grabbed,.ic:hover svg{filter:none}.sysw.grabbed{filter:none;box-shadow:0 24px 50px rgba(0,0,0,.6)}
+.cell::before{display:none}
+.fl{animation:none;stroke-dasharray:none;opacity:.3}
+.ic,.ib{animation:none!important}.ib::after{display:none}
+.dot::after{display:none}
+.rv{will-change:auto}
+.mq{-webkit-mask-image:none;mask-image:none;position:relative}
+.mq::before,.mq::after{content:"";position:absolute;top:0;bottom:0;width:12%;z-index:2;pointer-events:none}
+.mq::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}.mq::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+/* ===== AI assistant look ===== */
+.orb{position:relative;flex:none;width:36px;height:36px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#0a0a0b}
+.orb::before{content:"";position:absolute;inset:-50%;background:conic-gradient(#F59E0B,#fde68a,#ea580c,#F59E0B);animation:orbspin 6s linear infinite;will-change:transform}
+.orb::after{content:"";position:absolute;inset:2px;border-radius:50%;background:#0c0c0e}
+.orb svg,#cb .orb svg{position:relative;z-index:1;display:block;width:18px;height:18px;fill:#FBBF24;stroke:none;margin:0}
+.orb.sm{width:26px;height:26px}.orb.sm svg{width:13px;height:13px}
+@keyframes orbspin{to{transform:rotate(360deg)}}
+body.mo .orb::before{animation-play-state:paused}
+#cb{height:auto;padding:8px 18px 8px 8px;gap:12px;border-radius:999px;background:#0e0e11;border:1px solid #3f3f46;box-shadow:0 10px 30px rgba(0,0,0,.55);letter-spacing:0;text-align:left}
+#cb:hover,#cb[aria-expanded=true]{border-color:var(--acc)}
+#cb .txt{display:flex;flex-direction:column;gap:3px}
+#cb strong{font:600 14px/1 'Space Grotesk',sans-serif;color:var(--fg)}
+#cb small{font:400 11px/1 'Space Grotesk',sans-serif;color:var(--mut2);display:flex;align-items:center;gap:6px}
+#cb small::before{content:"";width:6px;height:6px;border-radius:50%;background:#22c55e}
+#cd{border-radius:16px;overflow:hidden}
+.mg{border-radius:12px}
+@media(max-width:639px){#cb{width:56px;height:56px;padding:0;justify-content:center}#cb .txt{display:none}#cb .orb{width:40px;height:40px}}
+/* ===== submitted tab ===== */
+.okc{opacity:0;transform:translate3d(0,12px,0);transition:opacity .35s,transform .35s cubic-bezier(.2,.8,.2,1)}
+.okc.show{opacity:1;transform:none}
+#ok .ck path{stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset .5s .15s ease-out}#ok.show .ck path{stroke-dashoffset:0}
+#ok .rc{border:1px solid #27272a;background:#101013;margin:22px 0 0}
+#ok .rc>div{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid #1f1f23;font-size:14px}
+#ok .rc>div:first-child{border-top:0}
+#ok .rc b{font-weight:500;color:var(--fg);text-align:right;overflow-wrap:anywhere}
+#ok .nx{list-style:none;padding:0;margin:22px 0;display:grid;gap:12px}
+#ok .nx li{display:grid;grid-template-columns:8px 1fr;gap:12px;color:var(--mut2);font-size:14px;line-height:1.5}
+#ok .nx li::before{content:"";width:8px;height:8px;margin-top:6px;border:1px solid var(--acc)}
+#ok .nx li:first-child::before{background:var(--acc)}
+@media(prefers-reduced-motion:reduce){#ok .ck path{stroke-dashoffset:0!important}.orb::before{animation:none!important}}
+
+/* ===== yellow close X ===== */
+.x,.ch .x,#cx{display:grid;place-items:center;width:34px;height:34px;padding:0;border-radius:50%;background:rgba(245,158,11,.1);border:1px solid var(--hair);color:var(--acc);cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s}
+.x:hover,.ch .x:hover,#cx:hover{background:var(--acc);color:#0a0a0b;transform:rotate(90deg)}
+.x:focus-visible,#cx:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+/* ===== yellow meteor (background, one element, compositor-only) ===== */
+.mtr{position:fixed;top:0;left:0;width:190px;height:2px;z-index:-1;pointer-events:none;opacity:0;transform-origin:0 50%;border-radius:2px;background:linear-gradient(90deg,#fff7d6,#F59E0B 6%,rgba(245,158,11,.4) 38%,transparent);will-change:transform,opacity}
+.mtr::before{content:"";position:absolute;left:-3px;top:-3px;width:8px;height:8px;border-radius:50%;background:#fff7d6;box-shadow:0 0 14px 5px rgba(245,158,11,.75)}
+@media(prefers-reduced-motion:reduce){.mtr{display:none}}
+
+/* ===== new sections (static, no animation) ===== */
+.gr{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}
+.gr>div{background:var(--bg);padding:28px}
+.gr h3,.cta2 h3{font-size:19px;font-weight:600;margin:0 0 10px;letter-spacing:-.01em}
+.gr p,.cta2 p{color:var(--mut2);font-size:14.5px;line-height:1.6;margin:0}
+.gr b{color:var(--fg);font-weight:500}
+@media(min-width:640px){.gr.c3,.gr.c4{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.gr.c3{grid-template-columns:repeat(3,1fr)}.gr.c4{grid-template-columns:repeat(4,1fr)}}
+.roi{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}
+@media(min-width:800px){.roi{grid-template-columns:1.2fr 1fr}}
+.rc2,.rr{background:var(--bg);padding:32px}
+.rc2 label{display:block;color:var(--mut2);font-size:15px;margin-bottom:26px}.rc2 label b{color:var(--fg);font-weight:500}
+.rc2 input[type=range]{display:block;width:100%;margin:12px 0 0;padding:0;border:0;accent-color:var(--acc);background:none}
+.rr strong{display:block;font:500 clamp(40px,6vw,64px)/1.1 'JetBrains Mono',monospace;letter-spacing:-.04em;margin:14px 0 6px;color:var(--acc)}
+.faq{margin-top:48px;border-top:1px solid var(--line);max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 0;font-size:17px;font-weight:500;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--acc);font:500 20px/1 'JetBrains Mono',monospace}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:0 0 20px;color:var(--mut2);line-height:1.65;max-width:64ch}
+.gr2{display:grid;gap:40px;align-items:center}
+@media(min-width:900px){.gr2{grid-template-columns:1.3fr 1fr}}
+.cta2{border:1px solid var(--hair);padding:32px;display:grid;gap:14px;background:rgba(245,158,11,.03)}
+.cta2 .btn{justify-content:center}
+
+/* ===== nav fix ===== */
+.logo{flex:none;width:auto;max-width:none;object-fit:contain}
+nav .btn{white-space:nowrap}
+@media(max-width:767px){
+ html{scroll-padding-top:calc(112px + env(safe-area-inset-top,0px))}
+ .nav-in{height:auto;flex-wrap:wrap;padding-top:10px;padding-bottom:8px;row-gap:8px}
+ nav .wrap{padding:0 16px}
+ .nav-in>div:last-child{gap:10px!important}
+ nav .dsk{display:flex!important;gap:6px!important;font-size:9px;letter-spacing:.08em}
+ nav .btn.sm{padding:9px 12px;font-size:12px}
+ .nav-links{display:flex!important;order:3;width:100%;justify-content:space-between;gap:0!important;border-top:1px solid var(--line);padding-top:8px}
+ .nav-links .lnk{font-size:13px}
+ .hero{padding-top:140px!important}
+}
+
+/* ===== mobile nav v2: row1 logo, row2 status + book button, row3 links ===== */
+@media(max-width:767px){
+ html{scroll-padding-top:calc(132px + env(safe-area-inset-top,0px))}
+ .nav-in{row-gap:6px;padding-top:8px;padding-bottom:8px}
+ .nav-in>a{order:1;width:100%}
+ .logo{height:20px!important}
+ .nav-in>div:last-child{order:2;width:100%;justify-content:space-between}
+ .nav-links{order:3;padding-top:6px}
+ .hero{padding-top:164px!important}
+}
+
+/* ===== mobile nav v3: logo + button on one row, no status on phone ===== */
+@media(max-width:767px){
+ html{scroll-padding-top:calc(100px + env(safe-area-inset-top,0px))}
+ nav .dsk{display:none!important}
+ .nav-in{justify-content:space-between;align-items:center}
+ .nav-in>a{width:auto}
+ .logo{height:22px!important}
+ .nav-in>div:last-child{width:auto;justify-content:flex-end}
+ .hero{padding-top:132px!important}
+}
+</style>
 </head>
 <body>
-  <nav><div class="wrap nav"><a class="brand" href="#top">VILOCORE<span> AI</span></a><div class="navlinks"><a href="#pricing">Pricing</a><a href="#workflows">Workflows</a><a href="#security">Security</a><a href="#faq">FAQ</a></div><button class="btn" data-open>Book a call</button></div></nav>
-  <main id="top">
-    <header class="hero"><div class="wrap"><div class="hero-grid"><div><span class="eyebrow tag">[ Vilocore AI // Accepting new clients ]</span><h1>Replace operational bottlenecks with <em>autonomous AI infrastructure.</em></h1><p class="lead">Custom n8n orchestration, private RAG knowledge bases, and AI agents engineered to help B2B teams scale without scaling headcount.</p><div class="actions"><a class="btn" href="#pricing">View deployment plans →</a><a class="btn ghost" href="#workflows">Explore workflows</a></div></div><div class="system"><div class="system-head"><span style="color:var(--accent)">●</span> LIVE EXECUTION / WORKFLOW #4821</div><ol><li>Incoming lead webhook</li><li>n8n orchestration</li><li>Private RAG + LLM agent</li><li>CRM qualified and booked</li></ol><div class="system-foot">AUTOMATE THE REPEATABLE. KEEP PEOPLE IN CONTROL.</div></div></div><div class="metrics"><div class="metric"><strong>&lt; 15s</strong><span>Target lead response time</span></div><div class="metric"><strong>24/7</strong><span>Automated workflow coverage</span></div><div class="metric"><strong>40+ hrs</strong><span>Potential hours saved weekly</span></div></div></div></header>
-    <section class="section" id="pricing"><div class="wrap"><span class="eyebrow"><b>//</b> Deployment plans</span><h2>Priced against the hours you get back.</h2><p class="sub">Start with one high-impact workflow, then expand when the results are clear.</p><div class="cards"><article class="card"><span class="eyebrow">Tier 1</span><h3>Growth Pilot</h3><div class="price">$1,000<small> one-time</small></div><p>Prove the value with one focused automation.</p><ul><li>One core AI workflow</li><li>CRM integration</li><li>Deployment target: 14 days</li></ul><button class="btn ghost" data-open>Start a pilot</button></article><article class="card featured"><span class="eyebrow"><b>Most popular · Tier 2</b></span><h3>Scale Infrastructure</h3><div class="price">$2,200<small> one-time</small></div><p>Connect workflows and knowledge across your team.</p><ul><li>Up to four custom n8n pipelines</li><li>Custom RAG knowledge base</li><li>Lead enrichment and Slack alerts</li><li>Monitoring setup</li></ul><button class="btn" data-open>Book discovery call</button></article><article class="card"><span class="eyebrow">Tier 3</span><h3>Custom Enterprise</h3><div class="price" style="font-size:28px">Custom quote</div><p>Purpose-built systems for complex requirements.</p><ul><li>Dedicated engineering</li><li>Self-hosted deployment options</li><li>Custom APIs and integrations</li><li>Designed for your scale</li></ul><button class="btn ghost" data-open>Request a quote</button></article></div></div></section>
-    <section class="section" id="workflows"><div class="wrap"><span class="eyebrow"><b>//</b> Workflow examples</span><h2>Pick a workflow. We build it.</h2><div class="cards"><article class="card"><h3>WhatsApp lead qualifier</h3><p>Qualify inbound leads, book calls, and create CRM records automatically.</p><span class="eyebrow">WhatsApp · LLM · CRM</span></article><article class="card"><h3>Invoice to accounting</h3><p>Extract invoice details, request approval, and keep records in sync.</p><span class="eyebrow">Email · Sheets · Slack</span></article><article class="card"><h3>Support triage</h3><p>Use your knowledge base to draft answers or route tickets to the right team.</p><span class="eyebrow">RAG · Helpdesk · Slack</span></article></div></div></section>
-    <section class="section" id="security"><div class="wrap grid2"><div><span class="eyebrow"><b>//</b> Security & privacy</span><h2>Your data stays yours.</h2><p class="sub">We design around your stack and access requirements. Deployment choices and data handling are agreed during scoping.</p></div><div class="tiles"><div class="tile"><h3>Self-hosted options</h3><p>Choose infrastructure that fits your privacy requirements.</p></div><div class="tile"><h3>Scoped credentials</h3><p>Use only the access and permissions each workflow needs.</p></div><div class="tile"><h3>You own your workflows</h3><p>Receive documented workflow exports at handover.</p></div><div class="tile"><h3>Test before launch</h3><p>Validate workflows in a test environment before production.</p></div></div></div></section>
-    <section class="section" id="faq"><div class="wrap"><span class="eyebrow"><b>//</b> FAQ</span><h2>Questions buyers ask first.</h2><div class="faq"><details><summary>Who owns the workflows?</summary><p>You do. The handover includes workflow exports and documentation.</p></details><details><summary>How long does deployment take?</summary><p>Timing depends on integrations and scope. A Growth Pilot is planned around a 14-day deployment target.</p></details><details><summary>Are there monthly fees?</summary><p>Our quoted project fees are one-time unless a continuing support plan is agreed. Third-party hosting and AI usage may have separate provider costs.</p></details><details><summary>Which tools can you connect?</summary><p>We work with tools that offer integrations, APIs, or webhooks, including common CRM, messaging, productivity, and billing platforms.</p></details></div><div class="cta"><div><h3>Find your biggest bottleneck.</h3><p>Tell us what your team repeats—we’ll help scope a practical first workflow.</p></div><button class="btn" data-open>Request a workflow audit ��</button></div></div></section>
-  </main>
-  <footer><div class="wrap foot"><span class="brand">VILOCORE<span> AI</span></span><span>Autonomous AI infrastructure for B2B teams</span><span>© 2026 Vilocore AI</span></div></footer>
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="dialog"><div class="dialog-top"><span class="eyebrow"><b>//</b> Discovery request</span><button class="close" type="button" aria-label="Close">×</button></div><h2 id="modal-title" style="font-size:27px">Let’s talk workflows.</h2><p class="sub" style="font-size:14px">Share your details and we’ll follow up about your automation goals.</p><form id="lead-form"><input name="name" placeholder="Full name" autocomplete="name" required><input name="company" placeholder="Company" autocomplete="organization" required><input name="email" type="email" placeholder="Work email" autocomplete="email" required><button class="btn" type="submit">Request a conversation</button></form><p class="notice">This static form shows a confirmation only. Connect a form service or webhook to receive submissions.</p><p class="success" id="success" role="status">Thanks! Your request is ready. Please contact the site owner to complete submission setup.</p></div></div>
-  <script>
-    const modal=document.querySelector('#modal');
-    const closeModal=()=>modal.classList.remove('open');
-    document.querySelectorAll('[data-open]').forEach(button=>button.addEventListener('click',()=>modal.classList.add('open')));
-    document.querySelector('.close').addEventListener('click',closeModal);
-    modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});
-    document.addEventListener('keydown',event=>{if(event.key==='Escape')closeModal()});
-    document.querySelector('#lead-form').addEventListener('submit',event=>{event.preventDefault();document.querySelector('#success').classList.add('show');event.currentTarget.reset()});
-  </script>
+<div id="pg" aria-hidden="true"></div>
+<nav>
+ <div class="wrap nav-in">
+  <a href="#top" aria-label="Vilocore AI home" style="flex:none"><img class="logo" alt="Vilocore AI" src="data:image/png;base64,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"></a>
+  <div class="hidden md:flex nav-links" style="gap:28px"><a class="lnk" href="#pricing">Pricing</a><a class="lnk" href="#workflows">Workflows</a><a class="lnk" href="#architecture">Architecture</a></div>
+  <div style="display:flex;align-items:center;gap:20px">
+   <span class="lab dsk" style="display:flex;align-items:center;gap:10px"><i class="dot"></i><b>Operational</b></span>
+   <button class="btn sm mag" data-open>Book Discovery Call</button>
+  </div>
+ </div>
+</nav>
+
+<main id="top">
+<section class="hero" style="padding-top:152px;padding-bottom:88px">
+ <div class="wrap">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+  <div class="lg:col-span-7">
+  <span class="lab tag rv">[ Vilocore AI // System Status: Accepting Q4 Clients ]</span>
+  <h1 class="rv text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-tight leading-[1.08] max-w-none" style="--i:1">We replace manual operational bottlenecks with <em>autonomous AI infrastructure.</em></h1>
+  <p class="sub rv" style="--i:2">Custom n8n orchestration, private RAG knowledge bases, and 24/7 WhatsApp/CRM agents engineered by Vilocore AI to scale your revenue without scaling headcount.</p>
+  <div class="rv" style="--i:3;display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
+   <a class="btn mag" href="#pricing">View Deployment Plans <span>→</span></a>
+   <a class="btn ghost mag" href="#architecture">Explore Architecture</a>
+  </div>
+  </div>
+  <div class="lg:col-span-5">
+   <div class="sysw rv" style="--i:2">
+    <span class="dh lab" id="dh">[ Drag nodes ]</span>
+    <div class="sys">
+     <div class="sys-h"><span class="lab" style="display:inline-flex;align-items:center;gap:10px"><i class="dot"></i><b>Live execution</b> / run #4821</span><span class="mono" id="tm">00.0s</span></div>
+     <svg viewBox="0 0 440 250" role="img" aria-label="Live workflow: webhook to n8n to RAG agent to CRM">
+      <path class="ln" d="M22 46V66M22 112V132M22 178V198"/>
+      <path class="fl2" d="M22 46V66M22 112V132M22 178V198"/>
+      <circle r="2.5" fill="#F59E0B"><animateMotion dur="3.2s" repeatCount="indefinite" path="M22 23V221"/></circle>
+      <g class="hn" data-info="Signed webhook intake from WhatsApp, IG and web forms. Deduplicated and logged in under 40ms."><rect class="nd" x=".5" y=".5" width="439" height="45"/><text class="tx" x="14" y="27">01</text><text class="nl" x="44" y="28">Incoming Lead Webhook</text><text class="tx st" x="426" y="27" text-anchor="end">IDLE</text></g>
+      <g class="hn" transform="translate(0,66)" data-info="n8n routes by intent, enriches the contact and fans out to the right sub-workflow."><rect class="nd" x=".5" y=".5" width="439" height="45"/><text class="tx" x="14" y="27">02</text><text class="nl" x="44" y="28">n8n Orchestrator</text><text class="tx st" x="426" y="27" text-anchor="end">IDLE</text></g>
+      <g class="hn" transform="translate(0,132)" data-info="Private RAG retrieves from your own docs; the LLM scores intent and answers with cited sources only."><rect class="nd" x=".5" y=".5" width="439" height="45"/><text class="tx" x="14" y="27">03</text><text class="nl" x="44" y="28">Private RAG + LLM Agent</text><text class="tx st" x="426" y="27" text-anchor="end">IDLE</text></g>
+      <g class="hn" transform="translate(0,198)" data-info="Deal created in HubSpot or Pipedrive, call slot booked, Slack alert sent to the owner."><rect class="nd" x=".5" y=".5" width="439" height="45"/><text class="tx" x="14" y="27">04</text><text class="nl" x="44" y="28">CRM Qualified &amp; Booked</text><text class="tx st" x="426" y="27" text-anchor="end">IDLE</text></g>
+     </svg>
+     <div class="lg" id="lg" aria-live="off"></div>
+     <div class="sys-f lab" id="hint">Hover a node to inspect</div>
+    </div>
+   </div>
+  </div>
+  </div>
+  <div class="metrics rv" style="--i:4">
+   <div><strong>&lt; 15s</strong><span class="lab">Lead response time</span></div>
+   <div><strong>99.9%</strong><span class="lab">Uptime SLA</span></div>
+   <div><strong>40+ hrs<small style="font-size:.4em;color:var(--mut)">/wk</small></strong><span class="lab">Saved per team</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="pricing">
+ <div class="wrap">
+  <span class="lab rv"><b>//</b> Deployment plans</span>
+  <h2 class="rv" style="--i:1">Priced against the hours you get back.</h2>
+  <div class="plans">
+   <div class="plan rv">
+    <span class="lab">Tier 1</span><h3 style="font-size:22px;margin:12px 0 0;font-weight:600">Growth Pilot</h3>
+    <div class="price">$1,000<small> one-time</small></div><div class="mono" style="color:var(--mut2);font-size:13px">No monthly fees</div>
+    <ul><li>1 core AI workflow (e.g. 24/7 WhatsApp AI Qualifier)</li><li>Full CRM integration</li><li>14-day deployment</li></ul>
+    <div class="guar"><span class="lab" style="color:var(--acc)">Guarantee</span><br><br>Live in 14 days or your payment is refunded.</div>
+    <button class="btn ghost" data-open>Start Pilot</button>
+   </div>
+   <div class="plan hot rv" style="--i:1">
+    <span class="pill">MOST POPULAR</span>
+    <span class="lab">Tier 2</span><h3 style="font-size:22px;margin:12px 0 0;font-weight:600">Scale Infrastructure</h3>
+    <div class="price">$2,200<small> one-time</small></div><div class="mono" style="color:var(--mut2);font-size:13px">No monthly fees</div>
+    <ul><li>Up to 4 custom n8n pipelines</li><li>Custom RAG Knowledge Base trained on your company data</li><li>Lead enrichment</li><li>Slack alerts</li><li>24/7 monitoring</li></ul>
+    <button class="btn mag" data-open>Book Discovery Call</button>
+   </div>
+   <div class="plan rv" style="--i:2">
+    <span class="lab">Tier 3</span><h3 style="font-size:22px;margin:12px 0 0;font-weight:600">Custom Enterprise</h3>
+    <div class="price" style="font-size:32px;padding:4px 0">Custom Quote</div><div class="mono" style="color:var(--mut2);font-size:13px">Scoped to your stack</div>
+    <ul><li>Dedicated AI systems engineer</li><li>Self-hosted n8n/LLM for strict privacy</li><li>Custom API microservices</li><li>Unlimited workflow scaling</li></ul>
+    <button class="btn ghost" data-open>Request Quote</button>
+   </div>
+  </div>
+  <div class="rv" style="margin-top:96px;border:1px solid var(--hair);padding:40px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+   <div><span class="lab"><b>//</b> Free audit</span><h2 style="font-size:clamp(24px,3vw,36px);margin-top:14px">Find your biggest bottleneck. We’ll record the fix.</h2></div>
+   <button class="btn mag" data-open>Request Loom Audit →</button>
+  </div>
+ </div>
+</section>
+<section id="roi" class="border-y border-zinc-800/80"><div class="wrap"><span class="lab"><b>//</b> ROI calculator</span><h2>See what manual work costs you.</h2><div class="roi">
+ <div class="rc2">
+  <label>Hours per week spent on manual tasks: <b id="v1">20</b><input type="range" id="r1" min="1" max="80" value="20"></label>
+  <label>Cost per hour: $<b id="v2">30</b><input type="range" id="r2" min="10" max="150" value="30"></label>
+  <label>People doing this work: <b id="v3">2</b><input type="range" id="r3" min="1" max="20" value="2"></label>
+  <p class="lab" style="line-height:1.7">Assumes 70% of the hours can be automated.</p>
+ </div>
+ <div class="rr"><span class="lab">Estimated savings</span><strong id="o1">$0</strong><span class="lab" style="display:block">per month</span><p id="o2" class="sub" style="margin-top:18px;font-size:15px"></p><button class="btn" data-open>Get my audit</button></div>
+</div></div></section>
+<section id="results"><div class="wrap"><span class="lab"><b>//</b> Example outcomes</span><h2>What good looks like.</h2><div class="gr c3"><div><h3>Lead response</h3><p>Example scenario: inbound leads wait hours for a reply.</p><p class="mono" style="margin-top:14px;color:var(--fg)">Hours → under 15 seconds</p></div><div><h3>Manual data entry</h3><p>Example scenario: the team copies data between tools by hand.</p><p class="mono" style="margin-top:14px;color:var(--fg)">Daily chore → automatic sync</p></div><div><h3>Support load</h3><p>Example scenario: the same questions fill the inbox every day.</p><p class="mono" style="margin-top:14px;color:var(--fg)">Repeat tickets → AI draft replies</p></div></div></div></section>
+<section id="workflows"><div class="wrap"><span class="lab"><b>//</b> Workflow gallery</span><h2>Pick a workflow. We build it.</h2><div class="gr c3"><div><h3>WhatsApp lead qualifier</h3><p><b>Trigger:</b> new WhatsApp message<br>AI scores intent, books a call, creates the CRM deal.</p><span class="lab" style="display:block;margin:14px 0">WhatsApp · OpenAI · HubSpot</span><button class="btn ghost sm" data-open>Get this built</button></div><div><h3>Invoice to accounting</h3><p><b>Trigger:</b> invoice arrives by email<br>AI extracts fields, logs the bill, asks for approval in Slack.</p><span class="lab" style="display:block;margin:14px 0">Gmail · Sheets · Slack</span><button class="btn ghost sm" data-open>Get this built</button></div><div><h3>Support triage</h3><p><b>Trigger:</b> new support ticket<br>Knowledge base drafts a reply or routes it to the right person.</p><span class="lab" style="display:block;margin:14px 0">RAG · Helpdesk · Slack</span><button class="btn ghost sm" data-open>Get this built</button></div><div><h3>Outbound enrichment</h3><p><b>Trigger:</b> new lead list<br>Enrich, personalize the message, send, log every touch.</p><span class="lab" style="display:block;margin:14px 0">Enrichment · LLM · CRM</span><button class="btn ghost sm" data-open>Get this built</button></div><div><h3>Client onboarding</h3><p><b>Trigger:</b> contract signed<br>Creates folders and tasks, sends the welcome email, invites to Slack.</p><span class="lab" style="display:block;margin:14px 0">Forms · Drive · Slack</span><button class="btn ghost sm" data-open>Get this built</button></div><div><h3>Weekly reporting</h3><p><b>Trigger:</b> every Monday<br>Pulls the numbers, writes a summary, sends it to the team.</p><span class="lab" style="display:block;margin:14px 0">Sheets · LLM · Email</span><button class="btn ghost sm" data-open>Get this built</button></div></div></div></section>
+<section id="systems">
+ <div class="wrap">
+  <span class="lab rv"><b>//</b> Core systems we engineer</span>
+  <h2 class="rv" style="--i:1">Four systems. One operating layer.</h2>
+  <div class="bento">
+   <article class="cell c7 rv">
+    <span class="lab"><b>01</b> / Inbound</span>
+    <h3>Autonomous Inbound &amp; WhatsApp/IG Agents</h3>
+    <p>Instant 24/7 lead qualification, intent scoring, and automated CRM booking. Every message answered before a competitor opens their inbox.</p>
+    <svg viewBox="0 0 560 120" aria-hidden="true">
+     <path id="a1" class="ln" d="M70 60H190M290 60H400M470 60H490"/><path class="fl" d="M70 60H490"/>
+     <g><rect class="nd" x="10" y="40" width="60" height="40"/><text class="tx" x="40" y="64" text-anchor="middle">WA/IG</text>
+     <rect class="nd on" x="190" y="30" width="100" height="60"/><text class="tx" x="240" y="56" text-anchor="middle">LLM AGENT</text><text class="tx" x="240" y="72" text-anchor="middle" style="fill:#F59E0B">SCORE 0.91</text>
+     <rect class="nd" x="400" y="40" width="70" height="40"/><text class="tx" x="435" y="64" text-anchor="middle">CRM</text>
+     <rect class="nd" x="490" y="40" width="60" height="40"/><text class="tx" x="520" y="64" text-anchor="middle">BOOKED</text></g>
+     <circle r="3" fill="#F59E0B"><animateMotion dur="3s" repeatCount="indefinite" path="M70 60H490"/></circle>
+    </svg>
+   </article>
+   <article class="cell c5 rv" style="--i:1">
+    <span class="lab"><b>02</b> / Knowledge</span>
+    <h3>Enterprise RAG Knowledge Engines</h3>
+    <p>Connect PDFs, Notion, and databases to private LLMs with zero hallucination. Answers cite sources or abstain.</p>
+    <svg viewBox="0 0 260 120" aria-hidden="true">
+     <path class="ln" d="M60 25L120 60M60 60L120 60M60 95L120 60M170 60H220"/><path class="fl" d="M60 25L120 60M60 95L120 60M170 60H220" style="animation-delay:-.8s"/>
+     <rect class="nd" x="10" y="15" width="50" height="20"/><rect class="nd" x="10" y="50" width="50" height="20"/><rect class="nd" x="10" y="85" width="50" height="20"/>
+     <text class="tx" x="35" y="29" text-anchor="middle">PDF</text><text class="tx" x="35" y="64" text-anchor="middle">NOTION</text><text class="tx" x="35" y="99" text-anchor="middle">SQL</text>
+     <rect class="nd on" x="120" y="40" width="50" height="40"/><text class="tx" x="145" y="64" text-anchor="middle">VEC</text>
+     <rect class="nd" x="220" y="40" width="38" height="40"/><text class="tx" x="239" y="64" text-anchor="middle">LLM</text>
+     <circle r="3" fill="#F59E0B"><animateMotion dur="2.6s" repeatCount="indefinite" path="M60 25L120 60H220"/></circle>
+    </svg>
+   </article>
+   <article class="cell c5 rv">
+    <span class="lab"><b>03</b> / Orchestration</span>
+    <h3>End-to-End n8n &amp; API Orchestration</h3>
+    <p>Seamless bidirectional syncing between HubSpot/Pipedrive, Stripe, Slack, and webhooks. One source of truth, no copy-paste.</p>
+    <svg viewBox="0 0 260 120" aria-hidden="true">
+     <path class="ln" d="M130 60L40 20M130 60L220 20M130 60L40 100M130 60L220 100"/><path class="fl" d="M130 60L40 20M130 60L220 100" style="animation-delay:-1.2s"/><path class="fl" d="M130 60L220 20M130 60L40 100"/>
+     <rect class="nd on" x="105" y="42" width="50" height="36"/><text class="tx" x="130" y="64" text-anchor="middle">n8n</text>
+     <rect class="nd" x="10" y="8" width="60" height="24"/><rect class="nd" x="190" y="8" width="60" height="24"/><rect class="nd" x="10" y="88" width="60" height="24"/><rect class="nd" x="190" y="88" width="60" height="24"/>
+     <text class="tx" x="40" y="24" text-anchor="middle">HUBSPOT</text><text class="tx" x="220" y="24" text-anchor="middle">STRIPE</text><text class="tx" x="40" y="104" text-anchor="middle">SLACK</text><text class="tx" x="220" y="104" text-anchor="middle">WEBHOOK</text>
+     <circle r="3" fill="#F59E0B"><animateMotion dur="2.2s" repeatCount="indefinite" path="M40 20L130 60L220 100"/></circle>
+    </svg>
+   </article>
+   <article class="cell c7 rv" style="--i:1">
+    <span class="lab"><b>04</b> / Outbound</span>
+    <h3>Automated B2B Outbound Pipelines</h3>
+    <p>AI-enriched lead scraping, hyper-personalized cold outreach, and automated CRM logging. Pipeline generated while your team sleeps.</p>
+    <svg viewBox="0 0 560 120" aria-hidden="true">
+     <path class="ln" d="M60 60H130M210 60H260M340 60H390M470 60H500"/><path class="fl" d="M60 60H500" style="animation-delay:-1.4s"/>
+     <rect class="nd" x="0" y="42" width="60" height="36"/><text class="tx" x="30" y="64" text-anchor="middle">SCRAPE</text>
+     <rect class="nd" x="130" y="42" width="80" height="36"/><text class="tx" x="170" y="64" text-anchor="middle">ENRICH</text>
+     <rect class="nd on" x="260" y="30" width="80" height="60"/><text class="tx" x="300" y="64" text-anchor="middle">PERSONALIZE</text>
+     <rect class="nd" x="390" y="42" width="80" height="36"/><text class="tx" x="430" y="64" text-anchor="middle">SEND</text>
+     <rect class="nd" x="500" y="42" width="60" height="36"/><text class="tx" x="530" y="64" text-anchor="middle">LOG</text>
+     <circle r="3" fill="#F59E0B"><animateMotion dur="3.4s" repeatCount="indefinite" path="M60 60H500"/></circle>
+    </svg>
+   </article>
+  </div>
+ </div>
+</section>
+<section id="use-cases"><div class="wrap"><span class="lab"><b>//</b> Use cases</span><h2>Built around the work your team repeats.</h2><div class="gr c3"><div><h3>Agencies</h3><p>Client reporting, onboarding and invoice follow-ups that run without anyone chasing them.</p></div><div><h3>Real estate</h3><p>Instant replies to new leads, viewing bookings and CRM updates.</p></div><div><h3>E-commerce</h3><p>Order status answers, support triage and review requests.</p></div><div><h3>Clinics &amp; services</h3><p>Booking, reminders and intake forms handled automatically.</p></div><div><h3>B2B sales teams</h3><p>Lead enrichment, outbound sequences and clean CRM data.</p></div><div><h3>Finance &amp; ops</h3><p>Invoice extraction, approvals and reconciliation.</p></div></div></div></section>
+<section id="security"><div class="wrap"><span class="lab"><b>//</b> Security &amp; privacy</span><h2>Your data stays yours.</h2><div class="gr c4"><div><h3>Self-hosted option</h3><p>Run n8n and your LLM inside your own infrastructure so data never leaves.</p></div><div><h3>Credentials vault</h3><p>API keys live in the n8n credentials store, scoped to the minimum access needed.</p></div><div><h3>You own everything</h3><p>Workflows are exported as files with full documentation at handover.</p></div><div><h3>Tested first</h3><p>Every build runs in a sandbox before it touches production data.</p></div></div></div></section>
+<section id="faq" class="border-y border-zinc-800/80"><div class="wrap"><span class="lab"><b>//</b> FAQ</span><h2>Questions buyers ask first.</h2><div class="faq"><details><summary>Why not Zapier, or hiring someone?</summary><p>n8n can be self-hosted, supports custom code and AI steps, and has no per-task fees when self-hosted. Compared with a hire, you pay once for a system that runs 24/7.</p></details><details><summary>What if a workflow breaks?</summary><p>Every workflow ships with error alerts. Scale Infrastructure includes 24/7 monitoring, and support can be added to any plan.</p></details><details><summary>Who owns the workflows?</summary><p>You do. At handover you get the exported workflows and documentation.</p></details><details><summary>How long until it is live?</summary><p>The audit takes 48 hours. Growth Pilot goes live in 14 days or your payment is refunded.</p></details><details><summary>Are there monthly fees?</summary><p>Our prices are one-time. You still pay for the tools you use, such as n8n hosting or AI usage, directly to those providers.</p></details><details><summary>Which tools do you connect?</summary><p>500+ integrations, including HubSpot, Pipedrive, Stripe, Slack, Gmail, Notion and WhatsApp.</p></details></div></div></section>
+<section id="stack" class="border-y border-zinc-800/80 bg-zinc-950/50" style="padding:56px 0" aria-label="Technology stack">
+ <div class="wrap"><p class="rv mono text-xs tracking-widest text-zinc-500 uppercase text-center" style="margin:0 0 40px">Engineered on production-grade infrastructure &amp; APIs</p></div>
+ <div class="mq" id="mq"><ul class="mq-t" id="mqt"><li class="mq-i"><div class="eco">
+    <svg viewBox="0 0 84 28" role="img" aria-label="n8n" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="14" r="3.5"/><circle cx="22" cy="6" r="3.5"/><circle cx="22" cy="22" r="3.5"/><path d="M8.5 12.5L18.5 7.5M8.5 15.5L18.5 20.5"/><text x="34" y="21" fill="currentColor" stroke="none" font-size="21" font-weight="700" letter-spacing="-.5">n8n</text></svg>
+    <span>Workflow orchestration</span>
+   </div></li><li class="mq-i"><div class="eco">
+    <svg viewBox="0 0 120 28" role="img" aria-label="OpenAI" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="14,2 25,8 25,20 14,26 3,20 3,8"/><path d="M14 2V14L25 20M14 14L3 20" stroke-width="1.1"/><text x="34" y="20" fill="currentColor" stroke="none" font-size="19" font-weight="600" letter-spacing="-.4">OpenAI</text></svg>
+    <span>LLM reasoning</span>
+   </div></li><li class="mq-i"><div class="eco">
+    <svg viewBox="0 0 130 28" role="img" aria-label="Anthropic" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 24L12 4L21 24M7 17H17"/><text x="30" y="20" fill="currentColor" stroke="none" font-size="19" font-weight="600" letter-spacing="-.4">Anthropic</text></svg>
+    <span>Claude models</span>
+   </div></li><li class="mq-i"><div class="eco">
+    <svg viewBox="0 0 125 28" role="img" aria-label="HubSpot" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="14" cy="15" r="4.5"/><path d="M14 10.5V5M10.5 18L6 22M18 12.5L23 8"/><circle cx="14" cy="3.5" r="2"/><circle cx="5" cy="23" r="2"/><circle cx="24.5" cy="7" r="2"/><text x="34" y="21" fill="currentColor" stroke="none" font-size="19" font-weight="600" letter-spacing="-.4">HubSpot</text></svg>
+    <span>CRM sync</span>
+   </div></li><li class="mq-i"><div class="eco">
+    <svg viewBox="0 0 76 28" role="img" aria-label="Stripe"><text x="0" y="21" fill="currentColor" font-size="26" font-weight="700" letter-spacing="-1">stripe</text></svg>
+    <span>Automated billing</span>
+   </div></li><li class="mq-i"><div class="eco">
+    <svg viewBox="0 0 170 28" role="img" aria-label="Twilio and WhatsApp" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="14" cy="14" r="10"/><g fill="currentColor" stroke="none"><circle cx="10" cy="10" r="1.8"/><circle cx="18" cy="10" r="1.8"/><circle cx="10" cy="18" r="1.8"/><circle cx="18" cy="18" r="1.8"/></g><text x="32" y="19" fill="currentColor" stroke="none" font-size="14.5" font-weight="600" letter-spacing="-.2">Twilio / WhatsApp</text></svg>
+    <span>Omnichannel agents</span>
+   </div></li><li class="mq-i"><div class="eco"><svg viewBox="0 0 70 28" role="img" aria-label="Slack"><text x="0" y="21" fill="currentColor" font-size="22" font-weight="600" letter-spacing="-.5">Slack</text></svg><span>Team alerts</span></div></li><li class="mq-i"><div class="eco"><svg viewBox="0 0 100 28" role="img" aria-label="Pinecone"><text x="0" y="21" fill="currentColor" font-size="22" font-weight="600" letter-spacing="-.5">Pinecone</text></svg><span>Vector memory</span></div></li><li class="mq-i"><div class="eco"><svg viewBox="0 0 105 28" role="img" aria-label="Supabase"><text x="0" y="21" fill="currentColor" font-size="22" font-weight="600" letter-spacing="-.5">Supabase</text></svg><span>Data layer</span></div></li><li class="mq-i"><div class="eco"><svg viewBox="0 0 150 28" role="img" aria-label="Google Cloud"><text x="0" y="21" fill="currentColor" font-size="22" font-weight="600" letter-spacing="-.5">Google Cloud</text></svg><span>Hosting & compute</span></div></li><li class="mq-i"><div class="eco"><svg viewBox="0 0 70 28" role="img" aria-label="Make"><text x="0" y="21" fill="currentColor" font-size="22" font-weight="600" letter-spacing="-.5">Make</text></svg><span>Scenario bridges</span></div></li></ul></div>
+</section>
+<section id="architecture">
+ <div class="wrap">
+  <span class="lab rv"><b>//</b> Deployment methodology</span>
+  <h2 class="rv" style="--i:1">From audit to live in two weeks.</h2>
+  <div class="steps">
+   <div class="step rv"><div class="n">01</div><h3>Audit &amp; Blueprint</h3><p>We map your workflows, quantify the hours lost, and deliver a system blueprint with projected ROI.</p><span class="lab">48 hours</span></div>
+   <div class="step rv" style="--i:1"><div class="n">02</div><h3>Custom Engineering &amp; Sandbox Testing</h3><p>We build against your real stack and stress-test every path in an isolated sandbox before anything touches production.</p><span class="lab">7–14 days</span></div>
+   <div class="step rv" style="--i:2"><div class="n">03</div><h3>Production Handover &amp; SLA Monitoring</h3><p>Documented handover, team training, and continuous monitoring with alerting and a 99.9% uptime commitment.</p><span class="lab">Ongoing</span></div>
+  </div>
+ </div>
+</section>
+<section id="integrations" class="border-y border-zinc-800/80">
+ <div class="wrap">
+  <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+   <div>
+    <span class="lab rv"><b>//</b> Integration ecosystem</span>
+    <h2 class="rv" style="--i:1;max-width:none">Connect your enterprise stack &amp; orchestrate data with Vilocore AI</h2>
+    <p class="sub rv" style="--i:2">We build custom n8n and API workflows that link the tools your team already runs, so a lead captured in WhatsApp becomes a CRM deal, a Slack alert, a calendar booking, and a logged conversation without anyone copying data between tabs.</p>
+    <p class="sub rv" style="--i:3;margin-top:16px">Bidirectional syncs, webhook triggers, retries, and error alerting are part of every build. No brittle one-way Zaps, and no vendor lock-in: you own the workflows we deliver.</p>
+    <button class="btn ghost mag rv" style="--i:4;margin-top:32px" data-open>Request an integration audit</button>
+   </div>
+   <div class="ig rv" style="--i:2">
+    <div class="ic" style="--d:0s"><svg viewBox="0 0 24 24"><rect x="10.5" y="2" width="3.5" height="8.5" rx="1.75"/><rect x="13.5" y="10.5" width="8.5" height="3.5" rx="1.75"/><rect x="10" y="13.5" width="3.5" height="8.5" rx="1.75"/><rect x="2" y="10" width="8.5" height="3.5" rx="1.75"/></svg><span>Slack</span></div>
+    <div class="ic" style="--d:-1.2s"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="13" height="12" rx="3"/><path d="M16.5 10.5 22 7v10l-5.5-3.5z"/></svg><span>Zoom</span></div>
+    <div class="ic" style="--d:-2.4s"><svg class="s" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><span>Gmail</span></div>
+    <div class="ic" style="--d:-3.6s"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><circle cx="6" cy="17" r="4"/><circle cx="18" cy="17" r="4"/></svg><span>Asana</span></div>
+    <div class="ic" style="--d:-4.8s"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm1.5 3.5v10h4v-10zm7 0v6h4v-6z"/></svg><span>Trello</span></div>
+    <div class="ic" style="--d:-.6s"><svg class="s" viewBox="0 0 24 24"><rect x="2.5" y="7" width="12" height="12" rx="2"/><path d="M5.5 11h6M8.5 11v5.5"/><circle cx="18.5" cy="7.5" r="2.5"/><path d="M16.5 12h5v4a2.5 2.5 0 0 1-5 0z"/></svg><span>Teams</span></div>
+    <div class="ic" style="--d:-1.8s"><svg class="s" viewBox="0 0 24 24"><circle cx="14" cy="14" r="4.5"/><path d="M14 9.5V6M10.2 11.5 7 9"/><circle cx="14" cy="4.5" r="1.7"/><circle cx="5.8" cy="8.3" r="1.7"/><path d="M18.5 14H21"/></svg><span>HubSpot</span></div>
+    <div class="ic" style="--d:-3s"><svg class="s" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 7.5v5M12 6.5v6M16 7.5v5M7.5 16c3 2 6 2 9 0"/></svg><span>Intercom</span></div>
+    <div class="ic" style="--d:-4.2s"><svg class="s" viewBox="0 0 24 24"><path d="M8.5 3h7l6 10.5-3.5 6H6l-3.5-6z"/><path d="M8.5 3 15 14.5h6.5M15.5 3 9 14.5M9 14.5l3 5"/></svg><span>Google Drive</span></div>
+    <div class="ib"><div><b>500+</b></div><p class="mono" style="font-size:12px;letter-spacing:.06em;text-align:right;margin:0;font-weight:500">INTEGRATIONS<br>SUPPORTED</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+<section id="about"><div class="wrap gr2"><div><span class="lab"><b>//</b> About</span><h2>Engineer-led, not a call center.</h2><p class="sub">Vilocore AI is a small studio that designs, builds and maintains n8n automation. You talk to the people building your system, and every build is documented so you are never locked in.</p></div><div class="cta2"><h3>Talk to us</h3><p>Book a 20-minute call, or grab free workflow templates.</p><a class="btn" href="https://cal.com/YOUR-USERNAME" target="_blank" rel="noopener">Book a 20-min call</a><button class="btn ghost" data-open>Get 10 free n8n templates</button></div></div></section>
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+<footer>
+ <div class="wrap" style="display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-end">
+  <div><img class="logo" style="height:34px" alt="Vilocore AI" src="data:image/png;base64,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"><p class="lab" style="margin-top:18px;line-height:1.8">Autonomous AI infrastructure for B2B teams</p></div>
+  <div class="lab" style="display:flex;align-items:center;gap:10px"><i class="dot"></i><b>All systems operational</b></div>
+  <div class="lab">© 2026 Vilocore AI</div>
+ </div>
+</footer>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+ <div class="panel">
+  <div style="display:flex;justify-content:space-between;align-items:center"><span class="lab"><b>//</b> Loom audit request</span><button class="x" id="close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  <form id="f" novalidate>
+   <h2 id="mt" style="font-size:28px;margin:18px 0 0">Get your free workflow audit</h2>
+   <p class="sub" style="margin:10px 0 22px;font-size:15px">Four quick fields. We record a Loom showing what we would automate first.</p>
+   <input class="fld" id="nm" name="name" placeholder="Full name" aria-label="Full name" autocomplete="name" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
+   <input class="fld" id="co" name="organization" placeholder="Company name" aria-label="Company name" autocomplete="organization" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
+   <input class="fld" id="em" name="email" type="email" inputmode="email" placeholder="Work email" aria-label="Work email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
+   <input class="fld" id="ws" name="website" inputmode="url" placeholder="Website (optional)" aria-label="Website, optional" autocomplete="url" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="go">
+   <p id="err" class="lab hide" style="color:var(--acc);margin:4px 0 12px">Add your name, company and a valid work email.</p>
+   <button class="btn sub-btn" type="submit">Request Loom Audit</button>
+  </form>
+  <div id="ok" class="okc hide" role="status">
+   <svg class="ck" width="52" height="52" viewBox="0 0 48 48" fill="none" stroke="#F59E0B" stroke-width="1.6"><rect x=".8" y=".8" width="46.4" height="46.4"/><path d="M13 25l8 8 14-17"/></svg>
+   <h2 id="okt" style="font-size:28px;margin:22px 0 0">Request received.</h2>
+   <p class="sub" style="margin:12px 0 0;font-size:15px">We will send your personalized Loom audit to <span id="oke" style="color:var(--fg)"></span>.</p>
+   <div class="rc"><div><span class="lab">Name</span><b id="okn"></b></div><div><span class="lab">Company</span><b id="okc"></b></div><div id="okwr"><span class="lab">Website</span><b id="okw"></b></div><div><span class="lab">Reference</span><b class="mono" id="ref"></b></div></div>
+   <ul class="nx"><li><span><b style="color:var(--fg);font-weight:500">Now:</b> we review your company and website.</span></li><li><span><b style="color:var(--fg);font-weight:500">Within 48 hours:</b> your recorded Loom audit lands in your inbox.</span></li><li><span><b style="color:var(--fg);font-weight:500">Then:</b> an optional call to scope your build.</span></li></ul>
+   <button class="btn sub-btn" type="button" id="done" style="margin-top:0">Done</button>
+  </div>
+ </div>
+</div>
+
+<div id="cw">
+ <div id="cd" role="dialog" aria-label="Vilocore AI assistant" aria-hidden="true">
+  <div class="ch"><span class="lab"><span class="orb sm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.1 6.1 6.1 2.1-6.1 2.1L12 19l-2.1-6.2L3.8 10.7l6.1-2.1zM19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9z"/></svg></span><span style="margin-left:10px">Vilocore AI assistant</span></span><button id="cx" class="x" type="button" aria-label="Close chat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  <div id="cm" aria-live="polite"></div>
+  <div id="cc"><button class="chip" type="button">How does deployment work?</button><button class="chip" type="button">Which plan fits my business?</button><button class="chip" type="button">What can you automate with n8n &amp; RAG?</button></div>
+  <form class="cf" id="cform" autocomplete="off"><input id="ci" placeholder="Ask about systems, pricing, timeline…" aria-label="Message"><button type="submit">SEND</button></form>
+  <div class="cl"><span class="lab">Ready to talk?</span><button class="btn sm" id="cta" data-open type="button">Book Call / Loom Audit</button></div>
+ </div>
+ <button id="cn" type="button" aria-hidden="true" tabindex="-1">Need a custom workflow? I can scope it in 60 seconds.</button>
+ <button id="cb" type="button" aria-expanded="false" aria-controls="cd" aria-label="Open Vilocore AI assistant"><span class="orb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.1 6.1 6.1 2.1-6.1 2.1L12 19l-2.1-6.2L3.8 10.7l6.1-2.1zM19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9z"/></svg></span><span class="txt"><strong>Ask Vilocore AI</strong><small>Online · replies instantly</small></span></button>
+</div>
+
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+// scroll reveals
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
+// magnetic buttons
+if(matchMedia('(hover:hover)').matches)$$('.mag').forEach(b=>{
+ b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.3}px)`});
+ b.addEventListener('pointerleave',()=>b.style.transform='');
+});
+// hero live pipeline
+(()=>{
+const nodes=$$('.hn'),tm=$('#tm'),lg=$('#lg'),hint=$('#hint'),def=hint.textContent;
+const E=[0,1.1,3.6,7.4,11.4],END=E[4];
+const run=['200 OK · 38ms','ROUTED','SCORE 0.91','BOOKED · 11.4s'];
+const L=['<i>POST</i> /hooks/lead {"src":"whatsapp","intent":"pricing"}','<i>n8n</i> run#4821 → route: qualify_b2b','<i>rag</i> 3 sources · llm.score=<b>0.91</b>','<i>crm</i> upsert deal#2093 · slot Tue 10:30','<b>✓</b> qualified &amp; booked in <b>11.4s</b>'];
+let t0=performance.now(),k=-1;
+const st=n=>n.querySelector('.st');
+const log=(i)=>{const d=document.createElement('div');d.innerHTML='<i>+'+E[i].toFixed(1)+'s</i> '+L[i];lg.appendChild(d);while(lg.children.length>5)lg.firstChild.remove()};
+const reset=()=>{nodes.forEach(n=>{n.classList.remove('on','done');st(n).textContent='IDLE'});lg.innerHTML='';k=-1};
+nodes.forEach(n=>{n.addEventListener('mouseenter',()=>hint.textContent=n.dataset.info);n.addEventListener('mouseleave',()=>hint.textContent=def)});
+setInterval(()=>{if(document.hidden||document.body.classList.contains('mo'))return;
+ const t=(performance.now()-t0)/1000;
+ if(t>END+3.4){t0=performance.now();reset();tm.textContent='00.0s';return}
+ tm.textContent=Math.min(t,END).toFixed(1).padStart(4,'0')+'s';
+ E.forEach((x,i)=>{if(t>=x&&k<i){k=i;
+  if(i>0){const p=nodes[i-1];p.classList.remove('on');p.classList.add('done');st(p).textContent=run[i-1]}
+  if(i<4){nodes[i].classList.add('on');st(nodes[i]).textContent='RUNNING'}
+  log(i)}});
+},100);
+})();
+// spring drag: live-execution nodes, the 3 metric cards, and the whole live panel (grab its header).
+// Hold + drag anywhere (no limit); release and it springs back. Mouse/pen on any width; touch keeps scrolling.
+(()=>{
+const body=document.body,dh=$('#dh');
+body.classList.toggle('dd-on',matchMedia('(pointer: fine)').matches);
+const T=[];
+$$('.hn,.hero .metrics>div').forEach(el=>T.push({el,h:el}));
+const pan=$('.sysw'),ph=$('.sys-h');if(pan&&ph)T.push({el:pan,h:ph});
+const base=new Map();let cur=null,sx=0,sy=0,sc=1,tx=0,ty=0,raf=0;
+T.forEach(({el,h})=>{el.classList.add('dd');h.classList.add('dgh');let b=[0,0];
+ if(el instanceof SVGElement){const m=/translate\(\s*(-?[\d.]+)[ ,]+(-?[\d.]+)/.exec(el.getAttribute('transform')||'');if(m)b=[+m[1],+m[2]];el.style.transform=`translate3d(${b[0]}px,${b[1]}px,0)`}
+ base.set(el,b);
+ h.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.button!==0)return;e.preventDefault();
+  cur=el;sx=e.clientX;sy=e.clientY;sc=1;tx=ty=0;
+  if(el instanceof SVGElement){const sv=el.ownerSVGElement;sc=sv.getScreenCTM().a||1;sv.appendChild(el)}
+  el.classList.add('grabbed');body.classList.add('dragging');dh&&dh.classList.add('gone')});
+ h.addEventListener('dragstart',e=>e.preventDefault())});
+const apply=()=>{raf=0;if(!cur)return;const b=base.get(cur);cur.style.transform=`translate3d(${b[0]+tx}px,${b[1]+ty}px,0)`};
+const up=()=>{if(!cur)return;cancelAnimationFrame(raf);raf=0;const b=base.get(cur);cur.classList.remove('grabbed');cur.style.transform=`translate3d(${b[0]}px,${b[1]}px,0)`;cur=null;body.classList.remove('dragging')};
+addEventListener('pointermove',e=>{if(!cur)return;tx=(e.clientX-sx)/sc;ty=(e.clientY-sy)/sc;if(!raf)raf=requestAnimationFrame(apply)},{passive:true});
+addEventListener('pointerup',up);addEventListener('pointercancel',up);addEventListener('blur',up);
+document.documentElement.addEventListener('mouseleave',()=>{});
+})();
+// modal
+const m=$('#modal'),f=$('#f'),ok=$('#ok'),body=document.body,nm=$('#nm'),co=$('#co'),em=$('#em'),ws=$('#ws'),err=$('#err'),req=[nm,co,em],all=[nm,co,em,ws];let last,resetT=0,sent=false;
+// Optional: paste your n8n/Make/Zapier webhook URL to receive every lead as JSON. Empty = success screen only.
+const LEAD_ENDPOINT="";
+const open=()=>{clearTimeout(resetT);last=document.activeElement;body.classList.add('mo');m.classList.add('open');(req.find(x=>!x.value.trim())||nm).focus({preventScroll:true})};
+const close=()=>{m.classList.remove('open');body.classList.remove('mo');last&&last.focus&&last.focus({preventScroll:true});
+ resetT=setTimeout(()=>{if(sent){f.reset();sent=false}f.classList.remove('hide');ok.classList.add('hide');ok.classList.remove('show')},220)};
+$$('[data-open]').forEach(b=>b.addEventListener('click',open));
+$('#close').onclick=close;$('#done').onclick=close;m.addEventListener('pointerdown',e=>{if(e.target===m)close()});
+addEventListener('keydown',e=>{if(!m.classList.contains('open'))return;
+ if(e.key==='Escape'){close();return}
+ if(e.key==='Tab'){const q=$$('button,input',m).filter(x=>x.offsetParent!==null),i=q.indexOf(document.activeElement);
+  if(e.shiftKey&&i<=0){e.preventDefault();q[q.length-1].focus()}else if(!e.shiftKey&&i===q.length-1){e.preventDefault();q[0].focus()}}});
+[nm,co,em].forEach((el,i)=>el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();all[i+1].focus()}}));
+all.forEach(el=>el.addEventListener('input',()=>el.removeAttribute('aria-invalid'),{passive:true}));
+f.addEventListener('submit',async e=>{e.preventDefault();
+ const bad=req.filter(x=>x===em?!/\S+@\S+\.\S+/.test(x.value):!x.value.trim());
+ all.forEach(x=>bad.includes(x)?x.setAttribute('aria-invalid','true'):x.removeAttribute('aria-invalid'));
+ err.classList.toggle('hide',!bad.length);if(bad.length){bad[0].focus({preventScroll:true});return}
+ const d={name:nm.value.trim(),company:co.value.trim(),email:em.value.trim(),website:ws.value.trim(),source:'vilocore-landing'};
+ const btn=f.querySelector('.sub-btn');btn.disabled=true;
+ if(LEAD_ENDPOINT){try{const r=await fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});if(!r.ok)throw 0}catch(_){btn.disabled=false;err.textContent='Could not send. Check your connection and try again.';err.classList.remove('hide');return}}
+ btn.disabled=false;sent=true;
+ $('#okt').textContent='Request received, '+d.name.split(' ')[0]+'.';
+ $('#oke').textContent=d.email;$('#okn').textContent=d.name;$('#okc').textContent=d.company;
+ $('#okw').textContent=d.website;$('#okwr').style.display=d.website?'':'none';
+ $('#ref').textContent='VC-'+Math.random().toString(36).slice(2,8).toUpperCase();
+ f.classList.add('hide');ok.classList.remove('hide');requestAnimationFrame(()=>requestAnimationFrame(()=>{ok.classList.add('show');$('#done').focus({preventScroll:true})}));
+});
+})();
+</script>
+
+<script>
+/* ============ VILOCORE AI ASSISTANT ============
+   N8N_WEBHOOK_URL
+   - Leave EMPTY ("") to use the built-in knowledge engine (instant, no network).
+   - Paste your n8n Webhook node URL (HTTP POST) to route every message to your n8n AI agent.
+     Request body:  { "message": "...", "sessionId": "..." }
+     Response:      JSON with one of output | reply | response | text | message, or plain text.
+   - If the webhook errors or returns nothing, the built-in engine answers instead. */
+const N8N_WEBHOOK_URL = "";
+
+(()=>{
+const $=s=>document.querySelector(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const cd=$('#cd'),cb=$('#cb'),cm=$('#cm'),ci=$('#ci'),cc=$('#cc');
+let sessionId;try{sessionId=localStorage.getItem('st_sid')}catch(e){}
+if(!sessionId){sessionId=(crypto.randomUUID?crypto.randomUUID():'s'+Date.now()+Math.random().toString(36).slice(2));try{localStorage.setItem('st_sid',sessionId)}catch(e){}}
+
+/* ---- built-in knowledge engine ---- */
+const PLANS="Growth Pilot: $1,000 one-time, no monthly fees. One core AI workflow (e.g. a 24/7 WhatsApp AI qualifier), full CRM integration, live in 14 days or the payment is refunded.\n\nScale Infrastructure (most popular): $2,200 one-time, no monthly fees. Up to 4 custom n8n pipelines, a custom RAG knowledge base trained on your data, lead enrichment, Slack alerts, 24/7 monitoring.\n\nCustom Enterprise: custom quote. Dedicated AI systems engineer, self-hosted n8n/LLM for strict privacy, custom API microservices, unlimited workflow scaling.";
+const RULES=[
+[/\b(book|call|demo|loom|audit|talk|speak|human|contact|sales|get started|start)\b/,()=>({text:"Good next step. Share your name, company and email and we record a custom Loom audit of your workflow.",cta:1})],
+[/guarantee|refund|money back|risk/,()=>({text:"Growth Pilot carries a delivery guarantee: live in 14 days or the payment is refunded. Every build is tested in a sandbox before it touches production, and monitoring runs on a 99.9% uptime SLA.",cta:1})],
+[/enterprise|self.?host|on.?prem|privacy|private|secur|complian|gdpr|data (resid|protect)/,()=>({text:"Custom Enterprise is built for strict privacy: self-hosted n8n and LLMs so your data stays in your infrastructure, a dedicated AI systems engineer, custom API microservices, and unlimited workflow scaling. Pricing is a custom quote.",cta:1})],
+[/which plan|fit|recommend|best plan|which tier|right plan|suit|choose|compare/,q=>{
+ if(/unlimited|dedicated|self.?host|large|corporate|50\+|hundreds/.test(q))return{text:"That points to Custom Enterprise: dedicated engineer, self-hosted n8n/LLM, custom API microservices, unlimited scaling. Quoted per project.",cta:1};
+ if(/rag|knowledge|multiple|several|pipelines|enrich|slack|support team|docs|notion|pdf/.test(q))return{text:"Scale Infrastructure fits: up to 4 n8n pipelines, a custom RAG knowledge base on your data, lead enrichment, Slack alerts and 24/7 monitoring. $2,200 one-time, no monthly fees.",cta:1};
+ if(/\bone\b|\b1\b|single|whatsapp|pilot|small|first|test|startup/.test(q))return{text:"Growth Pilot fits: one core workflow (such as a 24/7 WhatsApp AI qualifier), full CRM integration, live in 14 days or the payment is refunded. $1,000 one-time, no monthly fees.",cta:1};
+ return{text:"Quick guide:\n- One workflow to prove ROI: Growth Pilot ($1,000 one-time)\n- Several pipelines plus a knowledge base: Scale Infrastructure ($2,200 one-time)\n- Strict privacy or unlimited scale: Custom Enterprise (custom quote)\n\nTell me your main bottleneck and I'll point to one.",cta:1}}],
+[/price|pricing|cost|how much|\$|fee|plan|tier|pilot|scale|retainer/,()=>({text:PLANS,cta:1})],
+[/deploy|timeline|how long|process|how does|steps|method|weeks?|days?|onboard|work with/,()=>({text:"Three phases:\n01 Audit & Blueprint (48 hours): we map your workflows, quantify lost hours, and deliver a blueprint with projected ROI.\n02 Custom Engineering & Sandbox Testing (7-14 days): built against your real stack and tested in isolation.\n03 Production Handover & SLA Monitoring: documentation, team training, and 24/7 monitoring on a 99.9% uptime SLA.\n\nGrowth Pilot goes live in 14 days or the payment is refunded.",cta:1})],
+[/automate|n8n|rag|knowledge|what can you|capabilit|services?|offer|build|llm|hallucinat/,()=>({text:"n8n & API orchestration: bidirectional sync between HubSpot/Pipedrive, Stripe, Slack and webhooks.\nAgents: 24/7 WhatsApp/IG lead qualification, intent scoring and automated CRM booking.\nOutbound: AI-enriched lead scraping, personalized outreach, automatic CRM logging.\nRAG: connect PDFs, Notion and databases to a private LLM so answers stay grounded in your own data.\n\nWhich of these is your biggest bottleneck?"})],
+[/whatsapp|instagram|\big\b|lead|inbound|qualif|response time/,()=>({text:"Our WhatsApp/IG agents respond to leads in under 15 seconds, 24/7: they qualify, score intent, and book directly into your CRM. This is the core of the Growth Pilot ($1,000 one-time, no monthly fees).",cta:1})],
+[/outbound|cold|prospect|scrap|enrich/,()=>({text:"Outbound pipelines enrich leads with AI, write hyper-personalized outreach, and log every touch in your CRM automatically. Lead enrichment is included in Scale Infrastructure.",cta:1})],
+[/integrat|hubspot|pipedrive|stripe|slack|zoom|gmail|asana|trello|teams|intercom|drive|crm|tool|stack|api/,()=>({text:"We support 500+ integrations, including HubSpot, Pipedrive, Stripe, Slack, Gmail, Zoom, Asana, Trello, Microsoft Teams, Intercom and Google Drive. Anything with an API or webhook can be connected.",cta:1})],
+[/sla|uptime|monitor|support|maintenance|reliab/,()=>({text:"Production systems run under a 99.9% uptime SLA with 24/7 monitoring and alerting. Scale Infrastructure and Enterprise include ongoing monitoring; handover includes full documentation and training."})],
+[/roi|save|hours|worth|result|benchmark|headcount|revenue/,()=>({text:"What we engineer to: under 15s lead response time, 99.9% uptime, and 40+ hours per week saved per team. The Audit & Blueprint phase puts a projected ROI on your specific workflows before you commit to a build.",cta:1})],
+[/who|about|vilocore|synapse|what is|company/,()=>({text:"Vilocore AI engineers autonomous AI infrastructure for B2B teams: custom n8n orchestration, private RAG knowledge bases, and 24/7 WhatsApp/CRM agents, built to scale revenue without scaling headcount."})],
+[/^(hi|hello|hey|yo|good (morning|afternoon|evening))\b/,()=>({text:"Hi. I can walk you through deployment, pricing, plans, or what we automate with n8n & RAG. What are you trying to fix?"})],
+[/thank|thx|great|awesome|cool/,()=>({text:"Glad to help. When you're ready, the fastest path is a Loom audit of your workflow.",cta:1})]
+];
+const answer=q=>{const t=q.toLowerCase();for(const[r,f]of RULES)if(r.test(t))return f(t);return{text:"I can cover deployment, pricing, plan fit, n8n/RAG automation, integrations, and guarantees. For anything specific to your stack, an engineer can answer it directly.",cta:1}};
+
+/* ---- UI ---- */
+function add(role,text,cta){const d=document.createElement('div');d.className='mg '+role;d.appendChild(document.createTextNode(text));
+ if(cta){const b=document.createElement('button');b.type='button';b.className='btn sm';b.textContent='Book Discovery Call / Loom Audit';b.onclick=()=>$('#cta').click();d.appendChild(b)}
+ cm.appendChild(d);cm.scrollTo({top:cm.scrollHeight,behavior:'smooth'});return d}
+let busy=false;
+async function sendMessage(text){
+ text=(text||'').trim();if(!text||busy)return;busy=true;ci.value='';cc.hidden=true;add('u',text);
+ const ty=add('b','');ty.classList.add('ty');ty.insertAdjacentHTML('beforeend','<i></i><i></i><i></i>');
+ let out=null;
+ if(N8N_WEBHOOK_URL){try{
+  const r=await fetch(N8N_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,sessionId})});
+  if(!r.ok)throw new Error(r.status);
+  let d=(r.headers.get('content-type')||'').includes('json')?await r.json():await r.text();
+  if(Array.isArray(d))d=d[0];
+  const s=typeof d==='string'?d:(d&&(d.output||d.reply||d.response||d.text||d.message));
+  if(s)out={text:String(s)};
+ }catch(e){console.warn('n8n webhook failed, using built-in engine',e)}}
+ if(!out){await sleep(450+Math.random()*350);out=answer(text)}
+ ty.remove();add('b',out.text,out.cta);busy=false;ci.focus();
+}
+window.sendMessage=sendMessage;
+let greeted=false;
+const set=o=>{cd.classList.toggle('open',o);cd.setAttribute('aria-hidden',!o);cb.setAttribute('aria-expanded',o);
+ if(o){if(!greeted){greeted=true;add('b',"I'm the Vilocore AI assistant. Ask about deployment, pricing, or what we can automate, or pick a question below.")}setTimeout(()=>ci.focus(),300)}};
+cb.onclick=()=>set(!cd.classList.contains('open'));$('#cx').onclick=()=>set(false);
+document.addEventListener('pointerdown',e=>{if(cd.classList.contains('open')&&!e.target.closest('#cw'))set(false)});
+$('#cta').addEventListener('click',()=>set(false));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&cd.classList.contains('open')&&!document.querySelector('#modal.open'))set(false)});
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>sendMessage(c.textContent));
+$('#cform').addEventListener('submit',e=>{e.preventDefault();sendMessage(ci.value)});
+})();
+</script>
+<script>
+/* ===== Vilocore: marquee, progress, scroll-spy, smart intent, nudge (all transform/rAF, passive) ===== */
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// 1) infinite marquee: duplicate once, translate3d in rAF, pause on hover/offscreen/hidden
+const mq=$('#mq'),t=$('#mqt');
+if(mq&&t&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+ [...t.children].forEach(n=>{const c=n.cloneNode(true);c.setAttribute('aria-hidden','true');t.appendChild(c)});
+ let x=0,v=1,target=1,half=0,last=0,vis=true,raf=0;const SPEED=42;
+ const measure=()=>{half=t.scrollWidth/2};
+ const tick=n=>{raf=0;const dt=Math.min(.05,(n-last)/1000||0);last=n;v+=(target-v)*Math.min(1,dt*8);
+  x-=SPEED*v*dt;if(x<=-half)x+=half;t.style.transform=`translate3d(${x.toFixed(2)}px,0,0)`;
+  if(vis&&!document.hidden)raf=requestAnimationFrame(tick)};
+ const go=()=>{if(!raf){last=performance.now();raf=requestAnimationFrame(tick)}};
+ new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis)go()}).observe(mq);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)go()});
+ mq.addEventListener('pointerenter',()=>target=0);mq.addEventListener('pointerleave',()=>target=1);
+ new ResizeObserver(measure).observe(t);(document.fonts&&document.fonts.ready||Promise.resolve()).then(measure);measure();go();
+}
+// 2) scroll progress + scroll-spy (rAF-throttled, transform only)
+const pg=$('#pg'),links=$$('.lnk'),secs=links.map(a=>$(a.getAttribute('href')));let ticking=false;
+const upd=()=>{ticking=false;const h=document.documentElement,max=h.scrollHeight-innerHeight;
+ pg.style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;
+ let cur=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+ links.forEach((a,i)=>a.classList.toggle('act',i===cur))};
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});upd();
+// 4) proactive nudge (once, after 18s idle) + Cmd/Ctrl+K
+const cn=$('#cn'),cb=$('#cb');let shown=false;
+const hide=()=>cn.classList.remove('show');
+setTimeout(()=>{if(!shown&&cb.getAttribute('aria-expanded')!=='true'&&!document.body.classList.contains('mo')){shown=true;cn.classList.add('show');setTimeout(hide,9000)}},18000);
+cn.onclick=()=>{hide();cb.click()};cb.addEventListener('click',()=>{shown=true;hide()});
+// 5) yellow meteor every 5s: one reused element, WAAPI transform/opacity (GPU), skipped when tab hidden or a popup is open
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+ const el=document.createElement('div');el.className='mtr';el.setAttribute('aria-hidden','true');document.body.appendChild(el);
+ const shoot=()=>{if(document.hidden||document.body.classList.contains('mo'))return;
+  const W=innerWidth,H=innerHeight,a=(28+Math.random()*22)*Math.PI/180,d=Math.min(W,1100)*(.55+Math.random()*.3);
+  const x=W*(.35+Math.random()*.65),y=-20+Math.random()*H*.35,dx=-Math.cos(a)*d,dy=Math.sin(a)*d,r=`rotate(${(-a*180/Math.PI).toFixed(1)}deg)`;
+  el.animate([{opacity:0,transform:`translate3d(${x}px,${y}px,0) ${r}`},{opacity:1,offset:.12},{opacity:1,offset:.7},{opacity:0,transform:`translate3d(${x+dx}px,${y+dy}px,0) ${r}`}],{duration:1500,easing:'cubic-bezier(.35,.1,.75,1)'})};
+ setTimeout(shoot,1200);setInterval(shoot,5000);
+}
+// 6) ROI calculator
+(()=>{const g=i=>$('#'+i);if(!g('r1'))return;const f=n=>'$'+Math.round(n).toLocaleString('en-US');
+ const u=()=>{const h=+g('r1').value,c=+g('r2').value,p=+g('r3').value;g('v1').textContent=h;g('v2').textContent=c;g('v3').textContent=p;
+  const wk=h*c*p*.7,mo=wk*4.33;g('o1').textContent=f(mo);
+  g('o2').textContent='About '+f(mo*12)+' a year. Growth Pilot ($1,000 one-time) pays for itself in roughly '+Math.max(1,Math.ceil(1000/wk))+' week'+(Math.ceil(1000/wk)>1?'s':'')+'.'};
+ ['r1','r2','r3'].forEach(i=>g(i).addEventListener('input',u,{passive:true}));u()})();
+})();
+</script>
 </body>
 </html>
