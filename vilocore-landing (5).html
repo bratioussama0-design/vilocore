@@ -808,15 +808,34 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
  ['r1','r2','r3'].forEach(i=>g(i).addEventListener('input',u,{passive:true}));u()})();
 })();
 </script>
-  <script>
+<script>
       let selectedPlan = "Not Specified";
 
+      // Track clicks on Pricing plan buttons AND Workflow "Get this built" buttons
       document.querySelectorAll('a, button').forEach(btn => {
         btn.addEventListener('click', function() {
-          const txt = this.innerText.toLowerCase();
-          if (txt.includes('pilot')) selectedPlan = 'Growth Pilot';
-          else if (txt.includes('scale') || txt.includes('discovery')) selectedPlan = 'Scale Infrastructure';
-          else if (txt.includes('quote') || txt.includes('custom')) selectedPlan = 'Custom Enterprise';
+          const txt = this.innerText.trim().toLowerCase();
+          const card = this.closest('div');
+          
+          // Check if it's a workflow build button
+          if (txt.includes('get this built')) {
+            const h3 = card ? card.querySelector('h3') : null;
+            if (h3) {
+              selectedPlan = "Build: " + h3.innerText.trim();
+            } else {
+              selectedPlan = "Build: Workflow";
+            }
+          } 
+          // Check pricing plans
+          else if (txt.includes('pilot')) {
+            selectedPlan = 'Growth Pilot';
+          } 
+          else if (txt.includes('scale') || txt.includes('discovery')) {
+            selectedPlan = 'Scale Infrastructure';
+          } 
+          else if (txt.includes('quote') || txt.includes('custom')) {
+            selectedPlan = 'Custom Enterprise';
+          }
         });
       });
 
