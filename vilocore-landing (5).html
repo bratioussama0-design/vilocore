@@ -849,5 +849,82 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
 <!-- NOTE: the old trailing <script> (the one with alert('Submitted successfully!')) was REMOVED.
      It hijacked every <form> on the page, sent leads a second time with no validation,
      and showed the browser alert. All submit logic now lives in the "MODAL + FORM SUBMIT" block above. -->
+  <script>
+      // Vilocore AI Chat Assistant Script connected to n8n Webhook
+      document.addEventListener('DOMContentLoaded', function() {
+        const chatBtn = document.getElementById('cb');
+        const chatBox = document.getElementById('cd');
+        const chatForm = document.querySelector('.cf');
+        const chatInput = document.querySelector('.cf input');
+        const chatMessages = document.getElementById('cm');
+
+        if (!chatBtn || !chatBox || !chatForm) return;
+
+        // Toggle chat window open/close
+        chatBtn.addEventListener('click', function() {
+          const isOpen = chatBox.classList.toggle('open');
+          chatBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Handle chat message submission
+        chatForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const userText = chatInput.value.trim();
+          if (!userText) return;
+
+          // 1. Show user message in chat
+          appendMessage(userText, 'u');
+          chatInput.value = '';
+
+          // 2. Show typing animation indicator
+          const typingId = showTypingIndicator();
+
+          try {
+            // 3. Send message to n8n Webhook (vilocore-chat)
+            const response = await fetch('https://imrane1542.app.n8n.cloud/webhook/vilocore-chat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ message: userText, chatInput: userText })
+            });
+
+            const data = await response.json();
+            removeTypingIndicator(typingId);
+
+            // 4. Display AI reply from n8n / Gemini
+            const botReply = data.reply || data.output || data.text || "Hello! I am Vilocore AI. How can I help you today?";
+            appendMessage(botReply, 'b');
+
+          } catch (err) {
+            console.error('Chat error:', err);
+            removeTypingIndicator(typingId);
+            appendMessage("Sorry, I'm having trouble connecting right now. Please try again.", 'b');
+          }
+        });
+
+        function appendMessage(text, sender) {
+          const msgDiv = document.createElement('div');
+          msgDiv.className = `mg ${sender}`;
+          msgDiv.textContent = text;
+          chatMessages.appendChild(msgDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+          const id = 'typing-' + Date.now();
+          const typingDiv = document.createElement('div');
+          typingDiv.id = id;
+          typingDiv.className = 'mg b ty';
+          typingDiv.innerHTML = '<i></i><i></i><i></i>';
+          chatMessages.appendChild(typingDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          return id;
+        }
+
+        function removeTypingIndicator(id) {
+          const el = document.getElementById(id);
+          if (el) el.remove();
+        }
+      });
+    </script>
 </body>
 </html>
