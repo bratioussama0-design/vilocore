@@ -811,42 +811,47 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
 <script>
       let selectedPlan = "Not Specified";
 
-      // Track clicks on Pricing plan buttons AND Workflow "Get this built" buttons
-      document.querySelectorAll('a, button').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const txt = this.innerText.trim().toLowerCase();
-          const card = this.closest('div');
-          
-          // Check if it's a workflow build button
-          if (txt.includes('get this built')) {
-            const h3 = card ? card.querySelector('h3') : null;
-            if (h3) {
-              selectedPlan = "Build: " + h3.innerText.trim();
-            } else {
-              selectedPlan = "Build: Workflow";
-            }
-          } 
-          // Check pricing plans
-          else if (txt.includes('pilot')) {
-            selectedPlan = 'Growth Pilot';
-          } 
-          else if (txt.includes('scale') || txt.includes('discovery')) {
-            selectedPlan = 'Scale Infrastructure';
-          } 
-          else if (txt.includes('quote') || txt.includes('custom')) {
-            selectedPlan = 'Custom Enterprise';
+      // Track clicks on pricing plans and workflow cards
+      document.addEventListener('click', function(e) {
+        const btn = e.target.closest('a, button');
+        if (!btn) return;
+
+        const txt = btn.innerText.trim().toLowerCase();
+        
+        // Check workflow build buttons
+        if (txt.includes('get this built')) {
+          const card = btn.closest('div');
+          const h3 = card ? card.querySelector('h3') : null;
+          if (h3) {
+            selectedPlan = "Build: " + h3.innerText.trim();
+          } else {
+            selectedPlan = "Build: Workflow";
           }
-        });
+        } 
+        // Check pricing plans
+        else if (txt.includes('pilot')) {
+          selectedPlan = 'Growth Pilot';
+        } 
+        else if (txt.includes('scale') || txt.includes('discovery')) {
+          selectedPlan = 'Scale Infrastructure';
+        } 
+        else if (txt.includes('quote') || txt.includes('custom')) {
+          selectedPlan = 'Custom Enterprise';
+        }
       });
 
-      document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const formData = new FormData(this);
-          const payload = Object.fromEntries(formData.entries());
-          payload.plan = selectedPlan;
-          payload.submitted_at = new Date().toISOString();
+      // Intercept form submission
+      document.addEventListener('submit', async function(e) {
+        const form = e.target.closest('form');
+        if (!form) return;
+        
+        e.preventDefault();
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+        payload.plan = selectedPlan;
+        payload.submitted_at = new Date().toISOString();
 
+        try {
           await fetch('https://imrane1542.app.n8n.cloud/webhook/cd9a32cf-b2d5-48fe-8fdb-96d09b909f76', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -854,8 +859,11 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
           });
 
           alert('Submitted successfully!');
-          this.reset();
-        });
+          form.reset();
+        } catch (err) {
+          console.error('Webhook error:', err);
+          alert('Error submitting form. Please try again.');
+        }
       });
     </script>
 </body>
