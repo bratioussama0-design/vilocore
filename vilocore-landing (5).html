@@ -334,13 +334,41 @@ nav .btn{white-space:nowrap}
  nav .btn.sm{padding:8px 12px;font-size:12px}
  .hero{padding-top:146px!important}
 }
+
+/* ===== chat assistant: site-matching look ===== */
+.orb{border-radius:0;background:var(--acc)}
+.orb::before,.orb::after{display:none}
+.orb svg,#cb .orb svg{fill:none;stroke:#0a0a0b;stroke-width:1.8;stroke-linecap:round;width:20px;height:20px}
+.orb.sm svg{width:15px;height:15px}
+#cb{border-radius:0;padding:8px 18px 8px 8px;background:#0a0a0b;border:1px solid var(--hair);box-shadow:0 12px 32px rgba(0,0,0,.6)}
+#cb:hover,#cb[aria-expanded=true]{border-color:var(--acc)}
+#cb strong{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--fg)}
+#cb small{font:400 10.5px/1 'JetBrains Mono',monospace;letter-spacing:.04em;color:var(--mut2)}
+#cb small::before{border-radius:0}
+#cd{border-radius:0;border-color:var(--hair)}
+.mg{border-radius:0}
+#cc[hidden]{display:none}
+.ch>.lab{display:flex;align-items:center}
+@media(max-width:639px){#cb{width:52px;height:52px;padding:7px}#cb .orb{width:36px;height:36px}}
+
+/* ===== chat: never let the message list collapse (short screens / keyboard open) ===== */
+#cd{height:min(540px,calc(100dvh - 7.5rem))}
+#cm{min-height:140px}
+#cc{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding:0 14px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#cc::-webkit-scrollbar{display:none}
+#cc .chip{flex:none;white-space:nowrap}
+.cf input{font-size:16px}
+@media(max-height:620px){
+ #cd{height:calc(100dvh - 96px)}
+ .cl{display:none}
+ #cd:focus-within #cc{display:none}
+}
 </style>
 </head>
 <body>
 <div id="pg" aria-hidden="true"></div>
 <nav>
  <div class="wrap nav-in">
-  <!-- LOGO: src is filled by the LOGO constant in the last <script> (see "PASTE YOUR LOGO HERE") -->
   <a href="#top" aria-label="Vilocore AI home" style="flex:none"><img class="logo" alt="Vilocore AI" src="data:image/png;base64,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"></a>
   <div class="hidden md:flex nav-links" style="gap:28px"><a class="lnk" href="#pricing">Pricing</a><a class="lnk" href="#architecture">Architecture</a><a class="lnk" href="#systems">Core Systems</a><a class="lnk" href="#faq">FAQs</a></div>
   <div style="display:flex;align-items:center;gap:20px">
@@ -569,14 +597,14 @@ nav .btn{white-space:nowrap}
 
 <div id="cw">
  <div id="cd" role="dialog" aria-label="Vilocore AI assistant" aria-hidden="true">
-  <div class="ch"><span class="lab"><span class="orb sm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.1 6.1 6.1 2.1-6.1 2.1L12 19l-2.1-6.2L3.8 10.7l6.1-2.1zM19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9z"/></svg></span><span style="margin-left:10px">Vilocore AI assistant</span></span><button id="cx" class="x" type="button" aria-label="Close chat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  <div class="ch"><span class="lab"><span class="orb sm"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2.4"/><path d="M7 6.8L16.8 11.2M7 17.2L16.8 12.8"/></svg></span><span style="margin-left:10px">Vilocore AI assistant</span></span><button id="cx" class="x" type="button" aria-label="Close chat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
   <div id="cm" aria-live="polite"></div>
   <div id="cc"><button class="chip" type="button">How does deployment work?</button><button class="chip" type="button">Which plan fits my business?</button><button class="chip" type="button">What can you automate with n8n &amp; RAG?</button></div>
   <form class="cf" id="cform" autocomplete="off"><input id="ci" placeholder="Ask about systems, pricing, timeline…" aria-label="Message"><button type="submit">SEND</button></form>
   <div class="cl"><span class="lab">Ready to talk?</span><button class="btn sm" id="cta" data-open type="button">Book Call / Loom Audit</button></div>
  </div>
  <button id="cn" type="button" aria-hidden="true" tabindex="-1">Need a custom workflow? I can scope it in 60 seconds.</button>
- <button id="cb" type="button" aria-expanded="false" aria-controls="cd" aria-label="Open Vilocore AI assistant"><span class="orb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.1 6.1 6.1 2.1-6.1 2.1L12 19l-2.1-6.2L3.8 10.7l6.1-2.1zM19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9z"/></svg></span><span class="txt"><strong>Ask Vilocore AI</strong><small>Online · replies instantly</small></span></button>
+ <button id="cb" type="button" aria-expanded="false" aria-controls="cd" aria-label="Open Vilocore AI assistant"><span class="orb"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2.4"/><path d="M7 6.8L16.8 11.2M7 17.2L16.8 12.8"/></svg></span><span class="txt"><strong>Ask Vilocore AI</strong><small>Online · replies instantly</small></span></button>
 </div>
 
 
@@ -732,7 +760,7 @@ f.addEventListener('submit',async e=>{
      Request body:  { "message": "...", "sessionId": "..." }
      Response:      JSON with one of output | reply | response | text | message, or plain text.
    - If the webhook errors or returns nothing, the built-in engine answers instead. */
-const N8N_WEBHOOK_URL = "";
+const N8N_WEBHOOK_URL = "https://imrane1542.app.n8n.cloud/webhook/vilocore-chat";
 
 (()=>{
 const $=s=>document.querySelector(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -769,26 +797,37 @@ const answer=q=>{const t=q.toLowerCase();for(const[r,f]of RULES)if(r.test(t))ret
 function add(role,text,cta){const d=document.createElement('div');d.className='mg '+role;d.appendChild(document.createTextNode(text));
  if(cta){const b=document.createElement('button');b.type='button';b.className='btn sm';b.textContent='Book Discovery Call / Loom Audit';b.onclick=()=>$('#cta').click();d.appendChild(b)}
  cm.appendChild(d);cm.scrollTo({top:cm.scrollHeight,behavior:'smooth'});return d}
-let busy=false;
-async function sendMessage(text){
- text=(text||'').trim();if(!text||busy)return;busy=true;ci.value='';cc.hidden=true;add('u',text);
+// Every message is accepted immediately (shown + input cleared); replies are processed in order.
+// (Old code ignored new messages while an AI reply was pending, so Enter/SEND looked "dead".)
+let chain=Promise.resolve();
+async function respond(text){
  const ty=add('b','');ty.classList.add('ty');ty.insertAdjacentHTML('beforeend','<i></i><i></i><i></i>');
  let out=null;
- if(N8N_WEBHOOK_URL){try{
-  const r=await fetch(N8N_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,sessionId})});
-  if(!r.ok)throw new Error(r.status);
-  let d=(r.headers.get('content-type')||'').includes('json')?await r.json():await r.text();
-  if(Array.isArray(d))d=d[0];
-  const s=typeof d==='string'?d:(d&&(d.output||d.reply||d.response||d.text||d.message));
-  if(s)out={text:String(s)};
- }catch(e){console.warn('n8n webhook failed, using built-in engine',e)}}
- if(!out){await sleep(450+Math.random()*350);out=answer(text)}
- ty.remove();add('b',out.text,out.cta);busy=false;ci.focus();
+ try{
+  if(N8N_WEBHOOK_URL){try{
+   const ac=new AbortController(),to=setTimeout(()=>ac.abort(),20000);
+   const r=await fetch(N8N_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,chatInput:text,sessionId}),signal:ac.signal});
+   clearTimeout(to);
+   if(!r.ok)throw new Error(r.status);
+   let d=(r.headers.get('content-type')||'').includes('json')?await r.json():await r.text();
+   if(Array.isArray(d))d=d[0];
+   const s=typeof d==='string'?d:(d&&(d.output||d.reply||d.response||d.text||d.message));
+   // ignore n8n's default "Workflow was started" ack (webhook not set to respond with the AI answer)
+   if(s&&!/^workflow was started\.?$/i.test(String(s).trim()))out={text:String(s)};
+  }catch(e){console.warn('n8n webhook failed, using built-in engine',e)}}
+  if(!out){await sleep(450+Math.random()*350);out=answer(text)}
+ }finally{ty.remove()}
+ add('b',out.text,out.cta);
+}
+function sendMessage(text){
+ text=(text||'').trim();if(!text)return;
+ ci.value='';cc.hidden=true;add('u',text);ci.focus();
+ chain=chain.then(()=>respond(text)).catch(e=>console.error(e));
 }
 window.sendMessage=sendMessage;
 let greeted=false;
 const set=o=>{cd.classList.toggle('open',o);cd.setAttribute('aria-hidden',!o);cb.setAttribute('aria-expanded',o);
- if(o){if(!greeted){greeted=true;add('b',"I'm the Vilocore AI assistant. Ask about deployment, pricing, or what we can automate, or pick a question below.")}setTimeout(()=>ci.focus(),300)}};
+ if(o){if(!greeted){greeted=true;add('b',"I'm the Vilocore AI assistant. Ask about deployment, pricing, or what we can automate, or pick a question below.")}cc.hidden=!!cm.querySelector('.mg.u');if(matchMedia('(pointer:fine)').matches)setTimeout(()=>ci.focus(),300)}};
 cb.onclick=()=>set(!cd.classList.contains('open'));$('#cx').onclick=()=>set(false);
 document.addEventListener('pointerdown',e=>{if(cd.classList.contains('open')&&!e.target.closest('#cw'))set(false)});
 $('#cta').addEventListener('click',()=>set(false));
@@ -849,82 +888,5 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
 <!-- NOTE: the old trailing <script> (the one with alert('Submitted successfully!')) was REMOVED.
      It hijacked every <form> on the page, sent leads a second time with no validation,
      and showed the browser alert. All submit logic now lives in the "MODAL + FORM SUBMIT" block above. -->
-  <script>
-      // Vilocore AI Chat Assistant Script connected to n8n Webhook
-      document.addEventListener('DOMContentLoaded', function() {
-        const chatBtn = document.getElementById('cb');
-        const chatBox = document.getElementById('cd');
-        const chatForm = document.querySelector('.cf');
-        const chatInput = document.querySelector('.cf input');
-        const chatMessages = document.getElementById('cm');
-
-        if (!chatBtn || !chatBox || !chatForm) return;
-
-        // Toggle chat window open/close
-        chatBtn.addEventListener('click', function() {
-          const isOpen = chatBox.classList.toggle('open');
-          chatBtn.setAttribute('aria-expanded', isOpen);
-        });
-
-        // Handle chat message submission
-        chatForm.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const userText = chatInput.value.trim();
-          if (!userText) return;
-
-          // 1. Show user message in chat
-          appendMessage(userText, 'u');
-          chatInput.value = '';
-
-          // 2. Show typing animation indicator
-          const typingId = showTypingIndicator();
-
-          try {
-            // 3. Send message to n8n Webhook (vilocore-chat)
-            const response = await fetch('https://imrane1542.app.n8n.cloud/webhook/vilocore-chat', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ message: userText, chatInput: userText })
-            });
-
-            const data = await response.json();
-            removeTypingIndicator(typingId);
-
-            // 4. Display AI reply from n8n / Gemini
-            const botReply = data.reply || data.output || data.text || "Hello! I am Vilocore AI. How can I help you today?";
-            appendMessage(botReply, 'b');
-
-          } catch (err) {
-            console.error('Chat error:', err);
-            removeTypingIndicator(typingId);
-            appendMessage("Sorry, I'm having trouble connecting right now. Please try again.", 'b');
-          }
-        });
-
-        function appendMessage(text, sender) {
-          const msgDiv = document.createElement('div');
-          msgDiv.className = `mg ${sender}`;
-          msgDiv.textContent = text;
-          chatMessages.appendChild(msgDiv);
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-          const id = 'typing-' + Date.now();
-          const typingDiv = document.createElement('div');
-          typingDiv.id = id;
-          typingDiv.className = 'mg b ty';
-          typingDiv.innerHTML = '<i></i><i></i><i></i>';
-          chatMessages.appendChild(typingDiv);
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-          return id;
-        }
-
-        function removeTypingIndicator(id) {
-          const el = document.getElementById(id);
-          if (el) el.remove();
-        }
-      });
-    </script>
 </body>
 </html>
