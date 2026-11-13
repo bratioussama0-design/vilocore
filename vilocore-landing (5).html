@@ -559,6 +559,7 @@ nav .btn{white-space:nowrap}
   <form id="f" novalidate>
    <h2 id="mt" style="font-size:28px;margin:18px 0 0">Get your free workflow audit</h2>
    <p class="sub" style="margin:10px 0 22px;font-size:15px">Four quick fields. We record a Loom showing what we would automate first.</p>
+   <p id="plan-tag" class="lab hide" style="color:var(--acc);margin:0 0 14px"></p>
    <input class="fld" id="nm" name="name" placeholder="Full name" aria-label="Full name" autocomplete="name" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
    <input class="fld" id="co" name="organization" placeholder="Company name" aria-label="Company name" autocomplete="organization" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
    <input class="fld" id="em" name="email" type="email" inputmode="email" placeholder="Work email" aria-label="Work email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
@@ -570,7 +571,7 @@ nav .btn{white-space:nowrap}
    <svg class="ck" width="52" height="52" viewBox="0 0 48 48" fill="none" stroke="#F59E0B" stroke-width="1.6"><rect x=".8" y=".8" width="46.4" height="46.4"/><path d="M13 25l8 8 14-17"/></svg>
    <h2 id="okt" style="font-size:28px;margin:22px 0 0">Request received.</h2>
    <p class="sub" style="margin:12px 0 0;font-size:15px">We will send your personalized Loom audit to <span id="oke" style="color:var(--fg)"></span>.</p>
-   <div class="rc"><div><span class="lab">Name</span><b id="okn"></b></div><div><span class="lab">Company</span><b id="okc"></b></div><div id="okwr"><span class="lab">Website</span><b id="okw"></b></div><div><span class="lab">Reference</span><b class="mono" id="ref"></b></div></div>
+   <div class="rc"><div><span class="lab">Name</span><b id="okn"></b></div><div><span class="lab">Company</span><b id="okc"></b></div><div id="okwr"><span class="lab">Website</span><b id="okw"></b></div><div id="okpr"><span class="lab">Plan</span><b id="okp"></b></div><div><span class="lab">Reference</span><b class="mono" id="ref"></b></div></div>
    <ul class="nx"><li><span><b style="color:var(--fg);font-weight:500">Now:</b> we review your company and website.</span></li><li><span><b style="color:var(--fg);font-weight:500">Within 48 hours:</b> your recorded Loom audit lands in your inbox.</span></li><li><span><b style="color:var(--fg);font-weight:500">Then:</b> an optional call to scope your build.</span></li></ul>
    <button class="btn sub-btn" type="button" id="done" style="margin-top:0">Done</button>
   </div>
@@ -646,9 +647,14 @@ document.documentElement.addEventListener('mouseleave',()=>{});
 })();
 // modal
 const m=$('#modal'),f=$('#f'),ok=$('#ok'),body=document.body,nm=$('#nm'),co=$('#co'),em=$('#em'),ws=$('#ws'),err=$('#err'),req=[nm,co,em],all=[nm,co,em,ws];let last,resetT=0,sent=false;
-// Optional: paste your n8n/Make/Zapier webhook URL to receive every lead as JSON. Empty = success screen only.
-const LEAD_ENDPOINT="";
-const open=()=>{clearTimeout(resetT);last=document.activeElement;body.classList.add('mo');m.classList.add('open');(req.find(x=>!x.value.trim())||nm).focus({preventScroll:true})};
+// n8n webhook that receives every lead as JSON (POST)
+const LEAD_ENDPOINT="https://imrane1542.app.n8n.cloud/webhook/cd9a32cf-b2d5-48fe-8fdb-96d09b909f76";
+// Selected pricing plan: set when a plan button is clicked, reset by any other open trigger
+let selectedPlan="";try{selectedPlan=sessionStorage.getItem("vc_plan")||""}catch(_){}
+const planTag=$("#plan-tag");
+const showPlan=()=>{if(planTag){planTag.textContent=selectedPlan?"Selected plan: "+selectedPlan:"";planTag.classList.toggle("hide",!selectedPlan)}};
+$$("[data-open]").forEach(b=>b.addEventListener("click",()=>{const c=b.closest(".plan"),h=c&&c.querySelector("h3");selectedPlan=h?h.textContent.trim():"";try{sessionStorage.setItem("vc_plan",selectedPlan)}catch(_){}showPlan()},true));
+const open=()=>{showPlan();clearTimeout(resetT);last=document.activeElement;body.classList.add('mo');m.classList.add('open');(req.find(x=>!x.value.trim())||nm).focus({preventScroll:true})};
 const close=()=>{m.classList.remove('open');body.classList.remove('mo');last&&last.focus&&last.focus({preventScroll:true});
  resetT=setTimeout(()=>{if(sent){f.reset();sent=false}f.classList.remove('hide');ok.classList.add('hide');ok.classList.remove('show')},220)};
 $$('[data-open]').forEach(b=>b.addEventListener('click',open));
@@ -659,17 +665,18 @@ addEventListener('keydown',e=>{if(!m.classList.contains('open'))return;
   if(e.shiftKey&&i<=0){e.preventDefault();q[q.length-1].focus()}else if(!e.shiftKey&&i===q.length-1){e.preventDefault();q[0].focus()}}});
 [nm,co,em].forEach((el,i)=>el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();all[i+1].focus()}}));
 all.forEach(el=>el.addEventListener('input',()=>el.removeAttribute('aria-invalid'),{passive:true}));
-f.addEventListener('submit',async e=>{e.preventDefault();
+f.addEventListener('submit',async e=>{e.preventDefault();err.textContent='Add your name, company and a valid work email.';
  const bad=req.filter(x=>x===em?!/\S+@\S+\.\S+/.test(x.value):!x.value.trim());
  all.forEach(x=>bad.includes(x)?x.setAttribute('aria-invalid','true'):x.removeAttribute('aria-invalid'));
  err.classList.toggle('hide',!bad.length);if(bad.length){bad[0].focus({preventScroll:true});return}
- const d={name:nm.value.trim(),company:co.value.trim(),email:em.value.trim(),website:ws.value.trim(),source:'vilocore-landing'};
+ const d={};new FormData(f).forEach((v,k)=>{d[k==='organization'?'company':k]=String(v).trim()});
+ d.plan=selectedPlan||'Not selected';d.submittedAt=new Date().toISOString();d.source='vilocore-landing';d.page=location.href;
  const btn=f.querySelector('.sub-btn');btn.disabled=true;
  if(LEAD_ENDPOINT){try{const r=await fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});if(!r.ok)throw 0}catch(_){btn.disabled=false;err.textContent='Could not send. Check your connection and try again.';err.classList.remove('hide');return}}
  btn.disabled=false;sent=true;
  $('#okt').textContent='Request received, '+d.name.split(' ')[0]+'.';
  $('#oke').textContent=d.email;$('#okn').textContent=d.name;$('#okc').textContent=d.company;
- $('#okw').textContent=d.website;$('#okwr').style.display=d.website?'':'none';
+ $('#okw').textContent=d.website;$('#okp').textContent=d.plan;$('#okpr').style.display=selectedPlan?'':'none';$('#okwr').style.display=d.website?'':'none';
  $('#ref').textContent='VC-'+Math.random().toString(36).slice(2,8).toUpperCase();
  f.classList.add('hide');ok.classList.remove('hide');requestAnimationFrame(()=>requestAnimationFrame(()=>{ok.classList.add('show');$('#done').focus({preventScroll:true})}));
 });
