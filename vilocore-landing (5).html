@@ -808,5 +808,36 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
  ['r1','r2','r3'].forEach(i=>g(i).addEventListener('input',u,{passive:true}));u()})();
 })();
 </script>
+  <script>
+      let selectedPlan = "Not Specified";
+
+      document.querySelectorAll('a, button').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const txt = this.innerText.toLowerCase();
+          if (txt.includes('pilot')) selectedPlan = 'Growth Pilot';
+          else if (txt.includes('scale') || txt.includes('discovery')) selectedPlan = 'Scale Infrastructure';
+          else if (txt.includes('quote') || txt.includes('custom')) selectedPlan = 'Custom Enterprise';
+        });
+      });
+
+      document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const formData = new FormData(this);
+          const payload = Object.fromEntries(formData.entries());
+          payload.plan = selectedPlan;
+          payload.submitted_at = new Date().toISOString();
+
+          await fetch('https://imrane1542.app.n8n.cloud/webhook/cd9a32cf-b2d5-48fe-8fdb-96d09b909f76', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          alert('Submitted successfully!');
+          this.reset();
+        });
+      });
+    </script>
 </body>
 </html>
