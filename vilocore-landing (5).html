@@ -753,8 +753,8 @@ f.addEventListener('submit',async e=>{
  err.classList.add('hide');
 
  // 2) build payload
- const d={};new FormData(f).forEach((v,k)=>{d[k==='organization'?'company':k]=String(v).trim()});
- d.plan=selectedPlan||'Not selected';d.submittedAt=new Date().toISOString();d.source='vilocore-landing';d.page=location.href;
+ let d={};new FormData(f).forEach((v,k)=>{d[k==='organization'?'company':k]=String(v).trim()});
+ d={event:'confirmed_form',email:d.email,name:d.name,company:d.company,plan:selectedPlan||'Not selected',timestamp:new Date().toISOString()};
 
  // 3) send to n8n (once)
  const btn=f.querySelector('.sub-btn');sending=true;btn.disabled=true;
@@ -772,8 +772,8 @@ f.addEventListener('submit',async e=>{
  // 4) success: inline confirmation in the modal (no browser alert)
  $('#okt').textContent='Request received, '+d.name.split(' ')[0]+'.';
  $('#oke').textContent=d.email;$('#okn').textContent=d.name;$('#okc').textContent=d.company;
- $('#okw').textContent=d.website;$('#okp').textContent=d.plan;
- $('#okpr').style.display=selectedPlan?'':'none';$('#okwr').style.display=d.website?'':'none';
+ $('#okw').textContent=ws.value.trim();$('#okp').textContent=d.plan;
+ $('#okpr').style.display=selectedPlan?'':'none';$('#okwr').style.display=ws.value.trim()?'':'none';
  $('#ref').textContent='VC-'+Math.random().toString(36).slice(2,8).toUpperCase();
  f.classList.add('hide');ok.classList.remove('hide');
  requestAnimationFrame(()=>requestAnimationFrame(()=>{ok.classList.add('show');$('#done').focus({preventScroll:true})}));
@@ -789,7 +789,7 @@ f.addEventListener('submit',async e=>{
      Request body:  { "message": "...", "sessionId": "..." }
      Response:      JSON with one of output | reply | response | text | message, or plain text.
    - If the webhook errors or returns nothing, the built-in engine answers instead. */
-const N8N_WEBHOOK_URL = "https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
+const N8N_WEBHOOK_URL = ""; // chat traffic is NOT sent to the webhook (tracking limited to plan selection + confirmed form)
 
 (()=>{
 const $=s=>document.querySelector(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -918,50 +918,17 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
      It hijacked every <form> on the page, sent leads a second time with no validation,
      and showed the browser alert. All submit logic now lives in the "MODAL + FORM SUBMIT" block above. -->
 <script>
-/* Global event tracking -> n8n production webhook (non-blocking, never interferes with the page) */
+/* Tracking -> n8n webhook: ONLY the selected plan (no page views, clicks, scrolls or chat) */
 (function(){
  var URL_="https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
- function base(){return{page:location.pathname+location.hash,url:location.href,timestamp:new Date().toISOString()}}
- function send(p){
-  try{
-   fetch(URL_,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p),keepalive:true}).catch(function(){});
-  }catch(_){}
- }
- function txt(el){return((el.innerText||el.textContent||el.getAttribute("aria-label")||"")+"").replace(/\s+/g," ").trim().slice(0,120)}
-
- /* 1. page_view */
- var pv=base();pv.event="page_view";pv.referrer=document.referrer||"";pv.userAgent=navigator.userAgent;
- send(pv);
-
- /* 2. click: buttons, links, pricing cards and [data-track] elements */
  document.addEventListener("click",function(e){
   try{
-   var t=e.target&&e.target.closest?e.target.closest("[data-track],button,a,.plan"):null;
-   if(!t)return;
-   var p=base();p.event="click";
-   var plan=t.closest(".plan"),h=plan&&plan.querySelector("h3");
-   p.label=txt(t)||(h?txt(h):"");
-   if(t.tagName==="A"&&t.href)p.href=t.href;
-   if(t.hasAttribute("data-track"))p.trackId=t.getAttribute("data-track");
-   if(h)p.plan=txt(h);
-   send(p);
-  }catch(_){}
- },true);
-
- /* 3. form_submit: any form, passwords excluded, normal submission untouched */
- document.addEventListener("submit",function(e){
-  try{
-   var f=e.target;if(!f||f.tagName!=="FORM")return;
-   var fields={};
-   Array.prototype.forEach.call(f.elements,function(el){
-    if(!el.name||el.disabled)return;
-    var ty=(el.type||"").toLowerCase();
-    if(ty==="password"||ty==="file"||ty==="submit"||ty==="button"||ty==="reset")return;
-    if((ty==="checkbox"||ty==="radio")&&!el.checked)return;
-    fields[el.name]=String(el.value||"").trim().slice(0,500);
-   });
-   var p=base();p.event="form_submit";p.formId=f.id||f.getAttribute("name")||"";p.fields=fields;
-   send(p);
+   var b=e.target&&e.target.closest?e.target.closest(".plan [data-open]"):null;
+   if(!b)return;
+   var plan=b.closest(".plan"),h=plan&&plan.querySelector("h3");
+   var name=h?(h.textContent||"").replace(/\s+/g," ").trim():"";
+   if(!name)return;
+   fetch(URL_,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({event:"plan_selected",plan:name,timestamp:new Date().toISOString()}),keepalive:true}).catch(function(){});
   }catch(_){}
  },true);
 })();
