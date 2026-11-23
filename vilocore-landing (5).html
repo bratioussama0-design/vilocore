@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <style>
-:root{--em:#A3A85A;--emt:rgba(116,120,59,.22);--emb:rgba(163,168,90,.5);--bg:#09090a;--fg:#F4F4F6;--mut:#857F76;--mut2:#A39D93;--acc:#FFCE3A;--line:rgba(255,255,255,.07);--hair:rgba(255,206,58,.35);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#09090a;--fg:#F4F4F6;--mut:#857F76;--mut2:#A39D93;--acc:#FFCE3A;--line:rgba(255,255,255,.07);--hair:rgba(255,206,58,.35);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:'Space Grotesk',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60% 45% at 85% 0%,rgba(255,206,58,.07),transparent 70%),radial-gradient(55% 45% at 0% 100%,rgba(70,130,255,.06),transparent 70%)}
@@ -444,28 +444,93 @@ nav .btn{white-space:nowrap}
 #af .fld[aria-invalid=true]{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.18)}
 #af .sub-btn{width:100%;justify-content:center;margin-top:4px;padding:18px 22px;font-size:16px}
 #aerr{color:#ef4444!important;margin:0 0 12px}
-/* ===== PROMO (muted olive / khaki-moss) vs BRAND (solid gold) ===== */
-.otag{display:inline-block;align-self:flex-start;font:500 10px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:var(--em)!important;background:var(--emt)!important;border:1px solid var(--emb)!important;padding:6px 9px;margin-bottom:16px}
-.ap .off{color:var(--em)!important;background:var(--emt)!important;border:1px solid var(--emb)!important;padding:3px 7px}
-.offer{border:1px solid var(--emb)!important;background:linear-gradient(90deg,rgba(116,120,59,.20),rgba(116,120,59,.04))!important}
-.offer .lab b{color:var(--em)}
-.offer-l strong em{display:inline-block;color:var(--em)!important;background:var(--emt);border:1px solid var(--emb);padding:3px 11px;margin-right:4px}
-.otag,.ap .off,.offer-l strong em{font-weight:600;text-shadow:0 0 14px rgba(124,128,63,.35);box-shadow:inset 0 0 0 1px rgba(163,168,90,.06),0 0 18px -8px rgba(124,128,63,.55)}
-#amodal .otag{margin:20px 0 0}
-/* card frame (cadre) in gold + corner brackets */
-.ag{border:1px solid rgba(255,206,58,.35)!important;transition:border-color .3s,box-shadow .3s,transform .3s}
-.ag::before,.ag::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none;border:0 solid var(--acc)}
-.ag::before{left:-1px;top:-1px;border-top-width:2px;border-left-width:2px}
-.ag::after{right:-1px;bottom:-1px;border-bottom-width:2px;border-right-width:2px}
-.ag:hover{border-color:var(--acc)!important;box-shadow:0 0 0 1px rgba(255,206,58,.18),0 18px 44px -22px rgba(255,206,58,.35)}
-.ag.hot{border-color:var(--acc)!important;box-shadow:0 0 0 1px rgba(255,206,58,.22),0 0 46px -16px rgba(255,206,58,.38)}
-/* Deploy Template: solid gold primary CTA */
-.ag .btn.deploy{justify-content:space-between;gap:14px;padding:16px 18px;background:var(--acc);color:#0a0a0b;border:1px solid var(--acc);font-weight:700;letter-spacing:.01em}
-.ag .btn.deploy:hover{background:#0c0c0e;color:var(--acc);box-shadow:0 0 0 1px var(--acc),0 0 26px rgba(255,206,58,.28)}
-.ag .btn.deploy .dp{display:inline-flex;align-items:center;gap:10px;font:500 13px 'JetBrains Mono',monospace}
-.ag .btn.deploy .dp s{opacity:.55;font-weight:400}
-.ag .btn.deploy .dp i{font-style:normal;font-size:16px;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
-.ag .btn.deploy:hover .dp i{transform:translateX(5px)}
+
+/* ===== AI command console: chat widget v2 (dark glass terminal, gold + olive accents) ===== */
+#cd{--cg:#F5B800;--co:#74783B;--col:#C9CE8A;width:404px;height:min(640px,calc(100dvh - 7.5rem));background:linear-gradient(180deg,rgba(16,16,19,.88),rgba(9,9,11,.95));-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);border:1px solid rgba(245,184,0,.24);box-shadow:0 30px 80px rgba(0,0,0,.72),0 0 60px rgba(245,184,0,.05)}
+#cd::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,#F5B800,transparent);opacity:.75;pointer-events:none}
+@media(max-height:620px){#cd{height:calc(100dvh - 96px)}}
+#cd :focus-visible{outline:2px solid var(--cg);outline-offset:2px}
+#cd .cf input:focus-visible{outline:0}
+.cf:focus-within{border-top-color:rgba(245,184,0,.55)}
+
+/* header: live status + reset + minimize */
+#cd .ch{padding:11px 12px 11px 14px;gap:10px;border-bottom:1px solid rgba(245,184,0,.16);background:linear-gradient(180deg,rgba(245,184,0,.07),transparent)}
+.cst{display:flex;align-items:center;gap:9px;min-width:0}
+.cpulse{flex:none;width:8px;height:8px;border-radius:50%;background:#22c55e;animation:cpl 2s infinite}
+@keyframes cpl{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}70%{box-shadow:0 0 0 7px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.ctt{font:500 10.5px/1.2 'JetBrains Mono',monospace;letter-spacing:.09em;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctt em{font-style:normal;color:var(--mut2)}
+.ctt b{color:#4ade80;font-weight:500}
+.cbtns{display:flex;gap:6px;flex:none}
+#cd .cbn{display:grid;place-items:center;width:30px;height:30px;padding:0;border-radius:0;background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--mut2);cursor:pointer;transform:none;transition:color .2s,border-color .2s,background .2s}
+#cd .cbn:hover{color:var(--cg);border-color:rgba(245,184,0,.5);background:rgba(245,184,0,.08);transform:none}
+#cd .cbn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* messages */
+#cm{padding:14px 14px 8px;gap:12px;scrollbar-width:thin;scrollbar-color:rgba(245,184,0,.35) transparent;background-image:radial-gradient(rgba(245,184,0,.07) 1px,transparent 1px);background-size:22px 22px}
+.mg{position:relative;white-space:normal;animation:cmin .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes cmin{from{opacity:0;transform:translate3d(0,8px,0)}}
+.mg.b{align-self:stretch;max-width:100%;padding:10px 12px 12px;background:rgba(18,18,22,.78);border-color:rgba(255,255,255,.09)}
+.mg.b::before{color:var(--cg)}
+.mg.u{align-self:flex-end;max-width:88%;white-space:pre-wrap;overflow-wrap:anywhere;background:rgba(245,184,0,.09);border-color:rgba(245,184,0,.32);color:var(--fg)}
+.mg.u::before{content:"you>";display:block;margin-bottom:4px;font:500 10px 'JetBrains Mono',monospace;letter-spacing:.06em;color:var(--mut2)}
+.mt{white-space:pre-wrap;overflow-wrap:anywhere;padding-right:18px}
+.mg.ty{display:flex;align-items:center;flex-wrap:wrap}
+.mg.ty::before{flex:0 0 100%}
+.tyl{font:500 11px 'JetBrains Mono',monospace;color:var(--mut2);margin-right:8px}
+.cpy{position:absolute;top:6px;right:6px;display:grid;place-items:center;width:24px;height:24px;padding:0;background:transparent;border:1px solid transparent;color:var(--mut);cursor:pointer;opacity:.55;transition:opacity .2s,color .2s,border-color .2s}
+.cpy svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mg.b:hover .cpy,.cpy:focus-visible,.cpy.ok{opacity:1}
+.cpy:hover{color:var(--cg);border-color:rgba(245,184,0,.4)}
+.cpy.ok{color:#4ade80}
+
+/* rich cards inside replies */
+.rcs{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.rcard{display:flex;flex-direction:column;gap:7px;padding:10px 11px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.1);transition:border-color .2s,background .2s}
+.rcard:hover{border-color:rgba(245,184,0,.45);background:rgba(245,184,0,.04)}
+.rcard.hot{border-color:rgba(245,184,0,.42)}
+.rc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.rc-name{font:600 13.5px/1.3 'Space Grotesk',sans-serif;color:var(--fg)}
+.rc-tag{flex:none;font:500 9px/1 'JetBrains Mono',monospace;letter-spacing:.1em;padding:4px 6px;color:#0a0a0b;background:var(--cg)}
+.rc-sub{font:12px/1.45 'Space Grotesk',sans-serif;color:var(--mut2)}
+.rc-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.rc-price{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.rc-price b{font:500 20px/1 'JetBrains Mono',monospace;letter-spacing:-.04em;color:var(--fg)}
+.rc-price s{font:400 12px 'JetBrains Mono',monospace;color:var(--mut)}
+.rc-price small{font:400 10.5px 'JetBrains Mono',monospace;color:var(--mut2)}
+.rc-off{font:500 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.08em;padding:4px 6px;color:var(--col);background:rgba(116,120,59,.3);border:1px solid var(--co)}
+.rc-act{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.03em;color:var(--cg);background:transparent;border:1px solid rgba(245,184,0,.45);padding:8px 11px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+.rc-act:hover{background:var(--cg);color:#0a0a0b;border-color:var(--cg)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.acts .rc-act{white-space:normal;text-align:left}
+
+/* quick-action chips: 2x2 grid first, then a scrollable row */
+#cc{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 14px 12px;overflow:visible}
+#cc .chip{white-space:normal;text-align:left;font:500 11.5px/1.3 'Space Grotesk',sans-serif;padding:9px 10px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.02);color:#e4e4e7}
+#cc .chip:hover{border-color:var(--cg);color:var(--cg);background:rgba(245,184,0,.06)}
+#cc .chip.tpl{border-color:rgba(116,120,59,.75)}
+#cc.mini{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;padding:0 14px 10px;scrollbar-width:none}
+#cc.mini::-webkit-scrollbar{display:none}
+#cc.mini .chip{flex:none;white-space:nowrap;padding:6px 9px;font-size:11px}
+@media(max-width:380px){#cc:not(.mini){grid-template-columns:1fr}}
+
+/* input + hints */
+.cf{border-top:1px solid rgba(245,184,0,.18);background:rgba(0,0,0,.28)}
+.cprompt{display:grid;place-items:center;padding-left:14px;font:500 12px 'JetBrains Mono',monospace;color:var(--cg)}
+.cf input{padding:13px 10px}
+.cf input::placeholder{color:var(--mut);text-overflow:ellipsis}
+.cf button{color:var(--cg)}
+@media(min-width:640px){.cf input{font-size:13px}}
+.chint{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 14px 8px;border-top:1px solid rgba(255,255,255,.05);font:400 10px 'JetBrains Mono',monospace;color:var(--mut);letter-spacing:.03em}
+.chint kbd{font:500 9.5px 'JetBrains Mono',monospace;color:var(--mut2);border:1px solid rgba(255,255,255,.15);padding:1px 4px;margin:0 4px 0 8px}
+.chint kbd:first-child{margin-left:0}
+#ccount.warn{color:var(--cg)}
+@media(max-width:639px){.kh{display:none}.chint{justify-content:flex-end}}
+
+/* highlight when a chat button jumps to a card */
+.flash{animation:cflash 1.7s ease-out}
+@keyframes cflash{0%,100%{box-shadow:0 0 0 0 rgba(245,184,0,0)}25%{box-shadow:0 0 0 2px rgba(245,184,0,.9),0 0 44px rgba(245,184,0,.3)}}
+@media(prefers-reduced-motion:reduce){.mg,.cpulse,.flash{animation:none!important}}
 </style>
 </head>
 <body>
@@ -474,7 +539,7 @@ nav .btn{white-space:nowrap}
 <nav>
  <div class="wrap nav-in">
   <a href="#top" class="brand" aria-label="Vilocore AI home" style="flex:none"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Vilocore <b>AI</b></span></a>
-  <div class="hidden md:flex nav-links" style="gap:28px"><a class="lnk" href="#pricing">Pricing</a><a class="lnk" href="#systems">Core Systems</a><a class="lnk" href="#ai-agents">AI Agents</a><a class="lnk" href="#faq">FAQs</a></div>
+  <div class="hidden md:flex nav-links" style="gap:28px"><a class="lnk" href="#pricing">Pricing</a><a class="lnk" href="#architecture">Architecture</a><a class="lnk" href="#systems">Core Systems</a><a class="lnk" href="#ai-agents">AI Agents</a><a class="lnk" href="#faq">FAQs</a></div>
   <div style="display:flex;align-items:center;gap:20px">
    <span class="lab dsk" style="display:flex;align-items:center;gap:10px"><i class="dot"></i><b>Operational</b></span>
    <form class="nav-lead" id="nav-lead" novalidate aria-label="Get started">
@@ -495,7 +560,7 @@ nav .btn{white-space:nowrap}
   <p class="sub rv" style="--i:2">Custom workflow orchestration, private RAG knowledge bases, and 24/7 WhatsApp/CRM agents engineered by Vilocore AI to scale your revenue without scaling headcount.</p>
   <div class="rv" style="--i:3;display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
    <a class="btn mag" href="#pricing">View Deployment Plans <span>→</span></a>
-   <a class="btn ghost mag" href="#ai-agents">Explore AI Agents</a>
+   <a class="btn ghost mag" href="#architecture">Explore Architecture</a>
   </div>
   </div>
   <div class="lg:col-span-5">
@@ -544,7 +609,7 @@ nav .btn{white-space:nowrap}
     <p>Automatically validates incoming emails, strips malformed entries, deduplicates records in real time, and syncs clean leads to Google Sheets or HubSpot.</p>
     <div class="inc"><span class="lab">Includes</span><code>.json</code> workflow file, validation regex rules, setup guide.</div>
     <div class="ap"><span class="now">$47</span><span class="was">$59</span><span class="off">-20%</span></div>
-    <button class="btn deploy" type="button" data-deploy="agent_lead_sanitizer"><span>Deploy Template</span><span class="dp"><b>$47</b><s>$59</s><i>&rarr;</i></span></button>
+    <button class="btn ghost" type="button" data-deploy="agent_lead_sanitizer">Deploy Template &mdash; $47 <s style="opacity:.55;font-weight:400">$59</s></button>
    </article>
    <article class="ag rv" style="--i:1" data-agent-id="agent_whatsapp_qualifier" data-agent-name="24/7 WhatsApp &amp; Web Lead Qualifier Agent" data-base-price="89" data-offer-price="71">
     
@@ -554,7 +619,7 @@ nav .btn{white-space:nowrap}
     <p>Captures inbound messages, scores buyer intent automatically, answers FAQs, and routes hot prospects directly to your booking calendar.</p>
     <div class="inc"><span class="lab">Includes</span><code>.json</code> workflow, system prompt, webhook + calendar routing.</div>
     <div class="ap"><span class="now">$71</span><span class="was">$89</span><span class="off">-20%</span></div>
-    <button class="btn deploy" type="button" data-deploy="agent_whatsapp_qualifier"><span>Deploy Template</span><span class="dp"><b>$71</b><s>$89</s><i>&rarr;</i></span></button>
+    <button class="btn ghost" type="button" data-deploy="agent_whatsapp_qualifier">Deploy Template &mdash; $71 <s style="opacity:.55;font-weight:400">$89</s></button>
    </article>
    <article class="ag rv" style="--i:2" data-agent-id="agent_b2b_outreach" data-agent-name="B2B Cold Outreach &amp; Follow-Up Engine" data-base-price="119" data-offer-price="95">
     
@@ -564,7 +629,7 @@ nav .btn{white-space:nowrap}
     <p>Enriches prospect lists, personalizes first lines via AI, sends throttled multi-step email sequences, and stops automatically upon reply.</p>
     <div class="inc"><span class="lab">Includes</span><code>.json</code> workflow, prompt templates, reply-detection webhook.</div>
     <div class="ap"><span class="now">$95</span><span class="was">$119</span><span class="off">-20%</span></div>
-    <button class="btn deploy" type="button" data-deploy="agent_b2b_outreach"><span>Deploy Template</span><span class="dp"><b>$95</b><s>$119</s><i>&rarr;</i></span></button>
+    <button class="btn ghost" type="button" data-deploy="agent_b2b_outreach">Deploy Template &mdash; $95 <s style="opacity:.55;font-weight:400">$119</s></button>
    </article>
    <article class="ag rv" style="--i:0" data-agent-id="agent_rag_support" data-agent-name="Private RAG Knowledge Base Support Agent" data-base-price="159" data-offer-price="127">
     
@@ -574,7 +639,7 @@ nav .btn{white-space:nowrap}
     <p>Indexes company PDFs, SOPs, and docs into a vector store so your team or customers get instant, source-cited answers with zero hallucinations.</p>
     <div class="inc"><span class="lab">Includes</span>Ingestion + chat <code>.json</code> workflows, Supabase schema, citation prompt.</div>
     <div class="ap"><span class="now">$127</span><span class="was">$159</span><span class="off">-20%</span></div>
-    <button class="btn deploy" type="button" data-deploy="agent_rag_support"><span>Deploy Template</span><span class="dp"><b>$127</b><s>$159</s><i>&rarr;</i></span></button>
+    <button class="btn ghost" type="button" data-deploy="agent_rag_support">Deploy Template &mdash; $127 <s style="opacity:.55;font-weight:400">$159</s></button>
    </article>
    <article class="ag hot rv" style="--i:1" data-agent-id="agent_multi_ops_suite" data-agent-name="Autonomous Multi-Agent Revenue &amp; Ops Suite" data-base-price="199" data-offer-price="159">
     <span class="pill">MOST COMPLETE</span>
@@ -584,7 +649,7 @@ nav .btn{white-space:nowrap}
     <p>End-to-end autonomous pipeline combining inbound webhook routing, RAG intent scoring, CRM deal creation, and automated follow-up alerts.</p>
     <div class="inc"><span class="lab">Includes</span>All 4 core <code>.json</code> workflows, master orchestrator, priority setup docs.</div>
     <div class="ap"><span class="now">$159</span><span class="was">$199</span><span class="off">-20%</span></div>
-    <button class="btn deploy" type="button" data-deploy="agent_multi_ops_suite"><span>Deploy Template</span><span class="dp"><b>$159</b><s>$199</s><i>&rarr;</i></span></button>
+    <button class="btn" type="button" data-deploy="agent_multi_ops_suite">Deploy Template &mdash; $159 <s style="opacity:.55;font-weight:400">$199</s></button>
    </article>
   </div>
  </div>
@@ -608,6 +673,17 @@ nav .btn{white-space:nowrap}
     <ul><li>Everything in Lead Cleaning &amp; CRM Setup</li><li>Automated lead capture &amp; ingestion from your chosen source</li><li>AI lead qualification &amp; scoring (intent detection, summary, and next-action tagging)</li><li>Automated CRM pipeline updates + instant lead notifications</li><li>Built for zero lost leads and zero manual sorting</li></ul>
     <button class="btn mag" data-open data-track="plan_125_click">Get Started</button>
    </div>
+  </div>
+ </div>
+</section>
+<section id="architecture">
+ <div class="wrap">
+  <span class="lab rv"><b>//</b> Deployment methodology</span>
+  <h2 class="rv" style="--i:1">From audit to live in two weeks.</h2>
+  <div class="steps">
+   <div class="step rv"><div class="n">01</div><h3>Audit &amp; Blueprint</h3><p>We map your workflows, quantify the hours lost, and deliver a system blueprint with projected ROI.</p><span class="lab">48 hours</span></div>
+   <div class="step rv" style="--i:1"><div class="n">02</div><h3>Custom Engineering &amp; Sandbox Testing</h3><p>We build against your real stack and stress-test every path in an isolated sandbox before anything touches production.</p><span class="lab">7–14 days</span></div>
+   <div class="step rv" style="--i:2"><div class="n">03</div><h3>Production Handover &amp; SLA Monitoring</h3><p>Documented handover, team training, and continuous monitoring with alerting and a 99.9% uptime commitment.</p><span class="lab">Ongoing</span></div>
   </div>
  </div>
 </section>
@@ -748,20 +824,16 @@ nav .btn{white-space:nowrap}
  <div class="panel">
   <div style="display:flex;justify-content:space-between;align-items:center"><span class="lab"><b>//</b> Deploy AI agent template</span><button class="x" id="aclose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
   <form id="af" novalidate>
-   <input type="hidden" name="agent_id" id="af-id"><input type="hidden" name="agent_name" id="af-name"><input type="hidden" name="base_price_usd" id="af-base"><input type="hidden" name="offer_price_usd" id="af-offer"><input type="hidden" name="offer_name" value="2_day_20_percent_off">
    <p id="abadge" class="lab" style="color:var(--acc);margin:18px 0 0"></p>
    <h2 id="amt" style="font-size:26px;margin:10px 0 0;max-width:none"></h2>
    <span class="lab" style="display:block;margin-top:22px">Architecture pipeline</span>
    <div class="pipe" id="apipe"></div>
    <span class="lab" style="display:block;margin-top:22px">Included files</span>
    <div class="files" id="afiles"></div>
-   <span class="otag">2-DAY OFFER: 20% OFF</span>
-   <div class="mprice" style="margin-top:14px"><span class="ap" style="margin:0"><span class="now" id="anow"></span><span class="was" id="awas"></span><span class="off">-20%</span></span></div>
+   <div class="mprice"><span class="ap" style="margin:0"><span class="now" id="anow"></span><span class="was" id="awas"></span><span class="off">20% OFF &middot; 2-DAY OFFER</span></span></div>
    <p class="lab" style="margin:8px 0 0">Offer ends in <b id="aleft">--</b></p>
-   <input class="fld" id="anm" name="name" placeholder="Full name *" aria-label="Full name (required)" autocomplete="name" autocapitalize="words" autocorrect="off" spellcheck="false" required>
-   <input class="fld" id="aco" name="company" placeholder="Company name *" aria-label="Company name (required)" autocomplete="organization" autocapitalize="words" autocorrect="off" spellcheck="false" required>
    <input class="fld" id="aem" name="email" type="email" inputmode="email" placeholder="Email for .json delivery *" aria-label="Email for .json delivery (required)" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" required>
-   <p id="aerr" class="lab hide" role="alert">Please fill in your name, company and a valid email so we can deliver your .json files.</p>
+   <p id="aerr" class="lab hide" role="alert">Please enter a valid email so we can deliver your .json files.</p>
    <button class="btn sub-btn" type="submit" id="apay">Checkout with PayPal</button>
   </form>
   <div id="aok" class="hide" role="status">
@@ -775,11 +847,17 @@ nav .btn{white-space:nowrap}
 
 <div id="cw">
  <div id="cd" role="dialog" aria-label="Vilocore AI assistant" aria-hidden="true">
-  <div class="ch"><span class="lab"><span class="orb sm"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2.4"/><path d="M7 6.8L16.8 11.2M7 17.2L16.8 12.8"/></svg></span><span style="margin-left:10px">Vilocore AI assistant</span></span><button id="cx" class="x" type="button" aria-label="Close chat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  <div class="ch">
+   <span class="cst"><i class="cpulse" aria-hidden="true"></i><span class="ctt">VILOCORE CORE <em>// v2.6</em> <b>ONLINE</b></span></span>
+   <span class="cbtns">
+    <button id="creset" class="cbn" type="button" aria-label="Clear chat" title="Clear chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>
+    <button id="cx" class="cbn" type="button" aria-label="Minimize chat" title="Minimize"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+   </span>
+  </div>
   <div id="cm" aria-live="polite"></div>
-  <div id="cc"><button class="chip" type="button">How does deployment work?</button><button class="chip" type="button">Which plan fits my business?</button><button class="chip" type="button">What can you automate with workflows &amp; RAG?</button></div>
-  <form class="cf" id="cform" autocomplete="off"><input id="ci" placeholder="Ask about systems, pricing, timeline…" aria-label="Message"><button type="submit">SEND</button></form>
-  <div class="cl"><span class="lab">Ready to talk?</span><button class="btn sm" id="cta" data-open type="button">Book Call / Loom Audit</button></div>
+  <div id="cc" aria-label="Quick questions"><button class="chip" type="button">Compare $80 vs $125 Plans</button><button class="chip tpl" type="button">Show 5 AI Agent Templates (-20%)</button><button class="chip" type="button">Templates vs Custom Setup?</button><button class="chip" type="button">Monthly Fees &amp; Ownership?</button></div>
+  <form class="cf" id="cform" autocomplete="off"><span class="cprompt" aria-hidden="true">&gt;_</span><input id="ci" maxlength="280" enterkeyhint="send" placeholder="Ask about $80/$125 plans, -20% agents, n8n stack..." aria-label="Message"><button type="submit">SEND</button></form>
+  <div class="chint"><span class="kh"><kbd>Enter</kbd>send <kbd>&uarr;</kbd>last <kbd>Esc</kbd>close</span><span id="ccount">0/280</span></div>
  </div>
  <button id="cn" type="button" aria-hidden="true" tabindex="-1">Need a custom workflow? I can scope it in 60 seconds.</button>
  <button id="cb" type="button" aria-expanded="false" aria-controls="cd" aria-label="Open Vilocore AI assistant"><span class="orb"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2.4"/><path d="M7 6.8L16.8 11.2M7 17.2L16.8 12.8"/></svg></span><span class="txt"><strong>Ask Vilocore AI</strong><small>Online · replies instantly</small></span></button>
@@ -931,87 +1009,157 @@ f.addEventListener('submit',async e=>{
 </script>
 
 <script>
-/* ============ VILOCORE AI ASSISTANT ============
-   N8N_WEBHOOK_URL
-   - Leave EMPTY ("") to use the built-in knowledge engine (instant, no network).
-   - Paste your n8n Webhook node URL (HTTP POST) to route every message to your n8n AI agent.
-     Request body:  { "message": "...", "sessionId": "..." }
-     Response:      JSON with one of output | reply | response | text | message, or plain text.
-   - If the webhook errors or returns nothing, the built-in engine answers instead. */
+/* ============ VILOCORE AI ASSISTANT v2: command console ============
+   Replies come from the built-in knowledge base below (instant, always matches the live offers).
+   Chat events (chat_question_asked, chat_cta_clicked) are POSTed to N8N_WEBHOOK_URL, fire-and-forget.
+   CHAT_REPLIES_FROM_WEBHOOK: leave false unless that workflow answers with
+   { output | reply | response | text | message }; the built-in engine is always the fallback. */
 const N8N_WEBHOOK_URL = "https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
+const CHAT_REPLIES_FROM_WEBHOOK = false;
 
 (()=>{
 const $=s=>document.querySelector(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const cd=$('#cd'),cb=$('#cb'),cm=$('#cm'),ci=$('#ci'),cc=$('#cc');
+const cd=$('#cd'),cb=$('#cb'),cm=$('#cm'),ci=$('#ci'),cc=$('#cc'),cnt=$('#ccount');
+const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let sessionId;try{sessionId=localStorage.getItem('st_sid')}catch(e){}
 if(!sessionId){sessionId=(crypto.randomUUID?crypto.randomUUID():'s'+Date.now()+Math.random().toString(36).slice(2));try{localStorage.setItem('st_sid',sessionId)}catch(e){}}
 
-/* ---- built-in knowledge engine ---- */
-const PLANS="Growth Pilot: $1,000 one-time, no monthly fees. One core AI workflow (e.g. a 24/7 WhatsApp AI qualifier), full CRM integration, live in 14 days or the payment is refunded.\n\nScale Infrastructure (most popular): $2,200 one-time, no monthly fees. Up to 4 custom workflow pipelines, a custom RAG knowledge base trained on your data, lead enrichment, Slack alerts, 24/7 monitoring.\n\nCustom Enterprise: custom quote. Dedicated AI systems engineer, self-hosted workflows/LLM for strict privacy, custom API microservices, unlimited workflow scaling.";
-const RULES=[
-[/\b(book|call|demo|loom|audit|talk|speak|human|contact|sales|get started|start)\b/,()=>({text:"Good next step. Share your name, company and email and we record a custom Loom audit of your workflow.",cta:1})],
-[/guarantee|refund|money back|risk/,()=>({text:"Growth Pilot carries a delivery guarantee: live in 14 days or the payment is refunded. Every build is tested in a sandbox before it touches production, and monitoring runs on a 99.9% uptime SLA.",cta:1})],
-[/enterprise|self.?host|on.?prem|privacy|private|secur|complian|gdpr|data (resid|protect)/,()=>({text:"Custom Enterprise is built for strict privacy: self-hosted workflows and LLMs so your data stays in your infrastructure, a dedicated AI systems engineer, custom API microservices, and unlimited workflow scaling. Pricing is a custom quote.",cta:1})],
-[/which plan|fit|recommend|best plan|which tier|right plan|suit|choose|compare/,q=>{
- if(/unlimited|dedicated|self.?host|large|corporate|50\+|hundreds/.test(q))return{text:"That points to Custom Enterprise: dedicated engineer, self-hosted workflows/LLM, custom API microservices, unlimited scaling. Quoted per project.",cta:1};
- if(/rag|knowledge|multiple|several|pipelines|enrich|slack|support team|docs|notion|pdf/.test(q))return{text:"Scale Infrastructure fits: up to 4 workflow pipelines, a custom RAG knowledge base on your data, lead enrichment, Slack alerts and 24/7 monitoring. $2,200 one-time, no monthly fees.",cta:1};
- if(/\bone\b|\b1\b|single|whatsapp|pilot|small|first|test|startup/.test(q))return{text:"Growth Pilot fits: one core workflow (such as a 24/7 WhatsApp AI qualifier), full CRM integration, live in 14 days or the payment is refunded. $1,000 one-time, no monthly fees.",cta:1};
- return{text:"Quick guide:\n- One workflow to prove ROI: Growth Pilot ($1,000 one-time)\n- Several pipelines plus a knowledge base: Scale Infrastructure ($2,200 one-time)\n- Strict privacy or unlimited scale: Custom Enterprise (custom quote)\n\nTell me your main bottleneck and I'll point to one.",cta:1}}],
-[/price|pricing|cost|how much|\$|fee|plan|tier|pilot|scale|retainer/,()=>({text:PLANS,cta:1})],
-[/deploy|timeline|how long|process|how does|steps|method|weeks?|days?|onboard|work with/,()=>({text:"Three phases:\n01 Audit & Blueprint (48 hours): we map your workflows, quantify lost hours, and deliver a blueprint with projected ROI.\n02 Custom Engineering & Sandbox Testing (7-14 days): built against your real stack and tested in isolation.\n03 Production Handover & SLA Monitoring: documentation, team training, and 24/7 monitoring on a 99.9% uptime SLA.\n\nGrowth Pilot goes live in 14 days or the payment is refunded.",cta:1})],
-[/automate|n8n|rag|knowledge|what can you|capabilit|services?|offer|build|llm|hallucinat/,()=>({text:"Workflow & API orchestration: bidirectional sync between HubSpot/Pipedrive, Stripe, Slack and webhooks.\nAgents: 24/7 WhatsApp/IG lead qualification, intent scoring and automated CRM booking.\nOutbound: AI-enriched lead scraping, personalized outreach, automatic CRM logging.\nRAG: connect PDFs, Notion and databases to a private LLM so answers stay grounded in your own data.\n\nWhich of these is your biggest bottleneck?"})],
-[/whatsapp|instagram|\big\b|lead|inbound|qualif|response time/,()=>({text:"Our WhatsApp/IG agents respond to leads in under 15 seconds, 24/7: they qualify, score intent, and book directly into your CRM. This is the core of the Growth Pilot ($1,000 one-time, no monthly fees).",cta:1})],
-[/outbound|cold|prospect|scrap|enrich/,()=>({text:"Outbound pipelines enrich leads with AI, write hyper-personalized outreach, and log every touch in your CRM automatically. Lead enrichment is included in Scale Infrastructure.",cta:1})],
-[/integrat|hubspot|pipedrive|stripe|slack|zoom|gmail|asana|trello|teams|intercom|drive|crm|tool|stack|api/,()=>({text:"We support 500+ integrations, including HubSpot, Pipedrive, Stripe, Slack, Gmail, Zoom, Asana, Trello, Microsoft Teams, Intercom and Google Drive. Anything with an API or webhook can be connected.",cta:1})],
-[/sla|uptime|monitor|support|maintenance|reliab/,()=>({text:"Production systems run under a 99.9% uptime SLA with 24/7 monitoring and alerting. Scale Infrastructure and Enterprise include ongoing monitoring; handover includes full documentation and training."})],
-[/roi|save|hours|worth|result|benchmark|headcount|revenue/,()=>({text:"What we engineer to: under 15s lead response time, 99.9% uptime, and 40+ hours per week saved per team. The Audit & Blueprint phase puts a projected ROI on your specific workflows before you commit to a build.",cta:1})],
-[/who|about|vilocore|synapse|what is|company/,()=>({text:"Vilocore AI engineers autonomous AI infrastructure for B2B teams: custom workflow orchestration, private RAG knowledge bases, and 24/7 WhatsApp/CRM agents, built to scale revenue without scaling headcount."})],
-[/^(hi|hello|hey|yo|good (morning|afternoon|evening))\b/,()=>({text:"Hi. I can walk you through deployment, pricing, plans, or what we automate with workflows & RAG. What are you trying to fix?"})],
-[/thank|thx|great|awesome|cool/,()=>({text:"Glad to help. When you're ready, the fastest path is a Loom audit of your workflow.",cta:1})]
+/* ---------- knowledge base ---------- */
+const PLAN=[
+ {id:'plan_80',n:'Lead Cleaning & CRM Setup',p:80,sub:'Data sanitization & dedup, filtering rules, CRM / Sheets pipeline, fast turnaround'},
+ {id:'plan_125',n:'Complete AI Lead Gen & CRM Engine',p:125,tag:'MOST POPULAR',sub:'Everything in Plan 1 + lead capture, AI scoring, CRM updates & instant alerts'}
 ];
-const answer=q=>{const t=q.toLowerCase();for(const[r,f]of RULES)if(r.test(t))return f(t);return{text:"I can cover deployment, pricing, plan fit, workflow/RAG automation, integrations, and guarantees. For anything specific to your stack, an engineer can answer it directly.",cta:1}};
+const TPL=[
+ {id:'agent_lead_sanitizer',n:'Lead Sanitizer & CRM Deduplicator Agent',p:47,w:59,sub:'.json workflow, validation regex rules, setup guide'},
+ {id:'agent_whatsapp_qualifier',n:'24/7 WhatsApp & Web Lead Qualifier Agent',p:71,w:89,sub:'.json workflow, system prompt, webhook + calendar routing'},
+ {id:'agent_b2b_outreach',n:'B2B Cold Outreach & Follow-Up Engine',p:95,w:119,sub:'.json workflow, prompt templates, reply-detection webhook'},
+ {id:'agent_rag_support',n:'Private RAG Knowledge Base Support Agent',p:127,w:159,sub:'Ingestion + chat .json workflows, Supabase schema, citation prompt'},
+ {id:'agent_multi_ops_suite',n:'Autonomous Multi-Agent Revenue & Ops Suite',p:159,w:199,tag:'MOST COMPLETE',sub:'All 4 core .json workflows, master orchestrator, priority setup docs'}
+];
+const P1=[{k:'plan',id:'plan_80'}],P2=[{k:'plan',id:'plan_125'}],PB=[{k:'plan',id:'plan_80'},{k:'plan',id:'plan_125'}];
+const T=id=>[{k:'tpl',id:id}],TALL=TPL.map(t=>({k:'tpl',id:t.id}));
+const A_CMP=['Compare $80 vs $125 plans','ask:Compare $80 vs $125 Plans'],A_TPL=['Show 5 templates','ask:Show 5 AI Agent Templates (-20%)'],
+      A_VS=['Templates vs custom setup?','ask:Templates vs Custom Setup?'],A_FEE=['Fees & ownership','ask:Monthly Fees & Ownership?'],
+      A_PRI=['Go to plans','go:pricing'],A_AGT=['Go to templates','go:ai-agents'];
+const left=()=>{const g=i=>(document.getElementById(i)||{}).textContent||'';const d=g('cd-d');return d?d+'d '+g('cd-h')+':'+g('cd-m')+':'+g('cd-s'):''};
 
-/* ---- UI ---- */
-function add(role,text,cta){const d=document.createElement('div');d.className='mg '+role;d.appendChild(document.createTextNode(text));
- if(cta){const b=document.createElement('button');b.type='button';b.className='btn sm';b.textContent='Book Discovery Call / Loom Audit';b.onclick=()=>$('#cta').click();d.appendChild(b)}
- cm.appendChild(d);cm.scrollTo({top:cm.scrollHeight,behavior:'smooth'});return d}
-// Every message is accepted immediately (shown + input cleared); replies are processed in order.
-// (Old code ignored new messages while an AI reply was pending, so Enter/SEND looked "dead".)
-let chain=Promise.resolve();
-async function respond(text){
- const ty=add('b','');ty.classList.add('ty');ty.insertAdjacentHTML('beforeend','<i></i><i></i><i></i>');
- let out=null;
- try{
-  if(N8N_WEBHOOK_URL){try{
-   const ac=new AbortController(),to=setTimeout(()=>ac.abort(),20000);
-   const r=await fetch(N8N_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,chatInput:text,sessionId}),signal:ac.signal});
-   clearTimeout(to);
-   if(!r.ok)throw new Error(r.status);
-   let d=(r.headers.get('content-type')||'').includes('json')?await r.json():await r.text();
-   if(Array.isArray(d))d=d[0];
-   const s=typeof d==='string'?d:(d&&(d.output||d.reply||d.response||d.text||d.message));
-   // ignore n8n's default "Workflow was started" ack (webhook not set to respond with the AI answer)
-   if(s&&!/^workflow was started\.?$/i.test(String(s).trim()))out={text:String(s)};
-  }catch(e){console.warn('n8n webhook failed, using built-in engine',e)}}
-  if(!out){await sleep(450+Math.random()*350);out=answer(text)}
- }finally{ty.remove()}
- add('b',out.text,out.cta);
-}
-function sendMessage(text){
+const FEES="No monthly fees from Vilocore AI. Every plan and template is a one-time payment. You only pay your own tool providers directly (for example n8n hosting, OpenAI/Claude API usage, Supabase).";
+const OWN="Yes, you own the workflows 100%. You receive the exported .json workflow files, prompts and full documentation.";
+
+const R=(re,intent,fn)=>({re,intent,fn});
+const RULES=[
+ R(/^(hi|hello|hey|yo|salam|good (morning|afternoon|evening))\b/,'greeting',()=>({text:"VILOCORE CORE online. I can compare the $80 and $125 setup plans, show the 5 AI agent templates (-20% for 2 days), or answer questions on fees, ownership, delivery and integrations. What do you need?",acts:[A_CMP,A_TPL]})),
+ R(/thank|thx|awesome|perfect|great job/,'thanks',()=>({text:"Anytime. Want to compare the plans or browse the templates?",acts:[A_CMP,A_TPL]})),
+ R(/(template|agent).*\b(vs|versus|or|compared|difference|instead|better)\b.*(custom|setup|plan)|(custom|setup|plan).*\b(vs|versus|compared|difference|instead)\b.*(template|agent)|difference between.*(custom|template)/,'templates_vs_custom',()=>({text:"Custom Setup Plans ($80 or $125) are custom-configured and set up for your specific pipeline and CRM.\n\nAI Agent Templates ($47-$159 with the 20% 2-day offer) are instant-download .json workflows + prompts + setup guides you can deploy immediately.\n\nWant it done around your stack? Pick a plan. Want to deploy right now yourself? Pick a template.",acts:[A_CMP,A_TPL]})),
+ R(/monthly|subscription|recurring|\bfees?\b|hidden cost|retainer|running cost|hosting cost|\bown(s|ership)?\b|licen[sc]e|lock.?in|belong|export/,'fees_ownership',t=>{
+  const fee=/monthly|subscription|recurring|\bfees?\b|hidden|retainer|running|hosting/.test(t),own=/\bown(s|ership)?\b|licen[sc]e|lock.?in|belong|export/.test(t);
+  return{text:fee&&own?FEES+"\n\nDo you own the workflows? "+OWN:own?OWN:FEES,acts:[A_PRI,A_AGT]}}),
+ R(/compar|\b80\b.*\b125\b|\b125\b.*\b80\b|(vs|versus).*plans?|plans?.*(vs|versus)|difference.*plans?|which plan|right plan|best plan|recommend|which (one|should)|\bfits?\b/,'compare_plans',()=>({text:"Plan 1 ($80) cleans and structures the leads you already have and sets up your CRM / Google Sheets pipeline.\n\nPlan 2 ($125) includes all of that and adds automated lead capture, AI qualification & scoring, automated CRM updates and instant notifications, built for zero lost leads and zero manual sorting.\n\nMessy list and no pipeline yet? Plan 1. Want new leads captured, scored and routed for you? Plan 2. Both are one-time, no monthly fees.",cards:PB,acts:[A_VS]})),
+ R(/\$?\b125\b|plan (2|two)\b|crm engine|lead gen|most popular|next.?action/,'plan_125',()=>({text:"Plan 2: Complete AI Lead Gen & CRM Engine. $125 one-time, no monthly fees (most popular).\nEverything in Plan 1, plus:\n- Automated lead capture & ingestion from your chosen source\n- AI lead qualification & scoring (intent detection, summary, next-action tagging)\n- Automated CRM pipeline updates + instant lead notifications\n- Built for zero lost leads and zero manual sorting",cards:P2,acts:[A_CMP]})),
+ R(/\$?\b80\b|plan (1|one)\b|lead clean|crm setup/,'plan_80',()=>({text:"Plan 1: Lead Cleaning & CRM Setup. $80 one-time, no monthly fees.\n- Automated data sanitization & deduplication (removes malformed emails, extra spaces, duplicate leads)\n- Custom filtering rules to block noise and keep only relevant prospects\n- Clean, structured CRM / Google Sheets pipeline: New, Qualified, Contacted, Replied, Call, Won\n- Fast turnaround & ready-to-use workflow",cards:P1,acts:[A_CMP]})),
+ R(/suite|multi.?agent|orchestrator|most complete|full stack|all (4|four)|revenue/,'tpl_suite',()=>({text:"Autonomous Multi-Agent Revenue & Ops Suite is our most complete template: an end-to-end pipeline combining inbound webhook routing, RAG intent scoring, CRM deal creation and automated follow-up alerts. Includes all 4 core .json workflows, the master orchestrator and priority setup docs.\n\n$159 (regular $199, -20% for 2 days).",cards:T('agent_multi_ops_suite'),acts:[A_TPL]})),
+ R(/\brag\b|knowledge|vector|supabase|\bpdf|\bdocs\b|\bsops?\b|citation|hallucinat/,'tpl_rag',()=>({text:"Private RAG Knowledge Base Support Agent indexes your company PDFs, SOPs and docs into a vector store so your team or customers get instant, source-cited answers with zero hallucinations. Includes ingestion + chat .json workflows, the Supabase schema and a citation prompt.\n\n$127 (regular $159, -20% for 2 days).",cards:T('agent_rag_support'),acts:[A_TPL]})),
+ R(/outreach|cold|follow.?up|sequence|prospect|brevo|smtp|campaign/,'tpl_outreach',()=>({text:"B2B Cold Outreach & Follow-Up Engine enriches prospect lists, personalizes first lines with AI, sends throttled multi-step email sequences and stops automatically when someone replies. Includes the .json workflow, prompt templates and a reply-detection webhook.\n\n$95 (regular $119, -20% for 2 days).",cards:T('agent_b2b_outreach'),acts:[A_TPL]})),
+ R(/whatsapp|web lead|24\/7|qualifier|qualif|chatbot|inbound/,'tpl_whatsapp',()=>({text:"24/7 WhatsApp & Web Lead Qualifier Agent captures inbound messages, scores buyer intent automatically, answers FAQs and routes hot prospects straight to your booking calendar. Includes the .json workflow, system prompt and webhook + calendar routing.\n\n$71 (regular $89, -20% for 2 days).",cards:T('agent_whatsapp_qualifier'),acts:[A_TPL]})),
+ R(/sanitiz|dedup/,'tpl_sanitizer',()=>({text:"Lead Sanitizer & CRM Deduplicator Agent validates incoming emails, strips malformed entries, deduplicates records in real time and syncs clean leads to Google Sheets or HubSpot. Includes the .json workflow, validation regex rules and a setup guide.\n\n$47 (regular $59, -20% for 2 days). Want it configured for your own pipeline instead? That is Plan 1 ($80).",cards:[...T('agent_lead_sanitizer'),...P1],acts:[A_VS]})),
+ R(/template|ai agent|agents|20 ?%|discount|offer|promo|sale|deal|\.json|download|deploy|instant|plug|import|\b5\b|five/,'templates',()=>{const l=left();return{text:"5 ready-to-deploy AI agent templates, all one-time payments. 2-DAY OFFER: 20% OFF is active now"+(l?" (ends in "+l+")":"")+".\nEach ships as .json workflow files + prompts + a setup guide, delivered immediately after checkout.",cards:TALL,acts:[A_VS]}}),
+ R(/clean|duplicate|malformed|spam|noise|filter|messy/,'lead_cleaning',()=>({text:"Two ways to clean your leads. Plan 1 ($80) is custom-configured around your pipeline and CRM. The Lead Sanitizer template ($47, -20% for 2 days) is an instant-download .json workflow you deploy yourself.",cards:[...P1,...T('agent_lead_sanitizer')],acts:[A_VS]})),
+ R(/pric|cost|how much|plans?\b|package|quote|budget|cheap|afford/,'pricing',()=>({text:"Two custom setup plans, both one-time payments with no monthly fees. The $80 plan cleans and structures your leads; the $125 plan adds capture, AI qualification and automated CRM updates.\n\nWant something instant? The 5 AI agent templates start at $47 (-20% for 2 days).",cards:PB,acts:[A_TPL]})),
+ R(/deliver|how fast|turnaround|how long|how quickly|setup time|timeline|ready in|lead time/,'delivery',()=>({text:"AI Agent Templates are delivered immediately upon checkout. Custom Setup Plans ($80 / $125) have fast turnaround and ship ready-to-use.",acts:[A_PRI,A_AGT]})),
+ R(/get started|\bstart\b|\bbegin\b|\border\b|\bbuy\b|purchase|checkout|\bpay\b|sign ?up|how do i/,'get_started',()=>({text:"Getting started is direct, no discovery call needed. Pick a custom setup plan ($80 / $125) or deploy an AI agent template ($47-$159) and check out.",acts:[A_PRI,A_AGT]})),
+ R(/book|\bcall\b|demo|loom|audit|meeting|talk to|speak|human|contact|sales/,'no_call_needed',()=>({text:"No discovery call needed. You can start right away: pick a custom setup plan or deploy a template.",acts:[A_PRI,A_AGT]})),
+ R(/n8n|integrat|tools?\b|stack|connect|hubspot|pipedrive|sheets|slack|openai|claude|anthropic|webhook|\bapi\b|crm/,'integrations',()=>({text:"We integrate with n8n, Google Sheets, HubSpot, Pipedrive, WhatsApp, Brevo/SMTP, Supabase, OpenAI, Anthropic Claude, Slack, and custom webhooks.",acts:[A_CMP,A_TPL]})),
+ R(/who|about|vilocore|company|what do you do|what can you|services?|capabilit|\bbuild/,'about',()=>({text:"Vilocore AI builds autonomous AI infrastructure: custom n8n workflows, lead sanitization pipelines, CRM engines, RAG knowledge bases, and 24/7 WhatsApp/Web qualification agents that eliminate manual operational bottlenecks.",acts:[A_CMP,A_TPL]}))
+];
+function answer(q){const t=q.toLowerCase();for(const r of RULES)if(r.re.test(t)){const o=r.fn(t);o.intent=r.intent;return o}
+ return{intent:'fallback',text:"I can answer questions on the two custom setup plans ($80 / $125), the 5 AI agent templates (-20% for 2 days), monthly fees and ownership, delivery and integrations. Try one of these:",acts:[A_CMP,A_TPL,A_FEE]}}
+
+/* ---------- tracking (fire-and-forget) ---------- */
+function log(event,extra){try{
+ const p=Object.assign({event,session_id:sessionId,source:'vilocore-chat',page_url:location.href,timestamp:new Date().toISOString()},extra||{});
+ try{if(window.dataLayer&&window.dataLayer.push)window.dataLayer.push(p)}catch(_){}
+ if(N8N_WEBHOOK_URL)fetch(N8N_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),keepalive:true}).catch(()=>{});
+}catch(_){}}
+
+/* ---------- DOM helpers ---------- */
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const ICON_COPY='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>';
+const ICON_OK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+async function copyText(s){try{await navigator.clipboard.writeText(s);return true}catch(e){try{const ta=document.createElement('textarea');ta.value=s;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();return ok}catch(_){return false}}}
+function lookup(c){return c.k==='plan'?PLAN.find(x=>x.id===c.id):TPL.find(x=>x.id===c.id)}
+function card(c){
+ const o=lookup(c),isP=c.k==='plan',d=el('div','rcard'+(o.tag?' hot':'')),top=el('div','rc-top');
+ top.append(el('span','rc-name',o.n));if(o.tag)top.append(el('span','rc-tag',o.tag));
+ const row=el('div','rc-row'),pr=el('div','rc-price');pr.append(el('b','','$'+o.p));
+ if(isP)pr.append(el('small','','one-time, no monthly fees'));else{pr.append(el('s','','$'+o.w));pr.append(el('span','rc-off','-20%'))}
+ const b=el('button','rc-act',isP?'Select Plan →':'Deploy Template →');b.type='button';
+ b.onclick=()=>act((isP?'plan:':'tpl:')+o.id,b.textContent);
+ row.append(pr,b);d.append(top,el('div','rc-sub',o.sub),row);return d}
+function plainOf(res){const l=[res.text];(res.cards||[]).forEach(c=>{const o=lookup(c);l.push('- '+o.n+': $'+o.p+(o.w?' (regular $'+o.w+', -20%)':' one-time'))});return l.join('\n')}
+function scrollMsg(d){const tall=d.offsetHeight>cm.clientHeight*.7;cm.scrollTo({top:tall?Math.max(0,d.offsetTop-8):cm.scrollHeight,behavior:reduced?'auto':'smooth'})}
+function addUser(text){const d=el('div','mg u',text);cm.append(d);scrollMsg(d)}
+function addBot(res){
+ const d=el('div','mg b');d.append(el('div','mt',res.text));
+ if(res.cards&&res.cards.length){const w=el('div','rcs');res.cards.forEach(c=>w.append(card(c)));d.append(w)}
+ if(res.acts&&res.acts.length){const w=el('div','acts');res.acts.forEach(a=>{const b=el('button','rc-act',a[0]);b.type='button';b.onclick=()=>act(a[1],a[0]);w.append(b)});d.append(w)}
+ const cp=el('button','cpy');cp.type='button';cp.innerHTML=ICON_COPY;cp.setAttribute('aria-label','Copy response');cp.title='Copy response';
+ cp.onclick=async()=>{if(await copyText(plainOf(res))){cp.classList.add('ok');cp.innerHTML=ICON_OK;setTimeout(()=>{cp.classList.remove('ok');cp.innerHTML=ICON_COPY},1500)}};
+ d.append(cp);cm.append(d);scrollMsg(d);return d}
+function typing(){const d=el('div','mg b ty');const l=el('span','tyl','Analyzing query');d.append(l);for(let i=0;i<3;i++)d.append(document.createElement('i'));cm.append(d);cm.scrollTo({top:cm.scrollHeight});return{d,l}}
+
+/* ---------- actions (cards, buttons) ---------- */
+function goTo(e,start){if(!e)return;e.scrollIntoView({behavior:reduced?'auto':'smooth',block:start?'start':'center'});if(!start){e.classList.remove('flash');void e.offsetWidth;e.classList.add('flash');setTimeout(()=>e.classList.remove('flash'),1800)}}
+function act(a,label){
+ const i=a.indexOf(':'),k=a.slice(0,i),v=a.slice(i+1);
+ log('chat_cta_clicked',{cta:k,target:v,label:String(label||'').replace(/\s*→$/,'')});
+ if(k==='ask'){send(v,'cta');return}
+ set(false);
+ setTimeout(()=>{
+  if(k==='plan'){goTo(document.querySelectorAll('#pricing .plan')[PLAN.findIndex(x=>x.id===v)])}
+  else if(k==='tpl'){const b=document.querySelector('[data-deploy="'+v+'"]');if(b)b.click()}
+  else if(k==='go'){goTo(document.getElementById(v),true)}
+ },200)}
+
+/* ---------- conversation ---------- */
+let epoch=0,chain=Promise.resolve(),greeted=false;const hist=[];let hi=0;
+async function respond(res,text,mine){
+ const ty=typing(),lat=350+Math.random()*150;
+ await sleep(lat*.55);ty.l.textContent='Retrieving Vilocore specs';await sleep(lat*.45);
+ let out=res;
+ if(CHAT_REPLIES_FROM_WEBHOOK&&N8N_WEBHOOK_URL){try{
+  const ac=new AbortController(),to=setTimeout(()=>ac.abort(),8000);
+  const r=await fetch(N8N_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,chatInput:text,sessionId}),signal:ac.signal});
+  clearTimeout(to);if(!r.ok)throw new Error(r.status);
+  let d=(r.headers.get('content-type')||'').includes('json')?await r.json():await r.text();if(Array.isArray(d))d=d[0];
+  const s=typeof d==='string'?d:(d&&(d.output||d.reply||d.response||d.text||d.message));
+  if(s&&!/^workflow was started\.?$/i.test(String(s).trim()))out={text:String(s)};
+ }catch(e){}}
+ ty.d.remove();if(mine!==epoch)return;addBot(out)}
+function send(text,src){
  text=(text||'').trim();if(!text)return;
- ci.value='';cc.hidden=true;add('u',text);ci.focus();
- chain=chain.then(()=>respond(text)).catch(e=>console.error(e));
-}
-window.sendMessage=sendMessage;
-let greeted=false;
-const set=o=>{cd.classList.toggle('open',o);cd.setAttribute('aria-hidden',!o);cb.setAttribute('aria-expanded',o);
- if(o){if(!greeted){greeted=true;add('b',"I'm the Vilocore AI assistant. Ask about deployment, pricing, or what we can automate, or pick a question below.")}cc.hidden=!!cm.querySelector('.mg.u');if(matchMedia('(pointer:fine)').matches)setTimeout(()=>ci.focus(),300)}};
-cb.onclick=()=>set(!cd.classList.contains('open'));$('#cx').onclick=()=>set(false);
+ ci.value='';count();hist.push(text);hi=hist.length;
+ cc.hidden=false;cc.classList.add('mini');addUser(text);
+ const res=answer(text),mine=epoch;
+ log('chat_question_asked',{question:text.slice(0,280),input_type:src||'typed',intent:res.intent});
+ chain=chain.then(()=>respond(res,text,mine)).catch(e=>console.error(e))}
+window.sendMessage=t=>send(t,'api');
+function greet(){greeted=true;addBot({text:"VILOCORE CORE online. Ask about the $80 / $125 setup plans, the 5 AI agent templates (-20% for 2 days), fees, ownership or delivery, or tap a question below."})}
+function reset(){epoch++;chain=Promise.resolve();cm.textContent='';cc.classList.remove('mini');cc.hidden=false;greet();ci.focus()}
+function count(){const n=ci.value.length;cnt.textContent=n+'/280';cnt.classList.toggle('warn',n>240)}
+
+/* ---------- panel open / close ---------- */
+function set(o){cd.classList.toggle('open',o);cd.setAttribute('aria-hidden',!o);cb.setAttribute('aria-expanded',o);
+ if(o){if(!greeted)greet();if(matchMedia('(pointer:fine)').matches)setTimeout(()=>ci.focus(),300)}}
+cb.onclick=()=>set(!cd.classList.contains('open'));
+$('#cx').onclick=()=>set(false);$('#creset').onclick=reset;
 document.addEventListener('pointerdown',e=>{if(cd.classList.contains('open')&&!e.target.closest('#cw'))set(false)});
-$('#cta').addEventListener('click',()=>set(false));
-addEventListener('keydown',e=>{if(e.key==='Escape'&&cd.classList.contains('open')&&!document.querySelector('#modal.open'))set(false)});
-document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>sendMessage(c.textContent));
-$('#cform').addEventListener('submit',e=>{e.preventDefault();sendMessage(ci.value)});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&cd.classList.contains('open')&&!document.querySelector('#modal.open,#amodal.open'))set(false)});
+cc.querySelectorAll('.chip').forEach(c=>c.onclick=()=>send(c.textContent,'chip'));
+$('#cform').addEventListener('submit',e=>{e.preventDefault();send(ci.value,'typed')});
+ci.addEventListener('input',count);
+ci.addEventListener('keydown',e=>{ /* ArrowUp / ArrowDown: step through your earlier questions */
+ if(e.key==='ArrowUp'&&hist.length&&(ci.value===''||hi<hist.length)){e.preventDefault();hi=Math.max(0,hi-1);ci.value=hist[hi];count()}
+ else if(e.key==='ArrowDown'&&hi<hist.length){e.preventDefault();hi=Math.min(hist.length,hi+1);ci.value=hist[hi]||'';count()}});
 })();
 </script>
 
@@ -1066,6 +1214,55 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
 <!-- NOTE: the old trailing <script> (the one with alert('Submitted successfully!')) was REMOVED.
      It hijacked every <form> on the page, sent leads a second time with no validation,
      and showed the browser alert. All submit logic now lives in the "MODAL + FORM SUBMIT" block above. -->
+<script>
+/* Global event tracking -> n8n production webhook (non-blocking, never interferes with the page) */
+(function(){
+ var URL_="https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
+ function base(){return{page:location.pathname+location.hash,url:location.href,timestamp:new Date().toISOString()}}
+ function send(p){
+  try{
+   fetch(URL_,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p),keepalive:true}).catch(function(){});
+  }catch(_){}
+ }
+ function txt(el){return((el.innerText||el.textContent||el.getAttribute("aria-label")||"")+"").replace(/\s+/g," ").trim().slice(0,120)}
+
+ /* 1. page_view */
+ var pv=base();pv.event="page_view";pv.referrer=document.referrer||"";pv.userAgent=navigator.userAgent;
+ send(pv);
+
+ /* 2. click: buttons, links, pricing cards and [data-track] elements */
+ document.addEventListener("click",function(e){
+  try{
+   var t=e.target&&e.target.closest?e.target.closest("[data-track],button,a,.plan"):null;
+   if(!t)return;
+   var p=base();p.event="click";
+   var plan=t.closest(".plan"),h=plan&&plan.querySelector("h3");
+   p.label=txt(t)||(h?txt(h):"");
+   if(t.tagName==="A"&&t.href)p.href=t.href;
+   if(t.hasAttribute("data-track"))p.trackId=t.getAttribute("data-track");
+   if(h)p.plan=txt(h);
+   send(p);
+  }catch(_){}
+ },true);
+
+ /* 3. form_submit: any form, passwords excluded, normal submission untouched */
+ document.addEventListener("submit",function(e){
+  try{
+   var f=e.target;if(!f||f.tagName!=="FORM")return;
+   var fields={};
+   Array.prototype.forEach.call(f.elements,function(el){
+    if(!el.name||el.disabled)return;
+    var ty=(el.type||"").toLowerCase();
+    if(ty==="password"||ty==="file"||ty==="submit"||ty==="button"||ty==="reset")return;
+    if((ty==="checkbox"||ty==="radio")&&!el.checked)return;
+    fields[el.name]=String(el.value||"").trim().slice(0,500);
+   });
+   var p=base();p.event="form_submit";p.formId=f.id||f.getAttribute("name")||"";p.fields=fields;
+   send(p);
+  }catch(_){}
+ },true);
+})();
+</script>
 <script>
 /* transparent tech background: drifting network of nodes, drawn on a fixed canvas */
 (function(){
@@ -1147,14 +1344,14 @@ const PAYPAL_ME_URL = "";
  function pad(n){return String(n).padStart(2,"0")}
 
  /* ---- tracking (non-blocking, fails silently) ---- */
- function track(event,agent,extra,hook){
+ function track(event,agent,extra){
   try{
    var p={event:event,agent_id:agent?agent.id:"",agent_name:agent?agent.name:"",base_price_usd:agent?agent.base:null,offer_price_usd:agent?agent.offer:null,
-    discount_percent:20,offer_name:OFFER,offer_remaining_seconds:remainingSec(),customer_email:(extra&&extra.email)||"",customer_name:(extra&&extra.name)||"",company_name:(extra&&extra.company)||"",
+    discount_percent:20,offer_name:OFFER,offer_remaining_seconds:remainingSec(),customer_email:(extra&&extra.email)||"",
     page_url:location.href,referrer:document.referrer||"",timestamp:new Date().toISOString()};
    if(extra&&extra.extra)for(var k in extra.extra)p[k]=extra.extra[k];
    try{if(window.dataLayer&&window.dataLayer.push)window.dataLayer.push(p)}catch(_){}
-   if(hook)fetch(AGENT_TRACKING_WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p),keepalive:true}).catch(function(){});
+   fetch(AGENT_TRACKING_WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p),keepalive:true}).catch(function(){});
   }catch(_){}
  }
  function agentOf(card){return{id:card.getAttribute("data-agent-id"),name:card.getAttribute("data-agent-name").replace(/&amp;/g,"&"),base:+card.getAttribute("data-base-price"),offer:+card.getAttribute("data-offer-price")}}
@@ -1173,7 +1370,7 @@ const PAYPAL_ME_URL = "";
  tick();setInterval(tick,1000);
 
  /* ---- modal ---- */
- var M=$("#amodal"),F=$("#af"),OK=$("#aok"),EM=$("#aem"),NM=$("#anm"),CO=$("#aco"),ER=$("#aerr"),cur=null,lastFocus=null,resetT=0;
+ var M=$("#amodal"),F=$("#af"),OK=$("#aok"),EM=$("#aem"),ER=$("#aerr"),cur=null,lastFocus=null,resetT=0;
  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
  function openM(card){
@@ -1182,17 +1379,16 @@ const PAYPAL_ME_URL = "";
   $("#amt").textContent=cur.name;
   $("#apipe").innerHTML=cfg.pipe.map(function(x,i){return"<div><i>0"+(i+1)+"</i><span>"+esc(x)+"</span></div>"}).join("");
   $("#afiles").innerHTML=cfg.files.map(function(x){return"<span>"+esc(x)+"</span>"}).join("");
-  $("#af-id").value=cur.id;$("#af-name").value=cur.name;$("#af-base").value=cur.base;$("#af-offer").value=cur.offer;
   $("#anow").textContent="$"+cur.offer;$("#awas").textContent="$"+cur.base;
-  clearTimeout(resetT);F.classList.remove("hide");OK.classList.add("hide");ER.classList.add("hide");EM.removeAttribute("aria-invalid");NM.removeAttribute("aria-invalid");CO.removeAttribute("aria-invalid");
+  clearTimeout(resetT);F.classList.remove("hide");OK.classList.add("hide");ER.classList.add("hide");EM.removeAttribute("aria-invalid");
   lastFocus=document.activeElement;document.body.classList.add("mo");M.classList.add("open");
-  try{NM.focus({preventScroll:true})}catch(_){}
+  try{EM.focus({preventScroll:true})}catch(_){}
   tick();
  }
  function closeM(){
   M.classList.remove("open");document.body.classList.remove("mo");
   if(lastFocus&&lastFocus.focus)try{lastFocus.focus({preventScroll:true})}catch(_){}
-  resetT=setTimeout(function(){F.reset();F.classList.remove("hide");OK.classList.add("hide");ER.classList.add("hide");[EM,NM,CO].forEach(function(x){x.removeAttribute("aria-invalid")})},220);
+  resetT=setTimeout(function(){F.reset();F.classList.remove("hide");OK.classList.add("hide");ER.classList.add("hide");EM.removeAttribute("aria-invalid")},220);
  }
  $$("[data-deploy]").forEach(function(b){b.addEventListener("click",function(){
   var card=b.closest("[data-agent-id]");if(!card)return;
@@ -1206,17 +1402,15 @@ const PAYPAL_ME_URL = "";
   if(e.key==="Tab"){var q=$$("button,input",M).filter(function(x){return x.offsetParent!==null}),i=q.indexOf(document.activeElement);
    if(e.shiftKey&&i<=0){e.preventDefault();q[q.length-1].focus()}else if(!e.shiftKey&&i===q.length-1){e.preventDefault();q[0].focus()}}
  });
- function bad(){var b=[];if(NM.value.trim().length<2)b.push(NM);if(CO.value.trim().length<2)b.push(CO);if(!EMAIL_RE.test(EM.value.trim()))b.push(EM);return b}
- [NM,CO,EM].forEach(function(x){x.addEventListener("input",function(){if(!bad().includes(x))x.removeAttribute("aria-invalid");if(!bad().length)ER.classList.add("hide")},{passive:true})});
+ EM.addEventListener("input",function(){if(EMAIL_RE.test(EM.value.trim())){EM.removeAttribute("aria-invalid");ER.classList.add("hide")}},{passive:true});
 
  /* ---- checkout: email submit / PayPal click ---- */
  F.addEventListener("submit",function(e){
   e.preventDefault();if(!cur)return;
-  var email=EM.value.trim(),name=NM.value.trim(),company=CO.value.trim(),bl=bad();
-  [NM,CO,EM].forEach(function(x){bl.includes(x)?x.setAttribute("aria-invalid","true"):x.removeAttribute("aria-invalid")});
-  if(bl.length){ER.classList.remove("hide");bl[0].focus({preventScroll:true});return}
+  var email=EM.value.trim();
+  if(!EMAIL_RE.test(email)){EM.setAttribute("aria-invalid","true");ER.classList.remove("hide");EM.focus({preventScroll:true});return}
   ER.classList.add("hide");
-  track("agent_checkout_initiated",cur,{email:email,name:name,company:company,extra:{source:"vilocore-landing",payment_method:"paypal"}},true);
+  track("agent_checkout_initiated",cur,{email:email,extra:{source:"vilocore-landing",payment_method:"paypal"}});
   if(PAYPAL_ME_URL){
    try{window.open(PAYPAL_ME_URL.replace(/\/+$/,"")+"/"+cur.offer+"USD","_blank","noopener,noreferrer")}catch(_){}
   }
@@ -1227,4 +1421,3 @@ const PAYPAL_ME_URL = "";
 })();
 </script>
 </body>
-</html>
