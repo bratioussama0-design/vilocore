@@ -531,6 +531,48 @@ nav .btn{white-space:nowrap}
 .flash{animation:cflash 1.7s ease-out}
 @keyframes cflash{0%,100%{box-shadow:0 0 0 0 rgba(245,184,0,0)}25%{box-shadow:0 0 0 2px rgba(245,184,0,.9),0 0 44px rgba(245,184,0,.3)}}
 @media(prefers-reduced-motion:reduce){.mg,.cpulse,.flash{animation:none!important}}
+
+/* ===== plan categories + plan inquiry modal (new) ===== */
+.sec-sub{max-width:62ch}
+.plan .pcat{font:500 10.5px/1.4 'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--mut);text-transform:uppercase}
+.plan .btn{justify-content:center;width:100%;box-sizing:border-box}
+@media(max-width:767px){.nav-links .lnk{font-size:13px;white-space:nowrap}}
+@media(max-width:380px){.nav-links .lnk{font-size:12px}}
+#pmodal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(6,6,7,.94);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .14s ease-out,visibility 0s linear .14s;contain:layout paint}
+#pmodal.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .14s ease-out,visibility 0s}
+#pmodal .panel{transform:translate3d(0,8px,0) scale(.985);transition:transform .16s cubic-bezier(.2,.8,.2,1)}
+#pmodal.open .panel{transform:none}
+#pmodal .psum{border:1px solid var(--hair);background:rgba(255,206,58,.04);padding:14px 16px;margin:0 0 18px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+#pmodal .psum b{display:block;font-weight:600;font-size:17px;letter-spacing:-.01em}
+#pmodal .psum .mono{font-size:22px;letter-spacing:-.04em;white-space:nowrap}
+#pf .fld{display:block;width:100%;box-sizing:border-box;height:56px;margin:0 0 12px;padding:0 18px;background:#131316;border:1px solid #3e3b37;border-radius:0;color:var(--fg);font:500 18px/1 'Space Grotesk',system-ui,sans-serif;caret-color:var(--acc);outline:0;transition:border-color .1s,box-shadow .1s,background-color .1s;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+#pf .fld::placeholder{color:#6b6b74;font-weight:400}
+#pf .fld:hover{border-color:#52525b}
+#pf .fld:focus{border-color:var(--acc);background:#16161a;box-shadow:0 0 0 3px rgba(255,206,58,.22)}
+#pf .fld[aria-invalid=true]{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.18)}
+#pf .fld:-webkit-autofill{-webkit-text-fill-color:var(--fg);-webkit-box-shadow:0 0 0 60px #131316 inset;transition:background-color 9999s}
+#pf .sub-btn{width:100%;justify-content:center;margin-top:8px;padding:18px 22px;font-size:16px;touch-action:manipulation}
+#pf .sub-btn:disabled{opacity:.6;cursor:wait}
+#perr{color:#ef4444!important;line-height:1.5;margin:4px 0 12px}
+#pok .rc{border:1px solid #2c2a27;background:#101013;margin:22px 0}
+#pok .rc>div{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid #1f1f23;font-size:14px}
+#pok .rc>div:first-child{border-top:0}
+#pok .rc b{font-weight:500;color:var(--fg);text-align:right;overflow-wrap:anywhere}
+#pok .ck path{stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset .5s .15s ease-out}
+#pok.show .ck path{stroke-dashoffset:0}
+@media(max-width:640px){#pmodal .panel{padding:22px 18px}}
+@media(prefers-reduced-motion:reduce){#pok .ck path{stroke-dashoffset:0!important}}
+
+/* ===== -10% promo (olive oil green) ===== */
+:root{--olive:#A9B04A}
+.promo-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:28px}
+.tag.promo{color:var(--olive);border-color:rgba(169,176,74,.45)}
+.promo-off{display:inline-block;background:var(--olive);color:#0a0a0b;font:600 11px/1 'JetBrains Mono',monospace;letter-spacing:.1em;padding:10px 12px}
+.promo-cd{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(169,176,74,.45);padding:9px 12px;color:var(--olive);font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.promo-cd b{font-weight:600;color:var(--fg);letter-spacing:.04em}
+.price .pwas{font:400 16px 'JetBrains Mono',monospace;color:var(--mut);letter-spacing:0;text-decoration:line-through;margin-left:10px}
+.price .poff{display:inline-block;vertical-align:middle;margin-left:8px;background:var(--olive);color:#0a0a0b;font:600 10px/1 'JetBrains Mono',monospace;letter-spacing:.1em;padding:5px 7px}
+@media(max-width:420px){.promo-cd{font-size:10px;letter-spacing:.06em;padding:9px 10px}}
 </style>
 </head>
 <body>
@@ -539,7 +581,7 @@ nav .btn{white-space:nowrap}
 <nav>
  <div class="wrap nav-in">
   <a href="#top" class="brand" aria-label="Vilocore AI home" style="flex:none"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Vilocore <b>AI</b></span></a>
-  <div class="hidden md:flex nav-links" style="gap:28px"><a class="lnk" href="#pricing">Pricing</a><a class="lnk" href="#architecture">Architecture</a><a class="lnk" href="#systems">Core Systems</a><a class="lnk" href="#ai-agents">AI Agents</a><a class="lnk" href="#faq">FAQs</a></div>
+  <div class="hidden md:flex nav-links" style="gap:28px"><a class="lnk" href="#website-concierge" aria-label="Website Concierge">Concierge</a><a class="lnk" href="#sales-orders-engine" aria-label="Sales &amp; Orders Engine">Orders</a><a class="lnk" href="#custom-ai-agents" aria-label="Custom AI Agents">Agents</a><a class="lnk" href="#architecture">Architecture</a><a class="lnk" href="#faqs">FAQs</a></div>
   <div style="display:flex;align-items:center;gap:20px">
    <span class="lab dsk" style="display:flex;align-items:center;gap:10px"><i class="dot"></i><b>Operational</b></span>
    <form class="nav-lead" id="nav-lead" novalidate aria-label="Get started">
@@ -559,7 +601,7 @@ nav .btn{white-space:nowrap}
   <h1 class="rv text-4xl sm:text-5xl lg:text-[64px] font-bold tracking-tight leading-[1.08] max-w-none" style="--i:1">We replace manual operational bottlenecks with <em>autonomous AI infrastructure.</em></h1>
   <p class="sub rv" style="--i:2">Custom workflow orchestration, private RAG knowledge bases, and 24/7 WhatsApp/CRM agents engineered by Vilocore AI to scale your revenue without scaling headcount.</p>
   <div class="rv" style="--i:3;display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
-   <a class="btn mag" href="#pricing">View Deployment Plans <span>→</span></a>
+   <a class="btn mag" href="#website-concierge">View Deployment Plans <span>→</span></a>
    <a class="btn ghost mag" href="#architecture">Explore Architecture</a>
   </div>
   </div>
@@ -591,100 +633,153 @@ nav .btn{white-space:nowrap}
  </div>
 </section>
 
-<section id="ai-agents">
+<section id="website-concierge">
+ <div id="pricing" aria-hidden="true"></div>
  <div class="wrap">
-  <span class="lab tag rv">[ PLUG-AND-PLAY INFRASTRUCTURE // READY TO DEPLOY ]</span>
-  <h2 class="rv" style="--i:1;max-width:22ch">Deploy Pre-Built AI Agent Templates.</h2>
-  <p class="sub rv" style="--i:2">Production-ready n8n + LLM agent systems your business can import and run immediately. Import the workflow, connect your credentials, and go live the same day.</p>
-  <div class="offer rv" id="offer" role="timer" aria-label="2-day 20% off offer countdown">
-   <div class="offer-l"><span class="lab"><b>//</b> Limited-time offer</span><strong><em>20% OFF</em> FOR 2 DAYS</strong></div>
-   <div class="cd mono" id="cd-timer" aria-live="off"><div><b id="cd-d">00</b><span>DD</span></div><div><b id="cd-h">00</b><span>HH</span></div><div><b id="cd-m">00</b><span>MM</span></div><div><b id="cd-s">00</b><span>SS</span></div></div>
-  </div>
-  <div class="ag-grid">
-   <article class="ag rv" style="--i:0" data-agent-id="agent_lead_sanitizer" data-agent-name="Lead Sanitizer &amp; CRM Deduplicator Agent" data-base-price="59" data-offer-price="47">
-    
-    <span class="otag">2-DAY OFFER: 20% OFF</span>
-    <span class="bdg">DATA HYGIENE // N8N + SHEETS/CRM</span>
-    <h3>Lead Sanitizer &amp; CRM Deduplicator Agent</h3>
-    <p>Automatically validates incoming emails, strips malformed entries, deduplicates records in real time, and syncs clean leads to Google Sheets or HubSpot.</p>
-    <div class="inc"><span class="lab">Includes</span><code>.json</code> workflow file, validation regex rules, setup guide.</div>
-    <div class="ap"><span class="now">$47</span><span class="was">$59</span><span class="off">-20%</span></div>
-    <button class="btn ghost" type="button" data-deploy="agent_lead_sanitizer">Deploy Template &mdash; $47 <s style="opacity:.55;font-weight:400">$59</s></button>
-   </article>
-   <article class="ag rv" style="--i:1" data-agent-id="agent_whatsapp_qualifier" data-agent-name="24/7 WhatsApp &amp; Web Lead Qualifier Agent" data-base-price="89" data-offer-price="71">
-    
-    <span class="otag">2-DAY OFFER: 20% OFF</span>
-    <span class="bdg">CONVERSATIONAL // WHATSAPP + LLM</span>
-    <h3>24/7 WhatsApp &amp; Web Lead Qualifier Agent</h3>
-    <p>Captures inbound messages, scores buyer intent automatically, answers FAQs, and routes hot prospects directly to your booking calendar.</p>
-    <div class="inc"><span class="lab">Includes</span><code>.json</code> workflow, system prompt, webhook + calendar routing.</div>
-    <div class="ap"><span class="now">$71</span><span class="was">$89</span><span class="off">-20%</span></div>
-    <button class="btn ghost" type="button" data-deploy="agent_whatsapp_qualifier">Deploy Template &mdash; $71 <s style="opacity:.55;font-weight:400">$89</s></button>
-   </article>
-   <article class="ag rv" style="--i:2" data-agent-id="agent_b2b_outreach" data-agent-name="B2B Cold Outreach &amp; Follow-Up Engine" data-base-price="119" data-offer-price="95">
-    
-    <span class="otag">2-DAY OFFER: 20% OFF</span>
-    <span class="bdg">OUTBOUND GROWTH // N8N + BREVO/SMTP</span>
-    <h3>B2B Cold Outreach &amp; Follow-Up Engine</h3>
-    <p>Enriches prospect lists, personalizes first lines via AI, sends throttled multi-step email sequences, and stops automatically upon reply.</p>
-    <div class="inc"><span class="lab">Includes</span><code>.json</code> workflow, prompt templates, reply-detection webhook.</div>
-    <div class="ap"><span class="now">$95</span><span class="was">$119</span><span class="off">-20%</span></div>
-    <button class="btn ghost" type="button" data-deploy="agent_b2b_outreach">Deploy Template &mdash; $95 <s style="opacity:.55;font-weight:400">$119</s></button>
-   </article>
-   <article class="ag rv" style="--i:0" data-agent-id="agent_rag_support" data-agent-name="Private RAG Knowledge Base Support Agent" data-base-price="159" data-offer-price="127">
-    
-    <span class="otag">2-DAY OFFER: 20% OFF</span>
-    <span class="bdg">INTERNAL AI // SUPABASE VECTOR + LLM</span>
-    <h3>Private RAG Knowledge Base Support Agent</h3>
-    <p>Indexes company PDFs, SOPs, and docs into a vector store so your team or customers get instant, source-cited answers with zero hallucinations.</p>
-    <div class="inc"><span class="lab">Includes</span>Ingestion + chat <code>.json</code> workflows, Supabase schema, citation prompt.</div>
-    <div class="ap"><span class="now">$127</span><span class="was">$159</span><span class="off">-20%</span></div>
-    <button class="btn ghost" type="button" data-deploy="agent_rag_support">Deploy Template &mdash; $127 <s style="opacity:.55;font-weight:400">$159</s></button>
-   </article>
-   <article class="ag hot rv" style="--i:1" data-agent-id="agent_multi_ops_suite" data-agent-name="Autonomous Multi-Agent Revenue &amp; Ops Suite" data-base-price="199" data-offer-price="159">
-    <span class="pill">MOST COMPLETE</span>
-    <span class="otag">2-DAY OFFER: 20% OFF</span>
-    <span class="bdg">FULL STACK // ORCHESTRATOR + CRM + RAG</span>
-    <h3>Autonomous Multi-Agent Revenue &amp; Ops Suite</h3>
-    <p>End-to-end autonomous pipeline combining inbound webhook routing, RAG intent scoring, CRM deal creation, and automated follow-up alerts.</p>
-    <div class="inc"><span class="lab">Includes</span>All 4 core <code>.json</code> workflows, master orchestrator, priority setup docs.</div>
-    <div class="ap"><span class="now">$159</span><span class="was">$199</span><span class="off">-20%</span></div>
-    <button class="btn" type="button" data-deploy="agent_multi_ops_suite">Deploy Template &mdash; $159 <s style="opacity:.55;font-weight:400">$199</s></button>
-   </article>
-  </div>
+  <span class="lab rv"><b>//</b> Website Concierge</span>
+  <h2 class="rv" style="--i:1;max-width:22ch">An AI concierge that turns visitors into leads.</h2>
+  <p class="sub sec-sub rv" style="--i:2">Add it with a single script tag. It answers questions, recommends products and captures leads around the clock, on Shopify, WordPress or any custom site.</p>
+  <div class="promo-row rv" style="--i:3"><span class="lab tag promo">[ Limited Time Promo ]</span><span class="promo-off">-10% OFF</span><span class="promo-cd" role="timer" aria-label="Promo ends in">Ends in <b data-promo-cd>--d --h --m --s</b></span></div>
+  <div class="plans" id="plans-website-concierge"></div>
  </div>
 </section>
-
-<section id="pricing">
+<section id="sales-orders-engine">
  <div class="wrap">
-  <span class="lab rv"><b>//</b> Deployment plans</span>
-  <h2 class="rv" style="--i:1">Priced against the hours you get back.</h2>
-  <div class="plans p2">
-   <div class="plan rv">
-    <span class="lab">Plan 1</span><h3 style="font-size:22px;margin:12px 0 0;font-weight:600">Lead Cleaning &amp; CRM Setup</h3>
-    <div class="price">$80<small> one-time</small></div><div class="mono" style="color:var(--mut2);font-size:13px">No monthly fees</div>
-    <ul><li>Automated data sanitization &amp; deduplication (removes malformed emails, extra spaces, and duplicate leads)</li><li>Custom filtering rules to block noise and keep only relevant prospects</li><li>Clean, structured CRM / Google Sheets pipeline setup (New, Qualified, Contacted, Replied, Call, Won)</li><li>Fast turnaround &amp; ready-to-use workflow</li></ul>
-    <button class="btn ghost" data-open data-track="plan_80_click">Get Started</button>
-   </div>
-   <div class="plan hot rv" style="--i:1">
-    <span class="pill">MOST POPULAR</span>
-    <span class="lab">Plan 2</span><h3 style="font-size:22px;margin:12px 0 0;font-weight:600">Complete AI Lead Gen &amp; CRM Engine</h3>
-    <div class="price">$125<small> one-time</small></div><div class="mono" style="color:var(--mut2);font-size:13px">No monthly fees</div>
-    <ul><li>Everything in Lead Cleaning &amp; CRM Setup</li><li>Automated lead capture &amp; ingestion from your chosen source</li><li>AI lead qualification &amp; scoring (intent detection, summary, and next-action tagging)</li><li>Automated CRM pipeline updates + instant lead notifications</li><li>Built for zero lost leads and zero manual sorting</li></ul>
-    <button class="btn mag" data-open data-track="plan_125_click">Get Started</button>
-   </div>
-  </div>
+  <span class="lab rv"><b>//</b> Sales &amp; Orders Engine</span>
+  <h2 class="rv" style="--i:1;max-width:22ch">Capture every order. Recover every lost sale.</h2>
+  <p class="sub sec-sub rv" style="--i:2">Orders and inquiries are extracted, validated, logged and followed up automatically, so nothing slips through the cracks.</p>
+  <div class="promo-row rv" style="--i:3"><span class="lab tag promo">[ Limited Time Promo ]</span><span class="promo-off">-10% OFF</span><span class="promo-cd" role="timer" aria-label="Promo ends in">Ends in <b data-promo-cd>--d --h --m --s</b></span></div>
+  <div class="plans" id="plans-sales-orders-engine"></div>
  </div>
 </section>
+<section id="custom-ai-agents">
+ <div id="ai-agents" aria-hidden="true"></div>
+ <div class="wrap">
+  <span class="lab rv"><b>//</b> Custom AI Agents</span>
+  <h2 class="rv" style="--i:1;max-width:22ch">Custom n8n AI agents built around your workflow.</h2>
+  <p class="sub sec-sub rv" style="--i:2">From one focused agent to a full AI infrastructure across sales, support and operations, designed, built and handed over by Vilocore AI.</p>
+  <div class="promo-row rv" style="--i:3"><span class="lab tag promo">[ Limited Time Promo ]</span><span class="promo-off">-10% OFF</span><span class="promo-cd" role="timer" aria-label="Promo ends in">Ends in <b data-promo-cd>--d --h --m --s</b></span></div>
+  <div class="plans" id="plans-custom-ai-agents"></div>
+ </div>
+</section>
+<script>
+/* ======================================================================
+   PLANS: edit prices, names and features HERE (one place).
+   Cards, the inquiry modal and the n8n payload all read from this object.
+   ====================================================================== */
+window.VILOCORE_PLANS=[
+ {id:'website-concierge',category:'Website Concierge',plans:[
+  {name:'Starter Concierge',price:'$75',unit:'one-time',features:[
+   '1-script embed widget on any website (Shopify, WordPress, Custom)',
+   'Trained on up to 20 pages / FAQs & store policies',
+   'Basic lead capture (Name + Email) synced to Google Sheets',
+   'Standard brand color matching']},
+  {name:'Pro Concierge',price:'$150',unit:'one-time',popular:true,features:[
+   'Everything in Starter Concierge',
+   'Full catalog & product recommendation training (up to 200 items)',
+   'Smart visitor qualification',
+   'Instant high-intent lead alerts',
+   'Real-time CRM / Google Sheets sync']},
+  {name:'Enterprise Concierge',price:'$300',unit:'starting price',features:[
+   'Everything in Pro Concierge',
+   'Unlimited knowledge base / vector store sync',
+   'Multi-language auto-detection',
+   'Custom UI & interactive booking / quote flows inside chat',
+   'Priority monitoring & monthly optimization']}
+ ]},
+ {id:'sales-orders-engine',category:'Sales & Orders Engine',plans:[
+  {name:'Order Capture Core',price:'$100',unit:'one-time',features:[
+   'Automated extraction of order details (Customer, Item, Size/Qty, Address) from site forms & chat',
+   'Clean real-time logging into Google Sheets / Airtable',
+   'Duplicate & missing-info validation',
+   'Instant order confirmation email to the buyer']},
+  {name:'Revenue Recovery Engine',price:'$200',unit:'one-time',popular:true,features:[
+   'Everything in Order Capture Core',
+   'Automated email follow-up sequences for incomplete orders & abandoned inquiries',
+   'Smart lead scoring & status tracking (New, Confirmed, Follow-Up Needed)',
+   'Daily automated sales & pending-order summary report']},
+  {name:'Autonomous Fulfillment Sync',price:'$400',unit:'starting price',features:[
+   'Everything in Revenue Recovery Engine',
+   'Two-way sync between website, CRM, inventory sheet & invoicing',
+   'Automated post-purchase upsell & review request workflows',
+   'Custom exception alerts & ongoing workflow maintenance']}
+ ]},
+ {id:'custom-ai-agents',category:'Custom AI Agents',plans:[
+  {name:'Single-Task AI Agent',price:'$125',unit:'one-time',features:[
+   '1 custom n8n AI Agent for a specific workflow (lead enrichment, inbox triage or data cleaning)',
+   'API & webhook integration with your existing web tools',
+   'Structured output to Google Sheets / Notion / CRM',
+   'Documentation & handoff']},
+  {name:'Multi-Agent Operations',price:'$250',unit:'one-time',popular:true,features:[
+   'Up to 3 interconnected AI Agents working together',
+   'Automated B2B lead research, qualification & personalized outreach drafting',
+   'RAG knowledge base connected to company docs / SOPs',
+   'Error-handling & weekly tuning']},
+  {name:'Full AI Infrastructure',price:'$500',unit:'starting price',features:[
+   'End-to-end custom AI architecture across sales, support & operations',
+   'Custom web dashboard / internal portal connected to backend agents',
+   'Database & vector store pipelines',
+   'Ongoing retainer & priority support']}
+ ]}
+];
+/* PROMO: change percent / days here. Base prices above stay the "regular" price. */
+window.VILOCORE_PROMO={percent:10,days:2};
+window.vcPromo=function(base){
+ var n=parseFloat(String(base).replace(/[^0-9.]/g,''))||0,pct=window.VILOCORE_PROMO.percent;
+ var d=Math.round(n*(100-pct))/100;
+ function f(x){return '$'+(x%1===0?x.toLocaleString('en-US'):x.toFixed(2))}
+ return{was:f(n),now:f(d),pct:pct};
+};
+(function(){
+ var P=window.VILOCORE_PLANS;
+ function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+ P.forEach(function(cat){
+  var grid=document.getElementById('plans-'+cat.id);if(!grid)return;
+  cat.plans.forEach(function(p,i){
+   var card=el('div','plan rv'+(p.popular?' hot':''));card.style.setProperty('--i',i);
+   if(p.popular)card.appendChild(el('span','pill','MOST POPULAR'));
+   card.appendChild(el('span','lab','Plan '+(i+1)));
+   var h=el('h3',null,p.name);h.style.cssText='font-size:22px;margin:12px 0 0;font-weight:600';card.appendChild(h);
+   var pp=window.vcPromo(p.price);var pr=el('div','price',pp.now);pr.appendChild(el('s','pwas',pp.was));pr.appendChild(el('span','poff','-'+pp.pct+'%'));pr.appendChild(el('small',null,' '+p.unit));card.appendChild(pr);
+   var ul=el('ul');p.features.forEach(function(f){ul.appendChild(el('li',null,f))});card.appendChild(ul);
+   var b=el('button','btn '+(p.popular?'mag':'ghost'),'Select Plan');
+   b.type='button';b.setAttribute('data-plan-cat',cat.id);b.setAttribute('data-plan-idx',i);
+   b.setAttribute('data-track','select_plan_'+cat.id+'_'+(i+1));
+   card.appendChild(b);grid.appendChild(card);
+  });
+ });
+})();
+</script>
+<script>
+/* ===== PROMO COUNTDOWN: 2 days, restarts automatically every time it reaches zero ===== */
+(function(){
+ var KEY="vilocore_plan_promo_end",WIN=(window.VILOCORE_PROMO&&window.VILOCORE_PROMO.days||2)*24*60*60*1000;
+ var els=[].slice.call(document.querySelectorAll("[data-promo-cd]"));
+ function get(){try{var v=parseInt(localStorage.getItem(KEY),10);return isFinite(v)&&v>0?v:0}catch(_){return 0}}
+ function set(v){try{localStorage.setItem(KEY,String(v))}catch(_){}}
+ var end=get();if(!end||end<=Date.now()){end=Date.now()+WIN;set(end)}
+ function pad(n){return String(n).padStart(2,"0")}
+ function tick(){
+  var st=get();if(st&&st!==end&&st>Date.now())end=st;
+  if(Date.now()>=end){end=Date.now()+WIN;set(end)}
+  var t=Math.max(0,Math.floor((end-Date.now())/1000)),d=Math.floor(t/86400),h=Math.floor(t%86400/3600),m=Math.floor(t%3600/60),sec=t%60;
+  var txt=pad(d)+"d "+pad(h)+"h "+pad(m)+"m "+pad(sec)+"s";
+  els.forEach(function(e){e.textContent=txt});
+ }
+ tick();setInterval(tick,1000);
+})();
+</script>
 <section id="architecture">
  <div class="wrap">
-  <span class="lab rv"><b>//</b> Deployment methodology</span>
-  <h2 class="rv" style="--i:1">From audit to live in two weeks.</h2>
+  <span class="lab rv"><b>//</b> Architecture</span>
+  <h2 class="rv" style="--i:1">How everything connects.</h2>
+  <p class="sub sec-sub rv" style="--i:2">One clean pipeline powers all 9 plans, from your website to your tools. No WhatsApp, no Meta APIs, nothing extra to approve.</p>
   <div class="steps">
-   <div class="step rv"><div class="n">01</div><h3>Audit &amp; Blueprint</h3><p>We map your workflows, quantify the hours lost, and deliver a system blueprint with projected ROI.</p><span class="lab">48 hours</span></div>
-   <div class="step rv" style="--i:1"><div class="n">02</div><h3>Custom Engineering &amp; Sandbox Testing</h3><p>We build against your real stack and stress-test every path in an isolated sandbox before anything touches production.</p><span class="lab">7–14 days</span></div>
-   <div class="step rv" style="--i:2"><div class="n">03</div><h3>Production Handover &amp; SLA Monitoring</h3><p>Documented handover, team training, and continuous monitoring with alerting and a 99.9% uptime commitment.</p><span class="lab">Ongoing</span></div>
+   <div class="step rv"><div class="n">01</div><h3>Website / Visitors</h3><p>Your site, store or forms. Visitors chat with the Concierge or submit orders and inquiries through a single script tag.</p><span class="lab">Input</span></div>
+   <div class="step rv" style="--i:1"><div class="n">02</div><h3>n8n Workflows &amp; AI</h3><p>Every message and submission hits an n8n webhook, where AI agents qualify, extract, validate and decide the next step.</p><span class="lab">Automation</span></div>
+   <div class="step rv" style="--i:2"><div class="n">03</div><h3>Google Sheets / CRM / Email</h3><p>Clean data lands in your sheet or CRM in real time, and confirmations and follow-ups go out by email automatically.</p><span class="lab">Output</span></div>
   </div>
+  <div class="gr c3"><div class="rv"><span class="lab"><b>//</b> Website Concierge</span><h3 style="margin-top:14px">Chat on your site</h3><p class="mono" style="color:var(--acc);font-size:12.5px;line-height:1.6;margin-top:0">Visitor → n8n + AI knowledge base → Sheets / CRM + alerts</p><p style="margin-top:12px"><b>Starter</b><br>Trained on 20 pages / FAQs. Name + email lead capture synced to Google Sheets.</p><p style="margin-top:12px"><b>Pro</b><br>200-item catalog recommendations, visitor qualification, instant lead alerts, real-time CRM sync.</p><p style="margin-top:12px"><b>Enterprise</b><br>Unlimited vector store, multi-language, booking / quote flows in chat, priority monitoring.</p></div><div class="rv"><span class="lab"><b>//</b> Sales &amp; Orders Engine</span><h3 style="margin-top:14px">Orders from forms &amp; chat</h3><p class="mono" style="color:var(--acc);font-size:12.5px;line-height:1.6;margin-top:0">Form / chat → n8n extraction + validation → Sheets / Airtable + email</p><p style="margin-top:12px"><b>Order Capture Core</b><br>Extracts and validates orders, logs them live, emails the buyer a confirmation.</p><p style="margin-top:12px"><b>Revenue Recovery Engine</b><br>Adds follow-up emails for abandoned orders, lead scoring and a daily sales report.</p><p style="margin-top:12px"><b>Autonomous Fulfillment Sync</b><br>Two-way sync with CRM, inventory and invoicing, plus upsell, reviews and exception alerts.</p></div><div class="rv"><span class="lab"><b>//</b> Custom AI Agents</span><h3 style="margin-top:14px">Agents on your workflows</h3><p class="mono" style="color:var(--acc);font-size:12.5px;line-height:1.6;margin-top:0">Your tools / webhooks → n8n AI agents + RAG → Sheets / Notion / CRM / portal</p><p style="margin-top:12px"><b>Single-Task AI Agent</b><br>One n8n agent for one workflow, with structured output and documentation.</p><p style="margin-top:12px"><b>Multi-Agent Operations</b><br>Up to 3 connected agents, B2B research and outreach drafts, RAG over your docs, weekly tuning.</p><p style="margin-top:12px"><b>Full AI Infrastructure</b><br>End-to-end agents across sales, support and ops, with a custom dashboard and vector pipelines.</p></div></div>
  </div>
 </section>
 <section id="roi" class="border-y border-zinc-800/80"><div class="wrap"><span class="lab"><b>//</b> ROI calculator</span><h2>See what manual work costs you.</h2><div class="roi">
@@ -760,7 +855,7 @@ nav .btn{white-space:nowrap}
 </section>
 <section id="use-cases"><div class="wrap"><span class="lab"><b>//</b> Use cases</span><h2>Built around the work your team repeats.</h2><div class="gr c3"><div><h3>Agencies</h3><p>Client reporting, onboarding and invoice follow-ups that run without anyone chasing them.</p></div><div><h3>Real estate</h3><p>Instant replies to new leads, viewing bookings and CRM updates.</p></div><div><h3>E-commerce</h3><p>Order status answers, support triage and review requests.</p></div><div><h3>Clinics &amp; services</h3><p>Booking, reminders and intake forms handled automatically.</p></div><div><h3>B2B sales teams</h3><p>Lead enrichment, outbound sequences and clean CRM data.</p></div><div><h3>Finance &amp; ops</h3><p>Invoice extraction, approvals and reconciliation.</p></div></div></div></section>
 <section id="security"><div class="wrap"><span class="lab"><b>//</b> Security &amp; privacy</span><h2>Your data stays yours.</h2><div class="gr c4"><div><h3>Self-hosted option</h3><p>Run your workflows and your LLM inside your own infrastructure so data never leaves.</p></div><div><h3>Credentials vault</h3><p>API keys live in the workflow credentials store, scoped to the minimum access needed.</p></div><div><h3>You own everything</h3><p>Workflows are exported as files with full documentation at handover.</p></div><div><h3>Tested first</h3><p>Every build runs in a sandbox before it touches production data.</p></div></div></div></section>
-<section id="faq" class="border-y border-zinc-800/80"><div class="wrap"><span class="lab"><b>//</b> FAQ</span><h2>Questions buyers ask first.</h2><div class="faq"><details><summary>Why not Zapier, or hiring someone?</summary><p>Our workflow engine can be self-hosted, supports custom code and AI steps, and has no per-task fees when self-hosted. Compared with a hire, you pay once for a system that runs 24/7.</p></details><details><summary>What if a workflow breaks?</summary><p>Every workflow ships with error alerts. Scale Infrastructure includes 24/7 monitoring, and support can be added to any plan.</p></details><details><summary>Who owns the workflows?</summary><p>You do. At handover you get the exported workflows and documentation.</p></details><details><summary>How long until it is live?</summary><p>The audit takes 48 hours. Growth Pilot goes live in 14 days or your payment is refunded.</p></details><details><summary>Are there monthly fees?</summary><p>Our prices are one-time. You still pay for the tools you use, such as workflow hosting or AI usage, directly to those providers.</p></details><details><summary>Which tools do you connect?</summary><p>500+ integrations, including HubSpot, Pipedrive, Stripe, Slack, Gmail, Notion and WhatsApp.</p></details></div></div></section>
+<section id="faqs" class="border-y border-zinc-800/80"><div class="wrap"><span class="lab"><b>//</b> FAQs</span><h2>Questions buyers ask first.</h2><div class="faq"><details><summary>How do I install the Website Concierge?</summary><p>Paste one script tag into your site, in your Shopify theme, WordPress header or custom code. That is the whole installation. The widget appears on your pages straight away.</p></details><details><summary>Do you need my passwords or admin access?</summary><p>No. Installation is a single script tag, so you never share a password. Tools like Google Sheets connect through a sheet you choose to share, never your login.</p></details><details><summary>How long does setup take?</summary><p>The Starter Concierge is typically live within a few days. Pro and the Sales &amp; Orders plans usually take about a week. Enterprise plans and Custom AI Agents are scoped on a short call and take one to a few weeks. You get a timeline before we start.</p></details><details><summary>How does the Website Concierge work?</summary><p>It is trained on your pages, FAQs, policies and catalog. It answers visitors, recommends products, qualifies leads and sends the details to your Google Sheet or CRM, with instant alerts on high-intent visitors.</p></details><details><summary>How does the Sales &amp; Orders Engine work?</summary><p>It pulls order details from your forms and chat, validates them, logs them in Google Sheets or Airtable and emails the buyer a confirmation. Higher tiers add follow-ups for abandoned orders, daily reports and two-way sync with your CRM, inventory and invoicing.</p></details><details><summary>How do Custom AI Agents work?</summary><p>We build n8n AI agents for the workflows you choose, such as lead enrichment, inbox triage, outreach drafting or a knowledge base over your docs. They connect to your existing tools and write structured results where your team already works.</p></details><details><summary>Do I need WhatsApp or Meta accounts?</summary><p>No. Everything runs through your website, n8n, and Google Sheets, your CRM and email. There are no WhatsApp or Meta dependencies.</p></details></div></div></section>
 <section id="stack" class="border-y border-zinc-800/80 bg-zinc-950/50" style="padding:56px 0" aria-label="Technology stack">
  <div class="wrap"><p class="rv mono text-xs tracking-widest text-zinc-500 uppercase text-center" style="margin:0 0 40px">Engineered on production-grade infrastructure &amp; APIs</p></div>
  <div class="mq" id="mq"><ul class="mq-t" id="mqt"><li class="mq-i"><div class="eco">
@@ -820,27 +915,25 @@ nav .btn{white-space:nowrap}
  </div>
 </div>
 
-<div id="amodal" role="dialog" aria-modal="true" aria-labelledby="amt">
+<div id="pmodal" role="dialog" aria-modal="true" aria-labelledby="pmt">
  <div class="panel">
-  <div style="display:flex;justify-content:space-between;align-items:center"><span class="lab"><b>//</b> Deploy AI agent template</span><button class="x" id="aclose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
-  <form id="af" novalidate>
-   <p id="abadge" class="lab" style="color:var(--acc);margin:18px 0 0"></p>
-   <h2 id="amt" style="font-size:26px;margin:10px 0 0;max-width:none"></h2>
-   <span class="lab" style="display:block;margin-top:22px">Architecture pipeline</span>
-   <div class="pipe" id="apipe"></div>
-   <span class="lab" style="display:block;margin-top:22px">Included files</span>
-   <div class="files" id="afiles"></div>
-   <div class="mprice"><span class="ap" style="margin:0"><span class="now" id="anow"></span><span class="was" id="awas"></span><span class="off">20% OFF &middot; 2-DAY OFFER</span></span></div>
-   <p class="lab" style="margin:8px 0 0">Offer ends in <b id="aleft">--</b></p>
-   <input class="fld" id="aem" name="email" type="email" inputmode="email" placeholder="Email for .json delivery *" aria-label="Email for .json delivery (required)" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" required>
-   <p id="aerr" class="lab hide" role="alert">Please enter a valid email so we can deliver your .json files.</p>
-   <button class="btn sub-btn" type="submit" id="apay">Checkout with PayPal</button>
+  <div style="display:flex;justify-content:space-between;align-items:center"><span class="lab"><b>//</b> Plan inquiry</span><button class="x" id="pclose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  <form id="pf" novalidate>
+   <h2 id="pmt" style="font-size:26px;margin:18px 0 0;max-width:none">Get started</h2>
+   <p class="sub" style="margin:10px 0 20px;font-size:15px">Tell us where to reach you and we will follow up with next steps for your plan.</p>
+   <div class="psum"><div><span class="lab" id="pcat"></span><b id="pname"></b></div><span class="mono" id="pprice"></span></div>
+   <input class="fld" id="pn" name="name" placeholder="Full name *" aria-label="Full name (required)" autocomplete="name" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
+   <input class="fld" id="pe" name="email" type="email" inputmode="email" placeholder="Work email *" aria-label="Work email (required)" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" required>
+   <input class="fld" id="pc" name="company_name" placeholder="Company / store name *" aria-label="Company or store name (required)" autocomplete="organization" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="go" required>
+   <p id="perr" class="lab hide" role="alert"></p>
+   <button class="btn sub-btn" type="submit" id="psubmit">Send Inquiry</button>
   </form>
-  <div id="aok" class="hide" role="status">
-   <svg width="52" height="52" viewBox="0 0 48 48" fill="none" stroke="#FFCE3A" stroke-width="1.6" aria-hidden="true"><rect x=".8" y=".8" width="46.4" height="46.4"/><path d="M13 25l8 8 14-17"/></svg>
-   <h2 style="font-size:26px;margin:22px 0 0;max-width:none">Order request received.</h2>
-   <p class="sub" style="margin:12px 0 0;font-size:15px">We will send your PayPal invoice and the <b id="aokn" style="color:var(--fg);font-weight:500"></b> <code>.json</code> files to <span id="aoke" style="color:var(--fg)"></span>.</p>
-   <button class="btn sub-btn" type="button" id="adone" style="margin-top:22px">Done</button>
+  <div id="pok" class="okc hide" role="status">
+   <svg class="ck" width="52" height="52" viewBox="0 0 48 48" fill="none" stroke="#FFCE3A" stroke-width="1.6" aria-hidden="true"><rect x=".8" y=".8" width="46.4" height="46.4"/><path d="M13 25l8 8 14-17"/></svg>
+   <h2 id="pokt" style="font-size:26px;margin:22px 0 0;max-width:none">Inquiry received.</h2>
+   <p class="sub" style="margin:12px 0 0;font-size:15px">Thank you. We will email <span id="poke" style="color:var(--fg)"></span> shortly with next steps.</p>
+   <div class="rc"><div><span class="lab">Plan</span><b id="pokp"></b></div><div><span class="lab">Price</span><b id="pokpr"></b></div><div><span class="lab">Company</span><b id="pokc"></b></div></div>
+   <button class="btn sub-btn" type="button" id="pdone" style="margin-top:0;width:100%;justify-content:center">Done</button>
   </div>
  </div>
 </div>
@@ -1321,103 +1414,109 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
 })();
 </script>
 <script>
-/* ===== AI AGENT TEMPLATES: 48h offer timer, modal, PayPal checkout, tracking ===== */
-const AGENT_TRACKING_WEBHOOK_URL = "https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
-/* PayPal: set to your PayPal.Me link (e.g. "https://www.paypal.com/paypalme/yourname") and checkout opens it
-   pre-filled with the 20%-off USD amount. While empty, the order is sent to n8n and you invoice via PayPal. */
-const PAYPAL_ME_URL = "";
+/* ===== PLAN INQUIRY MODAL: opens from every "Select Plan" button, POSTs JSON to n8n ===== */
 (function(){
- var KEY="vilocore_offer_end_ts",WIN=2*24*60*60*1000,OFFER="2_day_20_percent_off";
- var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
- var AG={
-  agent_lead_sanitizer:{pipe:["Webhook / Form intake","Email validation (regex rules)","Malformed-entry filter","Real-time deduplication","Sync to Google Sheets / HubSpot"],files:["lead_sanitizer.json","validation_regex_rules.txt","setup_guide.pdf"]},
-  agent_whatsapp_qualifier:{pipe:["WhatsApp + web chat webhook","LLM intent scoring","FAQ answer engine","Hot-lead router","Booking calendar"],files:["whatsapp_qualifier.json","system_prompt.txt","webhook_calendar_routing.json"]},
-  agent_b2b_outreach:{pipe:["Prospect list import","Enrichment","AI first-line personalization","Throttled Brevo/SMTP sequence","Reply-detection webhook \u2192 stop"],files:["b2b_outreach.json","prompt_templates.txt","reply_detection_webhook.json"]},
-  agent_rag_support:{pipe:["PDF / SOP / docs ingestion","Chunk + embed","Supabase vector store","Retrieval + LLM answer","Source-cited response"],files:["rag_ingestion.json","rag_chat.json","supabase_schema.sql","citation_prompt.txt"]},
-  agent_multi_ops_suite:{pipe:["Inbound webhook router","RAG intent scoring","CRM deal creation","Automated follow-up alerts","Master orchestrator"],files:["workflow_1_lead_sanitizer.json","workflow_2_qualifier.json","workflow_3_outreach.json","workflow_4_rag_support.json","master_orchestrator.json","priority_setup_docs.pdf"]}
- };
- function now(){return Date.now()}
- function lsGet(){try{var v=parseInt(localStorage.getItem(KEY),10);return isFinite(v)&&v>0?v:0}catch(_){return 0}}
- function lsSet(v){try{localStorage.setItem(KEY,String(v))}catch(_){}}
- var endTs=lsGet(),memEnd=endTs;
- function remainingSec(){return Math.max(0,Math.floor(((endTs||memEnd)-now())/1000))}
- function pad(n){return String(n).padStart(2,"0")}
-
- /* ---- tracking (non-blocking, fails silently) ---- */
- function track(event,agent,extra){
-  try{
-   var p={event:event,agent_id:agent?agent.id:"",agent_name:agent?agent.name:"",base_price_usd:agent?agent.base:null,offer_price_usd:agent?agent.offer:null,
-    discount_percent:20,offer_name:OFFER,offer_remaining_seconds:remainingSec(),customer_email:(extra&&extra.email)||"",
-    page_url:location.href,referrer:document.referrer||"",timestamp:new Date().toISOString()};
-   if(extra&&extra.extra)for(var k in extra.extra)p[k]=extra.extra[k];
-   try{if(window.dataLayer&&window.dataLayer.push)window.dataLayer.push(p)}catch(_){}
-   fetch(AGENT_TRACKING_WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p),keepalive:true}).catch(function(){});
-  }catch(_){}
- }
- function agentOf(card){return{id:card.getAttribute("data-agent-id"),name:card.getAttribute("data-agent-name").replace(/&amp;/g,"&"),base:+card.getAttribute("data-base-price"),offer:+card.getAttribute("data-offer-price")}}
-
- /* ---- 48h auto-resetting countdown ---- */
- var els={d:$("#cd-d"),h:$("#cd-h"),m:$("#cd-m"),s:$("#cd-s"),left:$("#aleft")};
- function cycle(fire){endTs=now()+WIN;memEnd=endTs;lsSet(endTs);if(fire)track("agent_offer_cycled",null,{extra:{new_offer_end_iso:new Date(endTs).toISOString()}})}
- if(!endTs||endTs<=now()){var had=!!endTs;cycle(had)}
- function tick(){
-  var stored=lsGet();if(stored&&stored!==endTs&&stored>now())endTs=stored; /* stay in sync across tabs */
-  if(now()>=endTs)cycle(true);
-  var t=remainingSec(),d=Math.floor(t/86400),h=Math.floor(t%86400/3600),m=Math.floor(t%3600/60),s=t%60;
-  if(els.d){els.d.textContent=pad(d);els.h.textContent=pad(h);els.m.textContent=pad(m);els.s.textContent=pad(s)}
-  if(els.left)els.left.textContent=pad(d)+":"+pad(h)+":"+pad(m)+":"+pad(s);
- }
- tick();setInterval(tick,1000);
-
- /* ---- modal ---- */
- var M=$("#amodal"),F=$("#af"),OK=$("#aok"),EM=$("#aem"),ER=$("#aerr"),cur=null,lastFocus=null,resetT=0;
+ var WEBHOOK_URL="https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
+ var TIMEOUT_MS=15000;
+ var $=function(s,r){return(r||document).querySelector(s)};
+ var M=$("#pmodal"),F=$("#pf"),OK=$("#pok"),ER=$("#perr"),BTN=$("#psubmit");
+ var NM=$("#pn"),EM=$("#pe"),CO=$("#pc"),FIELDS=[NM,EM,CO];
  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
- function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
- function openM(card){
-  cur=agentOf(card);var cfg=AG[cur.id]||{pipe:[],files:[]};
-  $("#abadge").textContent=$(".bdg",card).textContent;
-  $("#amt").textContent=cur.name;
-  $("#apipe").innerHTML=cfg.pipe.map(function(x,i){return"<div><i>0"+(i+1)+"</i><span>"+esc(x)+"</span></div>"}).join("");
-  $("#afiles").innerHTML=cfg.files.map(function(x){return"<span>"+esc(x)+"</span>"}).join("");
-  $("#anow").textContent="$"+cur.offer;$("#awas").textContent="$"+cur.base;
-  clearTimeout(resetT);F.classList.remove("hide");OK.classList.add("hide");ER.classList.add("hide");EM.removeAttribute("aria-invalid");
+ var cur=null,lastFocus=null,resetT=0,sending=false;
+
+ function find(catId,idx){
+  var cats=window.VILOCORE_PLANS||[];
+  for(var i=0;i<cats.length;i++){if(cats[i].id===catId){var p=cats[i].plans[idx];if(p)return{category:cats[i].category,name:p.name,price:window.vcPromo(p.price).now}}}
+  return null;
+ }
+ function showErr(t){ER.textContent=t;ER.classList.remove("hide")}
+ function hideErr(){ER.classList.add("hide")}
+ function invalid(el){var v=el.value.trim();return el===EM?!EMAIL_RE.test(v):v.length<2}
+
+ function openM(plan){
+  cur=plan;clearTimeout(resetT);
+  $("#pcat").textContent=plan.category;$("#pname").textContent=plan.name;$("#pprice").textContent=plan.price;
+  F.classList.remove("hide");OK.classList.add("hide");OK.classList.remove("show");hideErr();
+  FIELDS.forEach(function(x){x.removeAttribute("aria-invalid")});
+  BTN.disabled=false;BTN.textContent="Send Inquiry";BTN.removeAttribute("aria-busy");sending=false;
   lastFocus=document.activeElement;document.body.classList.add("mo");M.classList.add("open");
-  try{EM.focus({preventScroll:true})}catch(_){}
-  tick();
+  try{(FIELDS.find(function(x){return !x.value.trim()})||NM).focus({preventScroll:true})}catch(_){}
  }
  function closeM(){
   M.classList.remove("open");document.body.classList.remove("mo");
   if(lastFocus&&lastFocus.focus)try{lastFocus.focus({preventScroll:true})}catch(_){}
-  resetT=setTimeout(function(){F.reset();F.classList.remove("hide");OK.classList.add("hide");ER.classList.add("hide");EM.removeAttribute("aria-invalid")},220);
+  resetT=setTimeout(function(){F.reset();F.classList.remove("hide");OK.classList.add("hide");OK.classList.remove("show");hideErr();sending=false},220);
  }
- $$("[data-deploy]").forEach(function(b){b.addEventListener("click",function(){
-  var card=b.closest("[data-agent-id]");if(!card)return;
-  track("agent_template_clicked",agentOf(card));openM(card);
- })});
- $("#aclose").addEventListener("click",closeM);$("#adone").addEventListener("click",closeM);
- M.addEventListener("pointerdown",function(e){if(e.target===M)closeM()});
+
+ document.addEventListener("click",function(e){
+  var b=e.target&&e.target.closest?e.target.closest("[data-plan-cat]"):null;if(!b)return;
+  var plan=find(b.getAttribute("data-plan-cat"),+b.getAttribute("data-plan-idx"));
+  if(plan)openM(plan);
+ });
+ $("#pclose").addEventListener("click",closeM);$("#pdone").addEventListener("click",closeM);
+ M.addEventListener("pointerdown",function(e){if(e.target===M&&!sending)closeM()});
  addEventListener("keydown",function(e){
   if(!M.classList.contains("open"))return;
   if(e.key==="Escape"){closeM();return}
-  if(e.key==="Tab"){var q=$$("button,input",M).filter(function(x){return x.offsetParent!==null}),i=q.indexOf(document.activeElement);
-   if(e.shiftKey&&i<=0){e.preventDefault();q[q.length-1].focus()}else if(!e.shiftKey&&i===q.length-1){e.preventDefault();q[0].focus()}}
- });
- EM.addEventListener("input",function(){if(EMAIL_RE.test(EM.value.trim())){EM.removeAttribute("aria-invalid");ER.classList.add("hide")}},{passive:true});
-
- /* ---- checkout: email submit / PayPal click ---- */
- F.addEventListener("submit",function(e){
-  e.preventDefault();if(!cur)return;
-  var email=EM.value.trim();
-  if(!EMAIL_RE.test(email)){EM.setAttribute("aria-invalid","true");ER.classList.remove("hide");EM.focus({preventScroll:true});return}
-  ER.classList.add("hide");
-  track("agent_checkout_initiated",cur,{email:email,extra:{source:"vilocore-landing",payment_method:"paypal"}});
-  if(PAYPAL_ME_URL){
-   try{window.open(PAYPAL_ME_URL.replace(/\/+$/,"")+"/"+cur.offer+"USD","_blank","noopener,noreferrer")}catch(_){}
+  if(e.key==="Tab"){
+   var q=Array.prototype.slice.call(M.querySelectorAll("button,input")).filter(function(x){return x.offsetParent!==null&&!x.disabled}),i=q.indexOf(document.activeElement);
+   if(e.shiftKey&&i<=0){e.preventDefault();q[q.length-1].focus()}else if(!e.shiftKey&&i===q.length-1){e.preventDefault();q[0].focus()}
   }
-  $("#aokn").textContent=cur.name;$("#aoke").textContent=email;
+ });
+ [NM,EM].forEach(function(el,i){el.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();FIELDS[i+1].focus()}})});
+ FIELDS.forEach(function(el){el.addEventListener("input",function(){
+  if(!invalid(el))el.removeAttribute("aria-invalid");
+  if(!FIELDS.some(invalid))hideErr();
+ },{passive:true})});
+
+ /* POST JSON; if the browser blocks the response (CORS / odd webhook reply), fall back to a no-cors form post.
+    Returns true when the request was delivered, false on a real failure. */
+ async function deliver(payload){
+  var ctl=typeof AbortController!=="undefined"?new AbortController():null,t=ctl?setTimeout(function(){ctl.abort()},TIMEOUT_MS):0;
+  try{
+   var r=await fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),signal:ctl?ctl.signal:undefined});
+   clearTimeout(t);
+   if(r.ok)return true;
+   console.error("n8n webhook returned HTTP",r.status);return false;
+  }catch(err){
+   clearTimeout(t);
+   if(err&&err.name==="AbortError"){console.error("n8n webhook timed out");return false}
+   console.warn("JSON POST blocked (CORS/network), retrying without CORS",err);
+   try{await fetch(WEBHOOK_URL,{method:"POST",mode:"no-cors",body:new URLSearchParams(payload)});return true}
+   catch(err2){console.error(err2);return false}
+  }
+ }
+
+ F.addEventListener("submit",async function(e){
+  e.preventDefault();
+  if(sending||!cur)return;
+  var bad=FIELDS.filter(invalid);
+  FIELDS.forEach(function(x){bad.indexOf(x)>-1?x.setAttribute("aria-invalid","true"):x.removeAttribute("aria-invalid")});
+  if(bad.length){
+   showErr(bad.length===1&&bad[0]===EM?"Please enter a valid email address.":"Please fill in your name, email and company name.");
+   bad[0].focus({preventScroll:true});return;
+  }
+  hideErr();
+  var payload={
+   name:NM.value.trim(),
+   email:EM.value.trim(),
+   company_name:CO.value.trim(),
+   plan_name:cur.name,
+   plan_price:cur.price,
+   category:cur.category,
+   submitted_at:new Date().toISOString()
+  };
+  sending=true;BTN.disabled=true;BTN.setAttribute("aria-busy","true");BTN.textContent="Sending…";
+  var ok=await deliver(payload);
+  sending=false;BTN.disabled=false;BTN.removeAttribute("aria-busy");
+  if(!ok){BTN.textContent="Try Again";showErr("We could not send your inquiry. Please check your connection and try again.");return}
+  $("#pokt").textContent="Inquiry received, "+payload.name.split(" ")[0]+".";
+  $("#poke").textContent=payload.email;$("#pokp").textContent=payload.plan_name;
+  $("#pokpr").textContent=payload.plan_price;$("#pokc").textContent=payload.company_name;
   F.classList.add("hide");OK.classList.remove("hide");
-  try{$("#adone").focus({preventScroll:true})}catch(_){}
+  requestAnimationFrame(function(){requestAnimationFrame(function(){OK.classList.add("show");try{$("#pdone").focus({preventScroll:true})}catch(_){}})});
  });
 })();
 </script>
 </body>
+</html>
