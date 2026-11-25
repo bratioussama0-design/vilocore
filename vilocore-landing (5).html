@@ -1025,7 +1025,7 @@ const required=[nm,co,em],all=[nm,co,em,ws];
 let last,resetT=0,sending=false;
 
 // n8n webhook that receives every lead as JSON (POST)
-const LEAD_ENDPOINT="https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
+const LEAD_ENDPOINT="https://imranebrati.app.n8n.cloud/webhook/vilocore-lead-tracker";
 
 // Selected pricing plan (set when a plan button is clicked)
 let selectedPlan="";try{selectedPlan=sessionStorage.getItem("vc_plan")||""}catch(_){}
@@ -1107,7 +1107,7 @@ f.addEventListener('submit',async e=>{
    Chat events (chat_question_asked, chat_cta_clicked) are POSTed to N8N_WEBHOOK_URL, fire-and-forget.
    CHAT_REPLIES_FROM_WEBHOOK: leave false unless that workflow answers with
    { output | reply | response | text | message }; the built-in engine is always the fallback. */
-const N8N_WEBHOOK_URL = "https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
+const N8N_WEBHOOK_URL = "https://imranebrati.app.n8n.cloud/webhook/vilocore-lead-tracker";
 const CHAT_REPLIES_FROM_WEBHOOK = false;
 
 (()=>{
@@ -1310,7 +1310,7 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
 <script>
 /* Global event tracking -> n8n production webhook (non-blocking, never interferes with the page) */
 (function(){
- var URL_="https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
+ var URL_="https://imranebrati.app.n8n.cloud/webhook/vilocore-lead-tracker";
  function base(){return{page:location.pathname+location.hash,url:location.href,timestamp:new Date().toISOString()}}
  function send(p){
   try{
@@ -1416,7 +1416,7 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
 <script>
 /* ===== PLAN INQUIRY MODAL: opens from every "Select Plan" button, POSTs JSON to n8n ===== */
 (function(){
- var WEBHOOK_URL="https://imranebrati.app.n8n.cloud/webhook/3705a269-109c-429f-a3d9-f57bea4e4f53";
+ var WEBHOOK_URL="https://imranebrati.app.n8n.cloud/webhook/vilocore-lead-tracker";
  var TIMEOUT_MS=15000;
  var $=function(s,r){return(r||document).querySelector(s)};
  var M=$("#pmodal"),F=$("#pf"),OK=$("#pok"),ER=$("#perr"),BTN=$("#psubmit");
