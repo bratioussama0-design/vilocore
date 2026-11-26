@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+/* Vilocore: only the plan order form reaches the n8n webhook */
+(function(){
+ var HOOK='https://imranebrati.app.n8n.cloud/webhook/vilocore-lead-tracker';
+ var _fetch=window.fetch.bind(window);
+ window.fetch=function(url,opts){
+  try{
+   if(String(url)===HOOK&&opts&&String(opts.method||'').toUpperCase()==='POST'){
+    var b=opts.body,d=null;
+    if(typeof b==='string'){try{d=JSON.parse(b)}catch(e){}}
+    else if(typeof URLSearchParams!=='undefined'&&b instanceof URLSearchParams){d=Object.fromEntries(b.entries())}
+    if(d&&d.name&&d.email&&d.company_name&&d.plan_name){
+     if(typeof b==='string'){d.source='vilocore-plan-form';opts=Object.assign({},opts,{body:JSON.stringify(d)})}
+     else{b.set('source','vilocore-plan-form')}
+     return _fetch(url,opts);
+    }
+    return Promise.resolve(new Response('{}',{status:200}));
+   }
+  }catch(e){}
+  return _fetch(url,opts);
+ };
+})();
+</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PZGS9XWL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
