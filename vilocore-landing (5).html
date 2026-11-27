@@ -995,12 +995,12 @@ if(matchMedia('(hover:hover)').matches)$$('.mag').forEach(b=>{
  b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.3}px)`});
  b.addEventListener('pointerleave',()=>b.style.transform='');
 });
-// hero live background: 7s "manual order chaos" loop (recreated from the first 7s of the promo video)
+// hero live background: orders pile up -> blood-red overload error -> restart (7s loop)
 (()=>{
 const hero=document.querySelector('.hero'),cv=document.getElementById('hbgc');
 if(!hero||!cv||!cv.getContext)return;
 const ctx=cv.getContext('2d');
-const LOOP=5,GOLD='212,175,55',RAD=Math.PI/180;
+const LOOP=6.4,END=7,TE=3.9,RAD=Math.PI/180,GOLD='212,175,55';
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)),lerp=(a,b,t)=>a+(b-a)*t;
 const sm=p=>{p=clamp(p,0,1);return p*p*(3-2*p)};
@@ -1009,12 +1009,10 @@ const rng=s=>()=>((s=(s*1664525+1013904223)>>>0)/4294967296);
 const SANS='"Space Grotesk",system-ui,sans-serif',MONO='"JetBrains Mono",ui-monospace,monospace';
 const IDS=['#1042','#1071','#1063','#1057'];
 const STAT={'#1042':'STATUS: ???','#1071':'CHECK AGAIN?','#1063':'NOT UPDATED','#1057':'PENDING...'};
-// timeline (seconds) read off the first 7s of the video
-const CT=[[1.75,1],[2.5,2],[3.0,3],[3.25,4],[3.75,5],[4.0,6],[4.12,7],[4.25,8],[4.5,9]]; // missed-updates counter
-const PT=[2.5,3.0,3.25,3.75,4.0,4.25];                                                  // red pills pop in
-const PP=[[.30,.62],[.60,.52],[.14,.86],[.47,.9],[.82,.72],[.26,.34]];                  // pill positions (fractions)
-const CL=[1.75,2.25,2.75,3.25,3.75,4.25];                                               // refresh clicks
-let W=1,H=1,dpr=1,cards=[],bgc=null,hud={},spr={},G={cw:200,ch:132,pad:16},vis=true,T0=null;
+const CT=[[1.0,1],[1.5,2],[1.9,3],[2.2,4],[2.5,5],[2.8,6],[3.1,7],[3.4,8],[3.7,9]]; // missed counter
+const PT=[1.6,2.1,2.5,2.9,3.3,3.6];                                                  // red pills
+const PP=[[.30,.62],[.60,.52],[.14,.86],[.47,.9],[.82,.72],[.26,.34]];
+let W=1,H=1,dpr=1,cards=[],bgc=null,hud={},spr={},G={cw:200,ch:132,pad:16},vis=true,T0=null,lastG=0;
 
 function rr(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
 
@@ -1041,12 +1039,11 @@ function sprite(id){
 }
 
 function layout(){
- const r=hero.getBoundingClientRect();W=Math.max(1,Math.round(r.width));H=Math.max(1,Math.round(r.height));
- dpr=1;
- cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
- // card grid (jittered, shuffled spawn order)
+ const r=hero.getBoundingClientRect(),nw=Math.max(1,Math.round(r.width)),nh=Math.max(1,Math.round(r.height));
+ if(bgc&&nw===W&&nh===H)return;
+ W=nw;H=nh;dpr=1;cv.width=W;cv.height=H;
  let cw=clamp(W*(W<700?.36:.17),130,300),cols,rows;
- for(;;){cols=Math.max(3,Math.round(W/(cw*1.05)));rows=Math.max(3,Math.round(H/(cw*.66*1.1)));if(cols*rows<=32)break;cw*=1.05}
+ for(;;){cols=Math.max(3,Math.round(W/(cw*1.05)));rows=Math.max(3,Math.round(H/(cw*.66*1.1)));if(cols*rows<=22)break;cw*=1.05}
  const ch=cw*.66,cellW=W/cols,cellH=H/rows;
  G={cw,ch,pad:Math.round(cw*.08)};spr={};
  const R=rng(11),cells=[];for(let i=0;i<cols*rows;i++)cells.push(i);
@@ -1056,109 +1053,119 @@ function layout(){
   const c=cell%cols,rw=Math.floor(cell/cols);
   const x=(c+.5)*cellW+(R()-.5)*cellW*.4,y=(rw+.5)*cellH+(R()-.5)*cellH*.4,rot=(R()-.5)*20*RAD;
   return{x,y,r:rot,sx:x+(R()-.5)*cw*.9,sy:y-(H*.35+R()*H*.25)-ch,sr:rot+(R()-.5)*50*RAD,
-   t0:.3+2.7*Math.pow(i/Math.max(1,N-1),1.4),id:IDS[i<12?Math.floor(R()*3):Math.floor(R()*4)]};
+   t0:.3+3.2*Math.pow(i/Math.max(1,N-1),1.4),id:IDS[i<8?Math.floor(R()*3):Math.floor(R()*4)]};
  });
- // HUD layout: status panel + counter sit in the free (right) zone on desktop
  const wide=W>=1024;
- const pw=wide?clamp(W*.2,250,340):clamp(W*.56,190,270),s=pw/280,cwid=pw*.56,cs=cwid/156;
- let px,py,cx,cy;
- if(wide){cx=W-W*.04-cwid;px=Math.min(W*.6,cx-16-pw);py=Math.max(96,H*.17);cy=py}
- else{px=W*.05;py=88;cx=W-px-cwid;cy=py}
- hud={px,py,pw,s,cx,cy,cwid,cs,gx:wide?W*.74:W*.5,gy:wide?H*.55:H*.62,
-  bx:px+(176+44)*s,by:py+(112+13)*s,sx:px+pw*.2,sy:py+75*s};
- // static backdrop (faint grid + soft centre light)
- bgc=document.createElement('canvas');bgc.width=Math.round(W*dpr);bgc.height=Math.round(H*dpr);
- const b=bgc.getContext('2d');b.scale(dpr,dpr);
+ const cwid=wide?clamp(W*.11,130,180):clamp(W*.3,110,150);
+ hud={cwid,cs:cwid/156,cx:W-(wide?W*.04:W*.05)-cwid,cy:wide?Math.max(96,H*.12):88,
+  ex:wide?W*.7:W*.5,ey:wide?H*.56:H*.58,ew:wide?clamp(W*.34,300,460):W*.86};
+ bgc=document.createElement('canvas');bgc.width=W;bgc.height=H;
+ const b=bgc.getContext('2d');
  const rg=b.createRadialGradient(W*.5,H*.45,0,W*.5,H*.45,Math.max(W,H)*.6);rg.addColorStop(0,'rgba(255,255,255,.045)');rg.addColorStop(1,'rgba(255,255,255,0)');
  b.fillStyle=rg;b.fillRect(0,0,W,H);
  b.strokeStyle='rgba(255,255,255,.035)';b.lineWidth=1;b.beginPath();
  for(let x=.5;x<W;x+=56){b.moveTo(x,0);b.lineTo(x,H)}for(let y=.5;y<H;y+=56){b.moveTo(0,y);b.lineTo(W,y)}b.stroke();
+ if(T0!==null)draw(lastG,again); // resizing wipes a canvas: repaint in the same task so it is never shown blank
 }
 
-function cursor(g,x,y,k){
- g.save();g.translate(x,y);g.scale(k,k);g.beginPath();
- [[0,0],[0,17],[4.5,13],[7.5,20],[10,19],[7,12],[12.5,12]].forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));
- g.closePath();g.fillStyle='#f4f4f6';g.strokeStyle='rgba(0,0,0,.85)';g.lineWidth=1.2;g.fill();g.stroke();g.restore();
+const DRX=[40,110,175,240,305],DRL=[26,42,18,34,22];
+function banner(g,t,e,out){
+ const p=clamp(e/.25,0,1),s=hud.ew/360,pulse=.5+.5*Math.sin(e*9);
+ g.save();g.globalAlpha=eo3(p)*out;
+ g.translate(hud.ex,hud.ey);g.scale(s*(1.15-.15*eo3(p)),s*(1.15-.15*eo3(p)));g.translate(-180,-75);
+ // soft red halo (no blur filters, cheap)
+ g.fillStyle='rgba(255,0,30,'+(.1+.1*pulse)+')';rr(g,-8,-8,376,166,14);g.fill();
+ const gr=g.createLinearGradient(0,0,0,150);gr.addColorStop(0,'#4a0009');gr.addColorStop(1,'#1a0003');
+ g.fillStyle=gr;rr(g,0,0,360,150,8);g.fill();
+ g.strokeStyle='rgba(255,45,65,'+(.65+.35*pulse)+')';g.lineWidth=2;g.stroke();
+ // warning triangle
+ g.fillStyle='#ff3347';g.beginPath();g.moveTo(28,18);g.lineTo(42,45);g.lineTo(14,45);g.closePath();g.fill();
+ g.fillStyle='#1a0003';g.font='700 15px '+SANS;g.textAlign='center';g.textBaseline='alphabetic';g.fillText('!',28,42);
+ g.textAlign='left';g.fillStyle='#ff3347';g.font='700 19px '+SANS;g.fillText('ORDER OVERLOAD',58,34);
+ g.fillStyle='#ff8c96';g.font='500 8px '+MONO;g.fillText('ERR 503 · MANUAL CAPACITY EXCEEDED',58,49);
+ g.strokeStyle='rgba(255,60,80,.35)';g.lineWidth=1;g.beginPath();g.moveTo(14,62);g.lineTo(346,62);g.stroke();
+ g.fillStyle='#f3e4e6';g.font='600 14.5px '+SANS;g.fillText("Can't handle this many orders manually.",18,88);
+ g.fillStyle='#ff3347';g.font='700 17px '+SANS;g.fillText('This needs AI.',18,111);
+ g.fillStyle=(Math.floor(e*2)%2?'#ff8c96':'#ff3347');g.font='500 8px '+MONO;g.fillText('ALL ORDERS HALTED',18,131);
+ g.fillStyle='rgba(255,51,71,.25)';g.fillRect(18,137,324,3);g.fillStyle='#ff3347';g.fillRect(18,137,324*(.85+.15*pulse),3);
+ // blood drips hanging from the bottom edge
+ const dp=eo3(clamp((e-.2)/1.1,0,1));g.fillStyle='#a30012';
+ for(let i=0;i<5;i++){const l=DRL[i]*dp;if(l<1)continue;g.fillRect(DRX[i]-2,148,4,l);g.beginPath();g.arc(DRX[i],148+l,3.4,0,6.283);g.fill()}
+ g.restore();
 }
 
-function draw(t){
- const g=ctx;g.setTransform(dpr,0,0,dpr,0,0);g.globalAlpha=1;g.globalCompositeOperation='source-over';g.clearRect(0,0,W,H);
- const out=1-sm((t-4.6)/.4),gA=out;
- g.drawImage(bgc,0,0,W,H);
- // cards drop in
+function draw(g0,again){
+ const g=ctx;g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.clearRect(0,0,W,H);
+ g.drawImage(bgc,0,0);
+ if(again&&g0<END-LOOP)scene(g0+LOOP); // tail of the previous cycle still fading out while the next one already drops in
+ scene(g0);
+}
+
+function scene(t){
+ const g=ctx;g.globalAlpha=1;
+ const out=1-sm((t-6.4)/.6),e=t-TE,err=e>=0;
+ g.save();
+ if(err&&e<.45){const k=1-e/.45;g.translate(Math.sin(e*95)*6*k,Math.cos(e*80)*3*k)}
+ // orders drop in (they stop appearing once the error hits: all have landed by 3.5s)
  for(const c of cards){
   let p=(t-c.t0)/.55;if(p<=0)continue;p=Math.min(p,1);
-  const e=eo3(p),sc=lerp(1.18,1,eoq(p)),im=sprite(c.id),sw=G.cw+G.pad*2,sh=G.ch+G.pad*2;
-  g.globalAlpha=Math.min(1,p*4)*gA;
-  g.save();g.translate(lerp(c.sx,c.x,e),lerp(c.sy,c.y,e));g.rotate(lerp(c.sr,c.r,e));g.scale(sc,sc);
+  const ee=eo3(p),sc=lerp(1.18,1,eoq(p)),im=sprite(c.id),sw=G.cw+G.pad*2,sh=G.ch+G.pad*2;
+  g.globalAlpha=Math.min(1,p*4)*out;
+  g.save();g.translate(lerp(c.sx,c.x,ee),lerp(c.sy,c.y,ee));g.rotate(lerp(c.sr,c.r,ee));g.scale(sc,sc);
   g.drawImage(im,-sw/2,-sh/2,sw,sh);g.restore();
  }
  // red "missed update" pills
  const pwid=G.cw*.5,phh=pwid*.22;
  PT.forEach((ts,i)=>{
   const p=(t-ts)/.35;if(p<=0)return;const q=Math.min(p,1),s=.6+.4*eo3(q)+(p<1?.12*Math.sin(q*Math.PI):0);
-  g.save();g.globalAlpha=Math.min(1,p*3.5)*gA;g.translate(PP[i][0]*W,PP[i][1]*H);g.rotate((i%2?2.5:-2.5)*RAD);g.scale(s,s);
-    const gr=g.createLinearGradient(0,-phh/2,0,phh/2);gr.addColorStop(0,'#cc343c');gr.addColorStop(1,'#8e1b23');
-  g.fillStyle=gr;rr(g,-pwid/2,-phh/2,pwid,phh,phh/2);g.fill();
-  g.strokeStyle='rgba(255,130,130,.5)';g.lineWidth=1;g.stroke();
+  g.save();g.globalAlpha=Math.min(1,p*3.5)*out;g.translate(PP[i][0]*W,PP[i][1]*H);g.rotate((i%2?2.5:-2.5)*Math.PI/180);g.scale(s,s);
+  const gr=g.createLinearGradient(0,-phh/2,0,phh/2);gr.addColorStop(0,'#cc343c');gr.addColorStop(1,'#8e1b23');
+  g.fillStyle=gr;rr(g,-pwid/2,-phh/2,pwid,phh,phh/2);g.fill();g.strokeStyle='rgba(255,130,130,.5)';g.lineWidth=1;g.stroke();
   g.fillStyle='#fff';g.font='600 '+(phh*.42)+'px '+SANS;g.textAlign='center';g.textBaseline='middle';g.fillText('MISSED UPDATE',0,1);
   g.restore();
  });
- // status-check panel
- const click=CL.some(c=>t>=c&&t<c+.3);
- if(t>=1.2){
-  const p=clamp((t-1.2)/.35,0,1),s=hud.s;
-  g.save();g.globalAlpha=eo3(p)*gA;g.translate(hud.px,hud.py+(1-eo3(p))*10);g.scale(s*(.96+.04*eo3(p)),s*(.96+.04*eo3(p)));
-  g.fillStyle='rgba(15,15,18,.92)';rr(g,0,0,280,150,9);g.fill();
-  g.strokeStyle='rgba('+GOLD+',.3)';g.lineWidth=1;g.stroke();
-  g.textBaseline='alphabetic';g.textAlign='left';g.fillStyle='#9a968c';g.font='500 9px '+MONO;g.fillText('STATUS CHECK',16,22);
-  g.fillStyle='rgba(224,80,79,'+(.65+.35*Math.sin(t*6))+')';g.beginPath();g.arc(264,18,3.5,0,6.283);g.fill();
-  g.strokeStyle='rgba(255,255,255,.08)';g.beginPath();g.moveTo(0,32);g.lineTo(280,32);g.stroke();
-  const st=t<1.75?['PENDING','#8b877d']:click?['···','#6f6b63']:t>=3.25?['NO UPDATE','#d9484a']:['···','#6f6b63'];
-  ['#1042','#1057','#1063'].forEach((id,i)=>{const y=56+i*24;
-   g.fillStyle='#f4f4f6';g.font='700 14px '+SANS;g.textAlign='left';g.fillText(id,16,y);
-   g.fillStyle=st[1];g.font='500 8.5px '+MONO;g.textAlign='right';g.fillText(st[0],264,y-1);
-   g.strokeStyle='rgba(255,255,255,.06)';g.beginPath();g.moveTo(0,y+9);g.lineTo(280,y+9);g.stroke()});
-  g.fillStyle=click?'rgba('+GOLD+',.2)':'rgba(255,255,255,0)';rr(g,176,112,88,26,13);g.fill();
-  g.strokeStyle=click?'rgb('+GOLD+')':'rgba(255,255,255,.35)';g.stroke();
-  g.fillStyle=click?'#f0d27a':'#dcdad4';g.font='500 9px '+MONO;g.textAlign='center';g.textBaseline='middle';g.fillText('REFRESH',220,126);
-  g.restore();
- }
  // missed-updates counter
- if(t>=1.75){
-  let val=0,tick=1.75;for(const[ts,v]of CT)if(t>=ts){val=v;tick=ts}
-  const p=clamp((t-1.75)/.3,0,1),pulse=1+.14*Math.max(0,1-(t-tick)/.22),cs=hud.cs;
-  g.save();g.globalAlpha=eo3(p)*gA;g.translate(hud.cx+hud.cwid/2,hud.cy+48.5*cs);g.scale(cs*(.85+.15*eo3(p)),cs*(.85+.15*eo3(p)));g.translate(-78,-48.5);
+ if(t>=.9){
+  let val=0,tick=.9;for(const[ts,v]of CT)if(t>=ts){val=v;tick=ts}
+  const p=clamp((t-.9)/.3,0,1),pulse=1+.14*Math.max(0,1-(t-tick)/.22),cs=hud.cs;
+  g.save();g.globalAlpha=eo3(p)*out;g.translate(hud.cx+hud.cwid/2,hud.cy+48.5*cs);g.scale(cs*(.85+.15*eo3(p)),cs*(.85+.15*eo3(p)));g.translate(-78,-48.5);
   g.fillStyle='rgba(24,10,12,.94)';rr(g,0,0,156,97,7);g.fill();
-  g.strokeStyle='rgba(220,70,70,.55)';g.lineWidth=1;g.stroke();
+  g.strokeStyle=err?'rgba(255,45,65,.9)':'rgba(220,70,70,.55)';g.lineWidth=1;g.stroke();
   g.textAlign='center';g.textBaseline='alphabetic';g.fillStyle='#9d8f8f';g.font='500 8.5px '+MONO;g.fillText('MISSED UPDATES',78,28);
-  g.translate(78,76);g.scale(pulse,pulse);
-  g.fillStyle='#e0504f';g.font='700 50px '+SANS;g.fillText(String(val).padStart(2,'0'),0,0);
+  g.translate(78,76);g.scale(pulse,pulse);g.fillStyle='#e0504f';g.font='700 50px '+SANS;g.fillText(String(val).padStart(2,'0'),0,0);
   g.restore();
  }
- // cursor glides to REFRESH, then clicks
- {const p=sm((t-1.0)/.7),w=t>1.7?Math.sin(t*6)*1.2:0,cl=click?1:0;
-  g.save();g.globalAlpha=gA*(t<1.2?.55:1);
-  cursor(g,lerp(hud.sx,hud.bx,p)+w+cl*1.5,lerp(hud.sy,hud.by,p)+w*.6+cl*1.5,clamp(hud.s*1.1,.9,1.3)*(cl?.88:1));g.restore()}
-g.globalAlpha=1;
+ g.restore();
+ if(err){
+  // blood-red wash + pulsing vignette edge
+  const wash=(.14+.07*Math.sin(e*9))*Math.min(1,e/.15)*out;
+  g.globalAlpha=1;g.fillStyle='rgba(150,0,15,'+wash+')';g.fillRect(0,0,W,H);
+  banner(g,t,e,out);
+ }
+ g.globalAlpha=1;
 }
 
-let last=0;
+let last=0,again=false;
+function render(now){
+ if(T0===null)T0=now-300; // first cycle begins with the first order already dropping in
+ lastG=((now-T0)/1000)%LOOP;
+ again=(now-T0)/1000>=LOOP;draw(lastG,again);
+}
 function frame(now){
  requestAnimationFrame(frame);
  if(!vis||document.hidden||now-last<33)return;
  last=now;
- if(T0===null)T0=now;
- draw(((now-T0)/1000)%LOOP);
+ render(now);
 }
 layout();
 if(document.fonts&&document.fonts.load){
- Promise.all([document.fonts.load('700 17px "Space Grotesk"'),document.fonts.load('500 9px "JetBrains Mono"')]).then(()=>{layout();if(reduce)draw(4.4)}).catch(()=>{});
+ Promise.all([document.fonts.load('700 17px "Space Grotesk"'),document.fonts.load('500 9px "JetBrains Mono"')]).then(()=>{spr={};layout();if(T0!==null)draw(lastG,again);if(reduce)draw(5)}).catch(()=>{});
 }
 let rz=0;
-if(window.ResizeObserver)new ResizeObserver(()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(()=>{layout();if(reduce)draw(4.4)})}).observe(hero);
-if(window.IntersectionObserver)new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(hero);
-if(reduce)draw(4.4);else requestAnimationFrame(frame);
+if(window.ResizeObserver)new ResizeObserver(()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(()=>{layout();if(reduce)draw(5)})}).observe(hero);
+if(window.IntersectionObserver)new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!reduce)render(performance.now())}).observe(hero);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&vis&&!reduce)render(performance.now())});
+if(reduce)draw(5);else{render(performance.now());requestAnimationFrame(frame);}
 })();
 // spring drag: live-execution nodes, the 3 metric cards, and the whole live panel (grab its header).
 (()=>{
