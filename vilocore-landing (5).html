@@ -602,6 +602,20 @@ nav .btn{white-space:nowrap}
 .gw{display:inline-block;white-space:nowrap}
 .gc.gl{color:#D4AF37;text-shadow:0 0 8px rgba(250,204,21,.65);font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:500;display:inline-block;text-align:center;overflow:visible}
 </style>
+<style id="hero-bg-css">
+/* Hero live background (canvas, 7s loop) */
+.hero{position:relative}
+.hero>.wrap{position:relative;z-index:2}
+.hbg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;user-select:none;-webkit-user-select:none}
+.hbg canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:.92;pointer-events:none}
+.hbg-scrim{position:absolute;inset:0;pointer-events:none;background:
+ linear-gradient(180deg,rgba(9,9,10,.88) 0,rgba(9,9,10,0) 20%,rgba(9,9,10,0) 68%,#09090a 100%),
+ linear-gradient(90deg,rgba(9,9,10,.94) 0%,rgba(9,9,10,.88) 40%,rgba(9,9,10,.4) 64%,rgba(9,9,10,.14) 100%),
+ radial-gradient(ellipse at 50% 45%,rgba(9,9,10,0) 38%,rgba(9,9,10,.72) 100%)}
+@media(max-width:1023px){.hbg-scrim{background:
+ linear-gradient(180deg,rgba(9,9,10,.9) 0,rgba(9,9,10,.8) 55%,#09090a 100%),
+ radial-gradient(ellipse at 50% 45%,rgba(9,9,10,0) 30%,rgba(9,9,10,.7) 100%)}}
+</style>
 </head>
 <body>
 <div id="pg" aria-hidden="true"></div>
@@ -622,6 +636,7 @@ nav .btn{white-space:nowrap}
 
 <main id="top">
 <section class="hero" style="padding-top:152px;padding-bottom:88px">
+ <div class="hbg" aria-hidden="true"><canvas id="hbgc"></canvas><div class="hbg-scrim"></div></div>
  <div class="wrap">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
   <div class="lg:col-span-7">
@@ -633,25 +648,7 @@ nav .btn{white-space:nowrap}
    <a class="btn ghost mag" href="#architecture">Explore Architecture</a>
   </div>
   </div>
-  <div class="lg:col-span-5">
-   <div class="sysw rv" style="--i:2">
-    <span class="dh lab" id="dh">[ Drag nodes ]</span>
-    <div class="sys">
-     <div class="sys-h"><span class="lab" style="display:inline-flex;align-items:center;gap:10px"><i class="dot"></i><b>Live execution</b> / run #4821</span><span class="mono" id="tm">00.0s</span></div>
-     <svg viewBox="0 0 440 250" role="img" aria-label="Live workflow: webhook to workflow engine to RAG agent to CRM">
-      <path class="ln" d="M22 46V66M22 112V132M22 178V198"/>
-      <path class="fl2" d="M22 46V66M22 112V132M22 178V198"/>
-      <circle r="2.5" fill="#FFCE3A"><animateMotion dur="3.2s" repeatCount="indefinite" path="M22 23V221"/></circle>
-      <g class="hn" data-info="Signed webhook intake from WhatsApp, IG and web forms. Deduplicated and logged in under 40ms."><rect class="nd" x=".5" y=".5" width="439" height="45"/><text class="tx" x="14" y="27">01</text><text class="nl" x="44" y="28">Incoming Lead Webhook</text><text class="tx st" x="426" y="27" text-anchor="end">IDLE</text></g>
-      <g class="hn" transform="translate(0,66)" data-info="The workflow routes by intent, enriches the contact and fans out to the right sub-workflow."><rect class="nd" x=".5" y=".5" width="439" height="45"/><text class="tx" x="14" y="27">02</text><text class="nl" x="44" y="28">Workflow Orchestrator</text><text class="tx st" x="426" y="27" text-anchor="end">IDLE</text></g>
-      <g class="hn" transform="translate(0,132)" data-info="Private RAG retrieves from your own docs; the LLM scores intent and answers with cited sources only."><rect class="nd" x=".5" y=".5" width="439" height="45"/><text class="tx" x="14" y="27">03</text><text class="nl" x="44" y="28">Private RAG + LLM Agent</text><text class="tx st" x="426" y="27" text-anchor="end">IDLE</text></g>
-      <g class="hn" transform="translate(0,198)" data-info="Deal created in HubSpot or Pipedrive, call slot booked, Slack alert sent to the owner."><rect class="nd" x=".5" y=".5" width="439" height="45"/><text class="tx" x="14" y="27">04</text><text class="nl" x="44" y="28">CRM Qualified &amp; Booked</text><text class="tx st" x="426" y="27" text-anchor="end">IDLE</text></g>
-     </svg>
-     <div class="lg" id="lg" aria-live="off"></div>
-     <div class="sys-f lab" id="hint">Hover a node to inspect</div>
-    </div>
-   </div>
-  </div>
+  <div class="hidden lg:block lg:col-span-5" aria-hidden="true"></div>
   </div>
   <div class="metrics rv" style="--i:4">
    <div><strong>&lt; 15s</strong><span class="lab">Lead response time</span></div>
@@ -821,7 +818,6 @@ window.vcPromo=function(base){
  </div>
  <div class="rr"><span class="lab">Estimated savings</span><strong id="o1">$0</strong><span class="lab" style="display:block">per month</span><p id="o2" class="sub" style="margin-top:18px;font-size:15px"></p></div>
 </div></div></section>
-<section id="results"><div class="wrap"><span class="lab"><b>//</b> Example outcomes</span><h2>What good looks like.</h2><div class="gr c3"><div><h3>Lead response</h3><p>Example scenario: inbound leads wait hours for a reply.</p><p class="mono" style="margin-top:14px;color:var(--fg)">Hours → under 15 seconds</p></div><div><h3>Manual data entry</h3><p>Example scenario: the team copies data between tools by hand.</p><p class="mono" style="margin-top:14px;color:var(--fg)">Daily chore → automatic sync</p></div><div><h3>Support load</h3><p>Example scenario: the same questions fill the inbox every day.</p><p class="mono" style="margin-top:14px;color:var(--fg)">Repeat tickets → AI draft replies</p></div></div></div></section>
 
 <section id="systems">
  <div class="wrap">
@@ -999,26 +995,194 @@ if(matchMedia('(hover:hover)').matches)$$('.mag').forEach(b=>{
  b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.3}px)`});
  b.addEventListener('pointerleave',()=>b.style.transform='');
 });
-// hero live pipeline
+// hero live background: 7s "manual order chaos" loop (recreated from the first 7s of the promo video)
 (()=>{
-const nodes=$$('.hn'),tm=$('#tm'),lg=$('#lg'),hint=$('#hint'),def=hint.textContent;
-const E=[0,1.1,3.6,7.4,11.4],END=E[4];
-const run=['200 OK · 38ms','ROUTED','SCORE 0.91','BOOKED · 11.4s'];
-const L=['<i>POST</i> /hooks/lead {"src":"whatsapp","intent":"pricing"}','<i>workflow</i> run#4821 → route: qualify_b2b','<i>rag</i> 3 sources · llm.score=<b>0.91</b>','<i>crm</i> upsert deal#2093 · slot Tue 10:30','<b>✓</b> qualified &amp; booked in <b>11.4s</b>'];
-let t0=performance.now(),k=-1;
-const st=n=>n.querySelector('.st');
-const log=(i)=>{const d=document.createElement('div');d.innerHTML='<i>+'+E[i].toFixed(1)+'s</i> '+L[i];lg.appendChild(d);while(lg.children.length>5)lg.firstChild.remove()};
-const reset=()=>{nodes.forEach(n=>{n.classList.remove('on','done');st(n).textContent='IDLE'});lg.innerHTML='';k=-1};
-nodes.forEach(n=>{n.addEventListener('mouseenter',()=>hint.textContent=n.dataset.info);n.addEventListener('mouseleave',()=>hint.textContent=def)});
-setInterval(()=>{if(document.hidden||document.body.classList.contains('mo'))return;
- const t=(performance.now()-t0)/1000;
- if(t>END+3.4){t0=performance.now();reset();tm.textContent='00.0s';return}
- tm.textContent=Math.min(t,END).toFixed(1).padStart(4,'0')+'s';
- E.forEach((x,i)=>{if(t>=x&&k<i){k=i;
-  if(i>0){const p=nodes[i-1];p.classList.remove('on');p.classList.add('done');st(p).textContent=run[i-1]}
-  if(i<4){nodes[i].classList.add('on');st(nodes[i]).textContent='RUNNING'}
-  log(i)}});
-},100);
+const hero=document.querySelector('.hero'),cv=document.getElementById('hbgc');
+if(!hero||!cv||!cv.getContext)return;
+const ctx=cv.getContext('2d');
+const LOOP=7,GOLD='212,175,55',RAD=Math.PI/180;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)),lerp=(a,b,t)=>a+(b-a)*t;
+const sm=p=>{p=clamp(p,0,1);return p*p*(3-2*p)};
+const eo3=p=>1-Math.pow(1-p,3),eoq=p=>1-(1-p)*(1-p);
+const rng=s=>()=>((s=(s*1664525+1013904223)>>>0)/4294967296);
+const SANS='"Space Grotesk",system-ui,sans-serif',MONO='"JetBrains Mono",ui-monospace,monospace';
+const IDS=['#1042','#1071','#1063','#1057'];
+const STAT={'#1042':'STATUS: ???','#1071':'CHECK AGAIN?','#1063':'NOT UPDATED','#1057':'PENDING...'};
+// timeline (seconds) read off the first 7s of the video
+const CT=[[1.75,1],[2.5,2],[3.0,3],[3.25,4],[3.75,5],[4.0,6],[4.12,7],[4.25,8],[4.5,9]]; // missed-updates counter
+const PT=[2.5,3.0,3.25,3.75,4.0,4.25];                                                  // red pills pop in
+const PP=[[.30,.62],[.60,.52],[.14,.86],[.47,.9],[.82,.72],[.26,.34]];                  // pill positions (fractions)
+const CL=[1.75,2.25,2.75,3.25,3.75,4.25];                                               // refresh clicks
+let W=1,H=1,dpr=1,cards=[],motes=[],bgc=null,hud={},spr={},G={cw:200,ch:132,pad:16},vis=true,T0=null;
+
+function rr(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
+
+function sprite(id){
+ if(spr[id])return spr[id];
+ const w=G.cw,h=G.ch,pad=G.pad,u=w/230;
+ const c=document.createElement('canvas');c.width=Math.ceil((w+pad*2)*dpr);c.height=Math.ceil((h+pad*2)*dpr);
+ const g=c.getContext('2d');g.scale(dpr,dpr);g.translate(pad,pad);
+ g.shadowColor='rgba(0,0,0,.65)';g.shadowBlur=14*u;g.shadowOffsetY=6*u;
+ const gr=g.createLinearGradient(0,0,w*.4,h);gr.addColorStop(0,'#d6d0ba');gr.addColorStop(1,'#b3ad97');
+ g.fillStyle=gr;rr(g,0,0,w,h,4*u);g.fill();
+ g.shadowColor='transparent';g.shadowBlur=0;g.shadowOffsetY=0;
+ g.strokeStyle='rgba('+GOLD+',.5)';g.lineWidth=1;rr(g,.5,.5,w-1,h-1,4*u);g.stroke();
+ g.textBaseline='alphabetic';
+ g.fillStyle='#22211f';g.font='700 '+(17*u)+'px '+SANS;g.fillText('ORDER '+id,14*u,29*u);
+ g.fillStyle='#857f6d';g.font='500 '+(6.5*u)+'px '+MONO;g.fillText('QTY 3 · HANDWRITTEN',14*u,40*u);
+ g.strokeStyle='#8c8775';g.lineWidth=1;g.beginPath();g.moveTo(0,48*u);g.lineTo(w,48*u);g.stroke();
+ g.strokeStyle='#9a9484';g.lineWidth=4.5*u;g.lineCap='round';
+ [[.62,62],[.5,76],[.7,90]].forEach(([f,y])=>{g.beginPath();g.moveTo(14*u,y*u);g.lineTo((14+f*150)*u,y*u);g.stroke()});
+ g.strokeStyle='#3a5bb0';g.lineWidth=1.6*u;g.lineJoin='round';g.beginPath();
+ for(let i=0;i<=8;i++){const x=(160+i*5.5)*u,y=(80+(i%2?-4:4))*u;i?g.lineTo(x,y):g.moveTo(x,y)}g.stroke();
+ g.fillStyle='#b0262c';g.font='700 '+(17*u)+'px '+SANS;g.fillText(STAT[id],14*u,h-16*u);
+ return spr[id]=c;
+}
+
+function layout(){
+ const r=hero.getBoundingClientRect();W=Math.max(1,Math.round(r.width));H=Math.max(1,Math.round(r.height));
+ dpr=Math.min(window.devicePixelRatio||1,1.5);
+ cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+ // card grid (jittered, shuffled spawn order)
+ let cw=clamp(W*(W<700?.36:.17),130,300),cols,rows;
+ for(;;){cols=Math.max(3,Math.round(W/(cw*1.05)));rows=Math.max(3,Math.round(H/(cw*.66*1.1)));if(cols*rows<=32)break;cw*=1.05}
+ const ch=cw*.66,cellW=W/cols,cellH=H/rows;
+ G={cw,ch,pad:Math.round(cw*.08)};spr={};
+ const R=rng(11),cells=[];for(let i=0;i<cols*rows;i++)cells.push(i);
+ for(let i=cells.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[cells[i],cells[j]]=[cells[j],cells[i]]}
+ const N=cells.length;
+ cards=cells.map((cell,i)=>{
+  const c=cell%cols,rw=Math.floor(cell/cols);
+  const x=(c+.5)*cellW+(R()-.5)*cellW*.4,y=(rw+.5)*cellH+(R()-.5)*cellH*.4,rot=(R()-.5)*20*RAD;
+  return{x,y,r:rot,sx:x+(R()-.5)*cw*.9,sy:y-(H*.35+R()*H*.25)-ch,sr:rot+(R()-.5)*50*RAD,
+   t0:.3+2.7*Math.pow(i/Math.max(1,N-1),1.4),id:IDS[i<12?Math.floor(R()*3):Math.floor(R()*4)]};
+ });
+ // HUD layout: status panel + counter sit in the free (right) zone on desktop
+ const wide=W>=1024;
+ const pw=wide?clamp(W*.2,250,340):clamp(W*.56,190,270),s=pw/280,cwid=pw*.56,cs=cwid/156;
+ let px,py,cx,cy;
+ if(wide){cx=W-W*.04-cwid;px=Math.min(W*.6,cx-16-pw);py=Math.max(96,H*.17);cy=py}
+ else{px=W*.05;py=88;cx=W-px-cwid;cy=py}
+ hud={px,py,pw,s,cx,cy,cwid,cs,gx:wide?W*.74:W*.5,gy:wide?H*.55:H*.62,
+  bx:px+(176+44)*s,by:py+(112+13)*s,sx:px+pw*.2,sy:py+75*s};
+ // motes
+ const M=rng(5);motes=[];
+ for(let i=0;i<44;i++)motes.push({bx:M()*W,by:M()*H,ax:8+M()*22,ay:8+M()*22,kx:1+(M()*2|0),ky:1+(M()*2|0),ph:M()*6.283,p2:M()*6.283,kt:1+(M()*3|0),r:.5+M()*1.3});
+ // static backdrop (faint grid + soft centre light)
+ bgc=document.createElement('canvas');bgc.width=Math.round(W*dpr);bgc.height=Math.round(H*dpr);
+ const b=bgc.getContext('2d');b.scale(dpr,dpr);
+ const rg=b.createRadialGradient(W*.5,H*.45,0,W*.5,H*.45,Math.max(W,H)*.6);rg.addColorStop(0,'rgba(255,255,255,.045)');rg.addColorStop(1,'rgba(255,255,255,0)');
+ b.fillStyle=rg;b.fillRect(0,0,W,H);
+ b.strokeStyle='rgba(255,255,255,.035)';b.lineWidth=1;b.beginPath();
+ for(let x=.5;x<W;x+=56){b.moveTo(x,0);b.lineTo(x,H)}for(let y=.5;y<H;y+=56){b.moveTo(0,y);b.lineTo(W,y)}b.stroke();
+}
+
+function cursor(g,x,y,k){
+ g.save();g.translate(x,y);g.scale(k,k);g.beginPath();
+ [[0,0],[0,17],[4.5,13],[7.5,20],[10,19],[7,12],[12.5,12]].forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));
+ g.closePath();g.fillStyle='#f4f4f6';g.strokeStyle='rgba(0,0,0,.85)';g.lineWidth=1.2;g.fill();g.stroke();g.restore();
+}
+
+function draw(t){
+ const g=ctx;g.setTransform(dpr,0,0,dpr,0,0);g.globalAlpha=1;g.globalCompositeOperation='source-over';g.clearRect(0,0,W,H);
+ const out=1-sm((t-6.7)/.3),dim=t<4.7?1:t<5.3?1-.68*sm((t-4.7)/.6):.32,gA=dim*out;
+ g.drawImage(bgc,0,0,W,H);
+ // ambient gold bloom during the dim phase
+ const bl=sm((t-4.9)/1.4)*out;
+ if(bl>0){const R=Math.max(W,H)*.6,rg=g.createRadialGradient(hud.gx,hud.gy,0,hud.gx,hud.gy,R);
+  rg.addColorStop(0,'rgba('+GOLD+','+(.14*bl)+')');rg.addColorStop(1,'rgba('+GOLD+',0)');g.fillStyle=rg;g.fillRect(0,0,W,H)}
+ // cards drop in
+ for(const c of cards){
+  let p=(t-c.t0)/.55;if(p<=0)continue;p=Math.min(p,1);
+  const e=eo3(p),sc=lerp(1.18,1,eoq(p)),im=sprite(c.id),sw=G.cw+G.pad*2,sh=G.ch+G.pad*2;
+  g.globalAlpha=Math.min(1,p*4)*gA;
+  g.save();g.translate(lerp(c.sx,c.x,e),lerp(c.sy,c.y,e));g.rotate(lerp(c.sr,c.r,e));g.scale(sc,sc);
+  g.drawImage(im,-sw/2,-sh/2,sw,sh);g.restore();
+ }
+ // red "missed update" pills
+ const pwid=G.cw*.5,phh=pwid*.22;
+ PT.forEach((ts,i)=>{
+  const p=(t-ts)/.35;if(p<=0)return;const q=Math.min(p,1),s=.6+.4*eo3(q)+(p<1?.12*Math.sin(q*Math.PI):0);
+  g.save();g.globalAlpha=Math.min(1,p*3.5)*gA;g.translate(PP[i][0]*W,PP[i][1]*H);g.rotate((i%2?2.5:-2.5)*RAD);g.scale(s,s);
+  g.shadowColor='rgba(210,40,50,.45)';g.shadowBlur=12;
+  const gr=g.createLinearGradient(0,-phh/2,0,phh/2);gr.addColorStop(0,'#cc343c');gr.addColorStop(1,'#8e1b23');
+  g.fillStyle=gr;rr(g,-pwid/2,-phh/2,pwid,phh,phh/2);g.fill();g.shadowBlur=0;
+  g.strokeStyle='rgba(255,130,130,.5)';g.lineWidth=1;g.stroke();
+  g.fillStyle='#fff';g.font='600 '+(phh*.42)+'px '+SANS;g.textAlign='center';g.textBaseline='middle';g.fillText('MISSED UPDATE',0,1);
+  g.restore();
+ });
+ // status-check panel
+ const click=CL.some(c=>t>=c&&t<c+.3);
+ if(t>=1.2){
+  const p=clamp((t-1.2)/.35,0,1),s=hud.s;
+  g.save();g.globalAlpha=eo3(p)*gA;g.translate(hud.px,hud.py+(1-eo3(p))*10);g.scale(s*(.96+.04*eo3(p)),s*(.96+.04*eo3(p)));
+  g.shadowColor='rgba(0,0,0,.6)';g.shadowBlur=24;g.fillStyle='rgba(15,15,18,.9)';rr(g,0,0,280,150,9);g.fill();g.shadowBlur=0;
+  g.strokeStyle='rgba('+GOLD+',.3)';g.lineWidth=1;g.stroke();
+  g.textBaseline='alphabetic';g.textAlign='left';g.fillStyle='#9a968c';g.font='500 9px '+MONO;g.fillText('STATUS CHECK',16,22);
+  g.fillStyle='rgba(224,80,79,'+(.65+.35*Math.sin(t*6))+')';g.beginPath();g.arc(264,18,3.5,0,6.283);g.fill();
+  g.strokeStyle='rgba(255,255,255,.08)';g.beginPath();g.moveTo(0,32);g.lineTo(280,32);g.stroke();
+  const st=t<1.75?['PENDING','#8b877d']:click?['···','#6f6b63']:t>=3.25?['NO UPDATE','#d9484a']:['···','#6f6b63'];
+  ['#1042','#1057','#1063'].forEach((id,i)=>{const y=56+i*24;
+   g.fillStyle='#f4f4f6';g.font='700 14px '+SANS;g.textAlign='left';g.fillText(id,16,y);
+   g.fillStyle=st[1];g.font='500 8.5px '+MONO;g.textAlign='right';g.fillText(st[0],264,y-1);
+   g.strokeStyle='rgba(255,255,255,.06)';g.beginPath();g.moveTo(0,y+9);g.lineTo(280,y+9);g.stroke()});
+  g.fillStyle=click?'rgba('+GOLD+',.2)':'rgba(255,255,255,0)';rr(g,176,112,88,26,13);g.fill();
+  g.strokeStyle=click?'rgb('+GOLD+')':'rgba(255,255,255,.35)';g.stroke();
+  g.fillStyle=click?'#f0d27a':'#dcdad4';g.font='500 9px '+MONO;g.textAlign='center';g.textBaseline='middle';g.fillText('REFRESH',220,126);
+  g.restore();
+ }
+ // missed-updates counter
+ if(t>=1.75){
+  let val=0,tick=1.75;for(const[ts,v]of CT)if(t>=ts){val=v;tick=ts}
+  const p=clamp((t-1.75)/.3,0,1),pulse=1+.14*Math.max(0,1-(t-tick)/.22),cs=hud.cs;
+  g.save();g.globalAlpha=eo3(p)*gA;g.translate(hud.cx+hud.cwid/2,hud.cy+48.5*cs);g.scale(cs*(.85+.15*eo3(p)),cs*(.85+.15*eo3(p)));g.translate(-78,-48.5);
+  g.shadowColor='rgba(0,0,0,.6)';g.shadowBlur=22;g.fillStyle='rgba(24,10,12,.92)';rr(g,0,0,156,97,7);g.fill();g.shadowBlur=0;
+  g.strokeStyle='rgba(220,70,70,.55)';g.lineWidth=1;g.stroke();
+  g.textAlign='center';g.textBaseline='alphabetic';g.fillStyle='#9d8f8f';g.font='500 8.5px '+MONO;g.fillText('MISSED UPDATES',78,28);
+  g.translate(78,76);g.scale(pulse,pulse);g.shadowColor='rgba(224,80,79,.6)';g.shadowBlur=16;
+  g.fillStyle='#e0504f';g.font='700 50px '+SANS;g.fillText(String(val).padStart(2,'0'),0,0);
+  g.restore();
+ }
+ // cursor glides to REFRESH, then clicks
+ {const p=sm((t-1.0)/.7),w=t>1.7?Math.sin(t*6)*1.2:0,cl=click?1:0;
+  g.save();g.globalAlpha=gA*(t<1.2?.55:1);
+  cursor(g,lerp(hud.sx,hud.bx,p)+w+cl*1.5,lerp(hud.sy,hud.by,p)+w*.6+cl*1.5,clamp(hud.s*1.1,.9,1.3)*(cl?.88:1));g.restore()}
+ // gold underline sweep + glow (the "REVENUE" beat)
+ const lp=sm((t-6.0)/.55);
+ if(lp>0){
+  const lw=Math.min(W*.5,520)*lp,lx=hud.gx,ly=hud.gy;
+  g.save();g.globalAlpha=out;g.translate(lx,ly);g.scale(1,.18);
+  const rg=g.createRadialGradient(0,0,0,0,0,Math.max(lw,1)*.8);rg.addColorStop(0,'rgba('+GOLD+',.4)');rg.addColorStop(1,'rgba('+GOLD+',0)');
+  g.fillStyle=rg;g.fillRect(-lw,-lw,lw*2,lw*2);g.restore();
+  const lg=g.createLinearGradient(lx-lw,0,lx+lw,0);
+  [[0,'rgba(154,107,0,0)'],[.2,'#9A6B00'],[.45,'#D4AF37'],[.5,'#F5E6A8'],[.55,'#D4AF37'],[.8,'#9A6B00'],[1,'rgba(154,107,0,0)']].forEach(a=>lg.addColorStop(a[0],a[1]));
+  g.save();g.globalAlpha=out;g.fillStyle=lg;g.fillRect(lx-lw,ly-1,lw*2,2);g.restore();
+ }
+ // drifting gold dust (periodic in 7s, so the loop is seamless)
+ g.globalCompositeOperation='lighter';
+ const k=2*Math.PI*t/LOOP;
+ for(const m of motes){
+  const x=m.bx+m.ax*Math.sin(k*m.kx+m.ph),y=m.by+m.ay*Math.sin(k*m.ky+m.p2),a=.1+.3*(.5+.5*Math.sin(k*m.kt+m.ph));
+  g.globalAlpha=a;g.fillStyle='rgb('+GOLD+')';g.beginPath();g.arc(x,y,m.r,0,6.283);g.fill();
+ }
+ g.globalCompositeOperation='source-over';g.globalAlpha=1;
+}
+
+function frame(now){
+ requestAnimationFrame(frame);
+ if(!vis||document.hidden)return;
+ if(T0===null)T0=now;
+ draw(((now-T0)/1000)%LOOP);
+}
+layout();
+if(document.fonts&&document.fonts.load){
+ Promise.all([document.fonts.load('700 17px "Space Grotesk"'),document.fonts.load('500 9px "JetBrains Mono"')]).then(()=>{layout();if(reduce)draw(4.4)}).catch(()=>{});
+}
+let rz=0;
+if(window.ResizeObserver)new ResizeObserver(()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(()=>{layout();if(reduce)draw(4.4)})}).observe(hero);
+if(window.IntersectionObserver)new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(hero);
+if(reduce)draw(4.4);else requestAnimationFrame(frame);
 })();
 // spring drag: live-execution nodes, the 3 metric cards, and the whole live panel (grab its header).
 (()=>{
